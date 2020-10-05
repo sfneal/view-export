@@ -1,11 +1,11 @@
 {
-    "name": "sfneal/php-package-boilerplate",
-    "description": "Boilerplate for PHP package repo's",
+    "name": "sfneal/view-export",
+    "description": "Export Views from Laravel applications to PDF or Excel files\n\n",
     "keywords": [
         "sfneal",
-        "php-package-boilerplate"
+        "view-export"
     ],
-    "homepage": "https://github.com/sfneal/php-package-boilerplate",
+    "homepage": "https://github.com/sfneal/view-export",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sfneal\\PhpPackageBoilerplate\\": "src"
+            "Sfneal\\ViewExport\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sfneal\\PhpPackageBoilerplate\\Tests\\": "tests"
+            "Sfneal\\ViewExport\\Tests\\": "tests"
         }
     },
     "scripts": {
