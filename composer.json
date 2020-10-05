@@ -1,6 +1,6 @@
 {
     "name": "sfneal/view-export",
-    "description": "Export Views from Laravel applications to PDF or Excel files\n\n",
+    "description": "Export Views from Laravel applications to PDF or Excel files",
     "keywords": [
         "sfneal",
         "view-export"
