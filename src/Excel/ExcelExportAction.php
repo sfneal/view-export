@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Facades\Excel;
 use Sfneal\Actions\AbstractAction;
 
-// TODO: create package BasicExcelExport
 class ExcelExportAction extends AbstractAction implements FromView, ShouldAutoSize
 {
     /**
