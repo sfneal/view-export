@@ -84,17 +84,18 @@ class PdfExportAction extends AbstractAction implements FromView
     }
 
     /**
-     * Store the created PDF file, by default in S3 storage
+     * Store the created PDF file, by default in S3 storage.
      *
      * @param Dompdf $pdf
      * @return mixed
      */
-    protected function storeFile(Dompdf $pdf) {
+    protected function storeFile(Dompdf $pdf)
+    {
         return s3_upload_raw($this->path, $pdf->output());
     }
 
     /**
-     * Retrieve a View instance to be used to create a PDF
+     * Retrieve a View instance to be used to create a PDF.
      *
      * @return View
      */
