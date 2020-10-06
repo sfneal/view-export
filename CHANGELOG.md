@@ -10,5 +10,5 @@ All notable changes to `view-export` will be documented in this file
 - fix laravel/framework composer requirement maintain compatibility with PHP 7.2
 
 
-## 0.1.2 - 2020-10-05
+## 0.1.2 - 2020-10-06
 - fix composer.json format to be less strict
