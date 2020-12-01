@@ -12,3 +12,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.1.2 - 2020-10-06
 - fix composer.json format to be less strict
+
+
+## 0.2.0 - 2020-12-01
+- add support for php 8
