@@ -18,5 +18,5 @@ All notable changes to `view-export` will be documented in this file
 - add support for php 8
 
 
-## 0.2.0 - 2020-12-01
+## 0.3.0 - 2020-12-01
 - fix Travis CI config's composer flags matrix
