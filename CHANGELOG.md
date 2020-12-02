@@ -20,3 +20,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.3.0 - 2020-12-01
 - fix Travis CI config's composer flags matrix
+
+
+## 0.4.0 - 2020-12-01
+- replace dompdf/dompdf composer dependency with sfneal/dompdf
