@@ -24,3 +24,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.4.0 - 2020-12-01
 - replace dompdf/dompdf composer dependency with sfneal/dompdf
+
+
+## 0.4.1 - 2020-12-02
+- fix issues with Dompdf imports
