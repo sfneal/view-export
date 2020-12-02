@@ -2,9 +2,9 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Dompdf\Dompdf;
-use Dompdf\Exception;
-use Dompdf\Options;
+use Sfneal\Dompdf\Dompdf;
+use Sfneal\Dompdf\Exception;
+use Sfneal\Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
