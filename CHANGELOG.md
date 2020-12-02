@@ -28,3 +28,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.4.1 - 2020-12-02
 - fix issues with Dompdf imports
+
+
+## 0.4.2 - 2020-12-02
+- fix travis CI allowed failure jobs
