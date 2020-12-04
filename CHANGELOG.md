@@ -31,4 +31,8 @@ All notable changes to `view-export` will be documented in this file
 
 
 ## 0.4.2 - 2020-12-02
-- fix travis CI allowed failure jobs
+- fix Travis CI allowed failure jobs
+
+
+## 0.4.3 - 2020-12-04
+- fix Travis CI test suite by disabling xdebug 3.0
