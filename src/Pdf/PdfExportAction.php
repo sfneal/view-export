@@ -2,12 +2,12 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
-use Sfneal\Actions\AbstractAction;
 use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Sfneal\Actions\AbstractAction;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
