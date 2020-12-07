@@ -5,9 +5,9 @@ namespace Sfneal\ViewExport\Pdf;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
-use Sfneal\Dompdf\Dompdf;
-use Sfneal\Dompdf\Exception;
-use Sfneal\Dompdf\Options;
+use Dompdf\Dompdf;
+use Dompdf\Exception;
+use Dompdf\Options;
 
 class PdfExportAction extends AbstractAction implements FromView
 {

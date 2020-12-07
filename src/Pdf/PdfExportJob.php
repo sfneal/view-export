@@ -2,7 +2,7 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Sfneal\Dompdf\Exception;
+use Dompdf\Exception;
 use Sfneal\Queueables\AbstractJob;
 
 class PdfExportJob extends AbstractJob
