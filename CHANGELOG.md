@@ -40,3 +40,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.5.0 - 2020-12-08
 - add sfneal/dompdf ^0.8.5 dependency
+
+
+## 0.5.1 - 2020-12-08
+- fix sfneal/dompdf dependency
