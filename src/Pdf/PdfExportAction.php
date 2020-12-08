@@ -64,9 +64,9 @@ class PdfExportAction extends AbstractAction implements FromView
         $view = $this->view();
 
         // Create local HTML file path
-        Log::debug($options->getChroot());
-        Log::info(fileperms($options->getChroot()));
-        Log::warning(is_writable($options->getChroot()));
+        Log::debug(json_encode($options->getChroot()));
+        Log::info(json_encode(fileperms($options->getChroot())));
+        Log::warning(json_encode(is_writable($options->getChroot())));
         $localHTML = joinPaths($options->getRootDir(), uniqid().'.html');
 
         // Store View as HTML file
