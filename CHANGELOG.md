@@ -36,3 +36,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.4.3 - 2020-12-04
 - fix Travis CI test suite by disabling xdebug 3.0
+
+
+## 0.5.0 - 2020-12-08
+- add sfneal/dompdf ^0.8.5 dependency
