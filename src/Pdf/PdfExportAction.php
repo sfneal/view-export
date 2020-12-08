@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
 
@@ -63,6 +64,9 @@ class PdfExportAction extends AbstractAction implements FromView
         $view = $this->view();
 
         // Create local HTML file path
+        Log::debug($options->getChroot());
+        Log::info(fileperms($options->getChroot()));
+        Log::warning(is_writable($options->getChroot()));
         $localHTML = joinPaths($options->getRootDir(), uniqid().'.html');
 
         // Store View as HTML file
