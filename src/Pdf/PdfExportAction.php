@@ -53,7 +53,8 @@ class PdfExportAction extends AbstractAction implements FromView
             ->setIsPhpEnabled(true)
             ->setIsJavascriptEnabled(true)
             ->setIsHtml5ParserEnabled(true)
-            ->setIsRemoteEnabled(true);
+            ->setIsRemoteEnabled(true)
+            ->setChroot(base_path('vendor/sfneal/dompdf'));
 
         // Instantiate dompdf
         $pdf = new Dompdf($options);
