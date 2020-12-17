@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=7.2",
-        "sfneal/dompdf": "^0.9.0",
+        "sfneal/dompdf": "dev-debug",
         "laravel/framework": ">=7",
         "maatwebsite/excel": ">=3.1",
         "sfneal/actions": ">=0.1.3",
