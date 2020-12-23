@@ -3,11 +3,11 @@
 namespace Sfneal\ViewExport\Pdf;
 
 use Dompdf\Dompdf;
+use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
-use Sfneal\Dompdf\Exception;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
