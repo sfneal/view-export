@@ -44,3 +44,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.5.1 - 2020-12-08
 - fix sfneal/dompdf dependency
+
+
+## 0.5.2 - 2020-12-08
+- fix php8 compatibility
