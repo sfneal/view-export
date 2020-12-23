@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
 
@@ -55,6 +56,8 @@ class PdfExportAction extends AbstractAction implements FromView
             ->setIsHtml5ParserEnabled(true)
             ->setIsRemoteEnabled(true)
             ->setChroot(base_path('vendor/sfneal/dompdf'));
+
+        Log::debug(json_encode($options->getChroot()));
 
         // Instantiate dompdf
         $pdf = new Dompdf($options);
