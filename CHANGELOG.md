@@ -52,3 +52,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.5.3 - 2020-12-23
 - optimize imports
+
+
+## 0.5.4 - 2020-12-23
+- fix sfneal/dompdf min version
