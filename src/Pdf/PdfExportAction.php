@@ -7,7 +7,7 @@ use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
-use Sfneal\Dompdf\Exception;
+use Dompdf\Exception;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
