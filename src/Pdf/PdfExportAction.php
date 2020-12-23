@@ -55,7 +55,7 @@ class PdfExportAction extends AbstractAction implements FromView
             ->setIsJavascriptEnabled(true)
             ->setIsHtml5ParserEnabled(true)
             ->setIsRemoteEnabled(true)
-            ->setChroot(base_path('vendor/dompdf/dompdf'));
+            ->setChroot(base_path('vendor/sfneal/dompdf'));
 
         Log::debug(json_encode($options->getChroot()));
 
