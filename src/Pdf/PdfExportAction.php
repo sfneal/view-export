@@ -6,7 +6,6 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
 
