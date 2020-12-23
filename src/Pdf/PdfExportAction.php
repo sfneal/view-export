@@ -57,8 +57,6 @@ class PdfExportAction extends AbstractAction implements FromView
             ->setIsRemoteEnabled(true)
             ->setChroot(base_path('vendor/sfneal/dompdf'));
 
-        Log::debug(json_encode($options->getChroot()));
-
         // Instantiate dompdf
         $pdf = new Dompdf($options);
 
