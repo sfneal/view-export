@@ -60,3 +60,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.5.5 - 2020-12-23
 - fix exception import
+
+
+## 0.5.6 - 2020-12-23
+- cut Travis CI php7.2 tests
