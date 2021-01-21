@@ -67,4 +67,5 @@ All notable changes to `view-export` will be documented in this file
 
 
 ## 0.6.0 - 2021-01-21
+- optimize Travis & Scrutinizer CI configs
 - cut unused sfneal/aws-s3-helpers & sfneal/string-helpers composer dependencies
