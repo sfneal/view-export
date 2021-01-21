@@ -64,3 +64,8 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.5.6 - 2020-12-23
 - cut Travis CI php7.2 tests
+
+
+## 0.6.0 - 2021-01-21
+- optimize Travis & Scrutinizer CI configs
+- cut unused sfneal/aws-s3-helpers & sfneal/string-helpers composer dependencies
