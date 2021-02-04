@@ -74,3 +74,8 @@ All notable changes to `view-export` will be documented in this file
 ## 0.7.0 - 2021-02-04
 - add composer requiring of sfneal/aws-s3-helpers & sfneal/string-helpers
 - add use of S3 for uploading instead of helper function in PdfExportAction
+
+
+## 0.7.1 - 2021-02-04
+- add use of StringHelpers to fix issues with helper function autoloading
+- bump min sfneal/actions & sfneal/queueables package versions to 1.0 Stephen Neal* 3 minutes ago
