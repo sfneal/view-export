@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
 use Sfneal\Helpers\Aws\S3\S3;
+use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
@@ -66,7 +67,7 @@ class PdfExportAction extends AbstractAction implements FromView
         $view = $this->view();
 
         // Create local HTML file path
-        $localHTML = joinPaths($options->getRootDir(), uniqid().'.html');
+        $localHTML = StringHelpers::joinPaths($options->getRootDir(), uniqid().'.html');
 
         // Store View as HTML file
         touch($localHTML);
