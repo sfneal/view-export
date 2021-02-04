@@ -36,7 +36,7 @@ class PdfExportAction extends AbstractAction implements FromView
      * @param string $view
      * @param array|null $view_data
      */
-    public function __construct(string $path, string $view, array $view_data = null)
+    public function __construct(string $path, string $view, array $view_data = [])
     {
         $this->path = $path;
         $this->view = $view;
@@ -95,6 +95,7 @@ class PdfExportAction extends AbstractAction implements FromView
      */
     protected function storeFile(Dompdf $pdf)
     {
+        // todo: make aws storage optional
         return (new S3($this->path))->upload_raw($pdf->output());
     }
 
