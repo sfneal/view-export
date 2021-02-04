@@ -9,9 +9,12 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
 use Sfneal\Helpers\Aws\S3\S3;
+use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
+    // todo: add ability to pass urls to export
+
     /**
      * @var string
      */
@@ -34,7 +37,7 @@ class PdfExportAction extends AbstractAction implements FromView
      * @param string $view
      * @param array|null $view_data
      */
-    public function __construct(string $path, string $view, array $view_data = null)
+    public function __construct(string $path, string $view, array $view_data = [])
     {
         $this->path = $path;
         $this->view = $view;
@@ -64,7 +67,7 @@ class PdfExportAction extends AbstractAction implements FromView
         $view = $this->view();
 
         // Create local HTML file path
-        $localHTML = joinPaths($options->getRootDir(), uniqid().'.html');
+        $localHTML = StringHelpers::joinPaths($options->getRootDir(), uniqid().'.html');
 
         // Store View as HTML file
         touch($localHTML);
@@ -93,6 +96,7 @@ class PdfExportAction extends AbstractAction implements FromView
      */
     protected function storeFile(Dompdf $pdf)
     {
+        // todo: make aws storage optional
         return (new S3($this->path))->upload_raw($pdf->output());
     }
 

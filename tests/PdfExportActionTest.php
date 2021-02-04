@@ -2,8 +2,6 @@
 
 namespace Sfneal\ViewExport\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 class PdfExportActionTest extends TestCase
 {
     /** @test */
