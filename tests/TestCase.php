@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Tests;
-
 
 use Illuminate\Support\Facades\View;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
