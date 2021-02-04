@@ -67,5 +67,10 @@ All notable changes to `view-export` will be documented in this file
 
 
 ## 0.6.0 - 2021-01-21
-- optimize Travis & Scrutinizer CI configs
 - cut unused sfneal/aws-s3-helpers & sfneal/string-helpers composer dependencies
+- optimize Travis & Scrutinizer CI configs
+
+
+## 0.7.0 - 2021-02-04
+- add composer requiring of sfneal/aws-s3-helpers & sfneal/string-helpers
+- add use of S3 for uploading instead of helper function in PdfExportAction
