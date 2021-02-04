@@ -8,6 +8,7 @@ use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
+use Sfneal\Helpers\Aws\S3\S3;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
@@ -92,7 +93,7 @@ class PdfExportAction extends AbstractAction implements FromView
      */
     protected function storeFile(Dompdf $pdf)
     {
-        return s3_upload_raw($this->path, $pdf->output());
+        return (new S3($this->path))->upload_raw($pdf->output());
     }
 
     /**
