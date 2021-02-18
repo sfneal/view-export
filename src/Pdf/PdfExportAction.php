@@ -94,7 +94,7 @@ class PdfExportAction extends AbstractAction implements FromView
      * @param Dompdf $pdf
      * @return mixed
      */
-    protected function storeFile(Dompdf $pdf)
+    private function storeFile(Dompdf $pdf)
     {
         // todo: make aws storage optional
         return (new S3($this->path))->upload_raw($pdf->output());
