@@ -29,6 +29,13 @@
         "orchestra/testbench": ">=3.8.0",
         "phpunit/phpunit": ">=6.5.14"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sfneal\\ViewExport\\Providers\\ViewExportServiceProvider"
+            ]
+        }
+    },
     "autoload": {
         "psr-4": {
             "Sfneal\\ViewExport\\": "src"

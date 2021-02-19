@@ -70,14 +70,14 @@ class PdfExporter
         // Default options if none provided
         if (!isset($options)) {
             $options = (new Options())
-                ->setIsPhpEnabled(true)
-                ->setIsJavascriptEnabled(true)
-                ->setIsHtml5ParserEnabled(true)
-                ->setIsRemoteEnabled(true);
+                ->setIsPhpEnabled(config('view-export.php_enabled'))
+                ->setIsJavascriptEnabled(config('view-export.javascript_enabled'))
+                ->setIsHtml5ParserEnabled(config('view-export.html5_parsable'))
+                ->setIsRemoteEnabled(config('view-export.remote_enabled'));
         }
 
         // Set file permissions
-        $options->setChroot(base_path('vendor/sfneal/dompdf'));
+        $options->setChroot(config('view-export.chroot'));
 
         // Return the options
         return $options;
