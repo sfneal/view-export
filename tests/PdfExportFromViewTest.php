@@ -4,11 +4,11 @@ namespace Sfneal\ViewExport\Tests;
 
 use Dompdf\Exception;
 use Sfneal\ViewExport\Pdf\PdfExportService;
-use Sfneal\ViewExport\Tests\Traits\InitializeExporter;
+use Sfneal\ViewExport\Tests\Traits\PdfExportValidations;
 
 class PdfExportFromViewTest extends TestCase
 {
-    use InitializeExporter;
+    use PdfExportValidations;
 
     /**
      * Setup the test environment.
