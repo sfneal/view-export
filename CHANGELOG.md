@@ -94,3 +94,8 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.7.4 - 2021-02-19
 - add view() & download() methods to PdfExporter for viewing in browser & downloading PDFs
+
+
+## 0.7.5 - 2021-02-19
+- make DefaultOptions class for retrieving a Dompdf\Options instance with the defaults set
+- add ability to pass Options instances to PdfExportService methods.
