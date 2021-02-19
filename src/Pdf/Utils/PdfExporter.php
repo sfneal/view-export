@@ -146,7 +146,7 @@ class PdfExporter
         // Load HTML
         $this->pdf->loadHtmlFile($localHTML);
 
-        // Remove temp HTML file (todo: make sure this can be done here)
+        // Remove temp HTML file
         unlink($localHTML);
 
         return $this;
