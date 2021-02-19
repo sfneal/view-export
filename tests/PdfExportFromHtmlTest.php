@@ -4,7 +4,6 @@ namespace Sfneal\ViewExport\Tests;
 
 use Dompdf\Exception;
 use Sfneal\ViewExport\Pdf\PdfExportService;
-use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 use Sfneal\ViewExport\Tests\Traits\InitializeExporter;
 
 class PdfExportFromHtmlTest extends TestCase
