@@ -20,7 +20,7 @@ class PdfExportService extends AbstractService
      * @return PdfExporter
      * @throws Exception
      */
-    public function fromView(View $view): PdfExporter
+    public static function fromView(View $view): PdfExporter
     {
         return new PdfExporter($view);
     }
@@ -33,7 +33,7 @@ class PdfExportService extends AbstractService
      * @return PdfExporter
      * @throws Exception
      */
-    public function fromViewData(string $viewName, array $viewData = []): PdfExporter
+    public static function fromViewData(string $viewName, array $viewData = []): PdfExporter
     {
         return new PdfExporter(view($viewName, $viewData));
     }
@@ -45,7 +45,7 @@ class PdfExportService extends AbstractService
      * @return PdfExporter
      * @throws Exception
      */
-    public function fromHtml(string $html): PdfExporter
+    public static function fromHtml(string $html): PdfExporter
     {
         return new PdfExporter($html);
     }
@@ -57,7 +57,7 @@ class PdfExportService extends AbstractService
      * @return PdfExporter
      * @throws Exception
      */
-    public function fromHtmlPath(string $path): PdfExporter
+    public static function fromHtmlPath(string $path): PdfExporter
     {
         return new PdfExporter(file_get_contents($path));
     }
