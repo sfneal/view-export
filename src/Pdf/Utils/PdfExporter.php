@@ -72,6 +72,26 @@ class PdfExporter
     }
 
     /**
+     * View the PDF in the clients browser.
+     *
+     * @param string $filename
+     */
+    public function view(string $filename = 'output.pdf')
+    {
+        $this->pdf->stream($filename, ["Attachment" => false]);
+    }
+
+    /**
+     * Download the PDF using the clients browser.
+     *
+     * @param string $filename
+     */
+    public function download(string $filename = 'output.pdf')
+    {
+        $this->pdf->stream($filename, ["Attachment" => true]);
+    }
+
+    /**
      * Retrieve the PDF's output.
      *
      * @return string

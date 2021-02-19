@@ -90,3 +90,7 @@ All notable changes to `view-export` will be documented in this file
 ## 0.7.3 - 2021-02-19
 - add fromViewModel method to PdfExportService for initializing from a ViewModel
 - add composer requiring of sfneal/view-models & tests for constructing from ViewModels
+
+
+## 0.7.4 - 2021-02-19
+- add view() & download() methods to PdfExporter for viewing in browser & downloading PDFs
