@@ -2,19 +2,11 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Dompdf\Dompdf;
 use Dompdf\Exception;
-use Dompdf\Options;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\Actions\AbstractAction;
-use Sfneal\Helpers\Aws\S3\S3;
-use Sfneal\Helpers\Strings\StringHelpers;
 
-class PdfExportAction extends AbstractAction implements FromView
+class PdfExportAction extends AbstractAction
 {
-    // todo: refactor to service?
-
     /**
      * @var string
      */
@@ -52,64 +44,13 @@ class PdfExportAction extends AbstractAction implements FromView
      */
     public function execute(): string
     {
-        // Declare PDF options
-        $options = (new Options())
-            ->setIsPhpEnabled(true)
-            ->setIsJavascriptEnabled(true)
-            ->setIsHtml5ParserEnabled(true)
-            ->setIsRemoteEnabled(true)
-            ->setChroot(base_path('vendor/sfneal/dompdf'));
+        // Create & Render the PDF
+        $exporter = PdfExportService::fromViewData($this->view, $this->view_data);
 
-        // Instantiate dompdf
-        $pdf = new Dompdf($options);
+        // Upload the PDF to AWS S3
+        $exporter->upload($this->path);
 
-        // Create View
-        $view = $this->view();
-
-        // Create local HTML file path
-        $localHTML = StringHelpers::joinPaths($options->getRootDir(), uniqid().'.html');
-
-        // Store View as HTML file
-        touch($localHTML);
-        file_put_contents($localHTML, $view);
-
-        // Load HTML
-        $pdf->loadHtmlFile($localHTML);
-
-        // Render the PDF
-        $pdf->render();
-
-        // Retrieve the PDF output & Upload PDF to S3
-        $this->storeFile($pdf);
-
-        // Remove temp HTML file
-        unlink($localHTML);
-
-        return $this->path;
-    }
-
-    /**
-     * Store the created PDF file, by default in S3 storage.
-     *
-     * @param Dompdf $pdf
-     * @return mixed
-     */
-    private function storeFile(Dompdf $pdf)
-    {
-        // todo: make aws storage optional
-        return (new S3($this->path))->upload_raw($pdf->output());
-    }
-
-    /**
-     * Retrieve a View instance to be used to create a PDF.
-     *
-     * @return View
-     */
-    public function view(): View
-    {
-        return view(
-            $this->view,
-            $this->view_data
-        );
+        // Return the path
+        return $exporter->getPath();
     }
 }
