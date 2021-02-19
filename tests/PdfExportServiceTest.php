@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Tests;
 
 use Dompdf\Exception;

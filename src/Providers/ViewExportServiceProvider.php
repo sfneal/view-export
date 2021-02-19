@@ -15,7 +15,7 @@ class ViewExportServiceProvider extends ServiceProvider
     {
         // Publish config file
         $this->publishes([
-            __DIR__ . '/../../config/view-export.php' => config_path('view-export.php'),
+            __DIR__.'/../../config/view-export.php' => config_path('view-export.php'),
         ], 'config');
     }
 
@@ -27,6 +27,6 @@ class ViewExportServiceProvider extends ServiceProvider
     public function register()
     {
         // Load config file
-        $this->mergeConfigFrom(__DIR__ . '/../../config/view-export.php', 'view-export');
+        $this->mergeConfigFrom(__DIR__.'/../../config/view-export.php', 'view-export');
     }
 }
