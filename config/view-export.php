@@ -60,7 +60,6 @@ return [
     */
     'javascript_enabled' => true,
 
-
     /*
     |--------------------------------------------------------------------------
     | HTML 5 parsable enabled

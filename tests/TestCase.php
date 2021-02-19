@@ -18,7 +18,7 @@ class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
-            ViewExportServiceProvider::class
+            ViewExportServiceProvider::class,
         ];
     }
 
@@ -30,7 +30,7 @@ class TestCase extends OrchestraTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app->setBasePath(__DIR__ . '/../');
+        $app->setBasePath(__DIR__.'/../');
         $app['config']->set('view-export.chroot', $app->basePath().'/vendor/sfneal/dompdf');
         chmod(config('view-export.chroot'), 0755);
     }
