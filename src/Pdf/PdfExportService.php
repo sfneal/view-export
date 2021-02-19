@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Pdf;
 
 use Dompdf\Exception;
@@ -8,13 +7,12 @@ use Illuminate\Contracts\View\View;
 use Sfneal\Actions\AbstractService;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 
-
 class PdfExportService extends AbstractService
 {
     // todo: add ability to pass urls to export
 
     /**
-     * Provide a view to build the PDF from
+     * Provide a view to build the PDF from.
      *
      * @param View $view
      * @return PdfExporter
@@ -26,7 +24,7 @@ class PdfExportService extends AbstractService
     }
 
     /**
-     * Create a view to build the PDF from
+     * Create a view to build the PDF from.
      *
      * @param string $viewName
      * @param array $viewData
@@ -39,7 +37,7 @@ class PdfExportService extends AbstractService
     }
 
     /**
-     * Provide an HTML string to build the PDF from
+     * Provide an HTML string to build the PDF from.
      *
      * @param string $html
      * @return PdfExporter
@@ -51,7 +49,7 @@ class PdfExportService extends AbstractService
     }
 
     /**
-     * Provide an HTML path to build the PDF from
+     * Provide an HTML path to build the PDF from.
      *
      * @param string $path
      * @return PdfExporter
