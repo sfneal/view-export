@@ -13,7 +13,6 @@ use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfExportAction extends AbstractAction implements FromView
 {
-    // todo: add ability to pass urls to export
     // todo: refactor to service?
 
     /**
