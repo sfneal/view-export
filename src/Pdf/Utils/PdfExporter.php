@@ -78,7 +78,7 @@ class PdfExporter
      */
     public function view(string $filename = 'output.pdf')
     {
-        $this->pdf->stream($filename, ["Attachment" => false]);
+        $this->pdf->stream($filename, ['Attachment' => false]);
     }
 
     /**
@@ -88,7 +88,7 @@ class PdfExporter
      */
     public function download(string $filename = 'output.pdf')
     {
-        $this->pdf->stream($filename, ["Attachment" => true]);
+        $this->pdf->stream($filename, ['Attachment' => true]);
     }
 
     /**
