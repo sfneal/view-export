@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Tests\Traits;
-
 
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
