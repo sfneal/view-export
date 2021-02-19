@@ -22,12 +22,12 @@ class PdfExporter
     private $pdf;
 
     /**
-     * @var string AWS S3 file path
+     * @var string|null AWS S3 file path
      */
     private $path;
 
     /**
-     * @var string AWS S3 file URL
+     * @var string|null AWS S3 file URL
      */
     private $url;
 
@@ -55,6 +55,50 @@ class PdfExporter
 
         // Render the PDF
         $this->render();
+    }
+
+    /**
+     * Upload a rendered PDF to an AWS S3 file store.
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function upload(string $path): self
+    {
+        $this->path = $path;
+        $this->url = (new S3($path))->upload_raw($this->getOutput());
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the PDF's output.
+     *
+     * @return string
+     */
+    public function getOutput(): string
+    {
+        return $this->output;
+    }
+
+    /**
+     * Retrieve the PDF's AWS S3 path.
+     *
+     * @return string|null
+     */
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Retrieve the PDF's AWS S3 url.
+     *
+     * @return string|null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 
     /**
@@ -119,49 +163,5 @@ class PdfExporter
     {
         $this->pdf->render();
         $this->output = $this->pdf->output();
-    }
-
-    /**
-     * Upload a rendered PDF to an AWS S3 file store.
-     *
-     * @param string $path
-     * @return $this
-     */
-    public function upload(string $path): self
-    {
-        $this->path = $path;
-        $this->url = (new S3($path))->upload_raw($this->getOutput());
-
-        return $this;
-    }
-
-    /**
-     * Retrieve the PDF's output.
-     *
-     * @return string
-     */
-    public function getOutput(): string
-    {
-        return $this->output;
-    }
-
-    /**
-     * Retrieve the PDF's AWS S3 path.
-     *
-     * @return string
-     */
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-
-    /**
-     * Retrieve the PDF's AWS S3 url.
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }
