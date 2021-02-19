@@ -44,8 +44,8 @@ class PdfExporter
      */
     public function __construct($content, Options $options = null)
     {
-        // Declare PDF options
-        $this->options = $this->setOptions($options);
+        // Declare PDF options (use DefaultOptions) if none provided
+        $this->options = $options ?? new DefaultOptions();
 
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -119,30 +119,6 @@ class PdfExporter
     public function getUrl(): ?string
     {
         return $this->url;
-    }
-
-    /**
-     * Retrieve a Dompdf Options instance with custom values or defaults.
-     *
-     * @param Options|null $options
-     * @return Options
-     */
-    private static function setOptions(Options $options = null): Options
-    {
-        // Default options if none provided
-        if (! isset($options)) {
-            $options = (new Options())
-                ->setIsPhpEnabled(config('view-export.php_enabled'))
-                ->setIsJavascriptEnabled(config('view-export.javascript_enabled'))
-                ->setIsHtml5ParserEnabled(config('view-export.html5_parsable'))
-                ->setIsRemoteEnabled(config('view-export.remote_enabled'));
-        }
-
-        // Set file permissions
-        $options->setChroot(config('view-export.chroot'));
-
-        // Return the options
-        return $options;
     }
 
     /**
