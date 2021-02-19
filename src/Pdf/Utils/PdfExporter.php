@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Pdf\Utils;
-
 
 use Dompdf\Dompdf;
 use Dompdf\Exception;
@@ -68,7 +66,7 @@ class PdfExporter
     private static function setOptions(Options $options = null): Options
     {
         // Default options if none provided
-        if (!isset($options)) {
+        if (! isset($options)) {
             $options = (new Options())
                 ->setIsPhpEnabled(true)
                 ->setIsJavascriptEnabled(true)
@@ -84,7 +82,7 @@ class PdfExporter
     }
 
     /**
-     * Load PDF content to the Dompdf instance
+     * Load PDF content to the Dompdf instance.
      *
      *  - $content can be a View or HTML file contents
      *
@@ -111,7 +109,7 @@ class PdfExporter
     }
 
     /**
-     * Render a Dompdf & store it's output in a property
+     * Render a Dompdf & store it's output in a property.
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
@@ -124,7 +122,7 @@ class PdfExporter
     }
 
     /**
-     * Upload a rendered PDF to an AWS S3 file store
+     * Upload a rendered PDF to an AWS S3 file store.
      *
      * @param string $path
      * @return $this
@@ -133,11 +131,12 @@ class PdfExporter
     {
         $this->path = $path;
         $this->url = (new S3($path))->upload_raw($this->getOutput());
+
         return $this;
     }
 
     /**
-     * Retrieve the PDF's output
+     * Retrieve the PDF's output.
      *
      * @return string
      */
@@ -147,7 +146,7 @@ class PdfExporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 path
+     * Retrieve the PDF's AWS S3 path.
      *
      * @return string
      */
@@ -157,7 +156,7 @@ class PdfExporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 url
+     * Retrieve the PDF's AWS S3 url.
      *
      * @return string
      */
