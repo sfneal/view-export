@@ -85,3 +85,8 @@ All notable changes to `view-export` will be documented in this file
 - make PdfExportService that provides static methods for initializing a PdfExporter from views or html
 - refactor Pdf construction, rendering & storage functionality to PdfExporter class for easier customization
 - add config file for changing default Dompdf Options
+
+
+## 0.7.3 - 2021-02-19
+- add fromViewModel method to PdfExportService for initializing from a ViewModel
+- add composer requiring of sfneal/view-models & tests for constructing from ViewModels

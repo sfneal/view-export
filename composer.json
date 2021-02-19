@@ -24,7 +24,8 @@
         "sfneal/dompdf": ">=0.9.5",
         "sfneal/laravel-helpers": ">=1.0.3",
         "sfneal/queueables": ">=1.0",
-        "sfneal/string-helpers": ">=1.1"
+        "sfneal/string-helpers": ">=1.1",
+        "sfneal/view-models": ">=1.1"
     },
     "require-dev": {
         "orchestra/testbench": ">=3.8.0",
