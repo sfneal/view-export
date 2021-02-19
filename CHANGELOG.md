@@ -78,4 +78,4 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.7.1 - 2021-02-04
 - add use of StringHelpers to fix issues with helper function autoloading
-- bump min sfneal/actions & sfneal/queueables package versions to 1.0 Stephen Neal* 3 minutes ago
+- bump min sfneal/actions & sfneal/queueables package versions to 1.0
