@@ -41,17 +41,13 @@ class PdfExporter
     /**
      * PdfExporter constructor.
      * @param View|string $content
+     * @param Options|null $options
      * @throws Exception
      */
-    public function __construct($content)
+    public function __construct($content, Options $options = null)
     {
         // Declare PDF options
-        $this->options = (new Options())
-            ->setIsPhpEnabled(true)
-            ->setIsJavascriptEnabled(true)
-            ->setIsHtml5ParserEnabled(true)
-            ->setIsRemoteEnabled(true)
-            ->setChroot(base_path('vendor/sfneal/dompdf'));
+        $this->options = $this->setOptions($options);
 
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -61,6 +57,30 @@ class PdfExporter
 
         // Render the PDF
         $this->render();
+    }
+
+    /**
+     * Retrieve a Dompdf Options instance with custom values or defaults.
+     *
+     * @param Options|null $options
+     * @return Options
+     */
+    private static function setOptions(Options $options = null): Options
+    {
+        // Default options if none provided
+        if (!isset($options)) {
+            $options = (new Options())
+                ->setIsPhpEnabled(true)
+                ->setIsJavascriptEnabled(true)
+                ->setIsHtml5ParserEnabled(true)
+                ->setIsRemoteEnabled(true);
+        }
+
+        // Set file permissions
+        $options->setChroot(base_path('vendor/sfneal/dompdf'));
+
+        // Return the options
+        return $options;
     }
 
     /**
