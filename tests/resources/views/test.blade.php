@@ -1,1 +1,1 @@
-<?php
+{{ "Here's something!" }}

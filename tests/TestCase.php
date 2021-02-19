@@ -30,7 +30,9 @@ class TestCase extends OrchestraTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('view-export.chroot', base_path('vendor/sfneal/dompdf'));
+        $app->setBasePath(__DIR__ . '/../');
+        $app['config']->set('view-export.chroot', $app->basePath().'/vendor/sfneal/dompdf');
+        chmod(config('view-export.chroot'), 0755);
     }
 
     /**
