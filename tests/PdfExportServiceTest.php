@@ -19,4 +19,37 @@ class PdfExportServiceTest extends TestCase
 
         $this->assertInstanceOf(PdfExporter::class, $exporter);
     }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function fromViewData()
+    {
+        $exporter = PdfExportService::fromViewData('test', ['string'=>"Here's a string!"]);
+
+        $this->assertInstanceOf(PdfExporter::class, $exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function fromHtml()
+    {
+        $exporter = PdfExportService::fromHtml(file_get_contents(base_path('tests/resources/html/test.html')));
+
+        $this->assertInstanceOf(PdfExporter::class, $exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function fromHtmlPath()
+    {
+        $exporter = PdfExportService::fromHtmlPath(base_path('tests/resources/html/test.html'));
+
+        $this->assertInstanceOf(PdfExporter::class, $exporter);
+    }
 }
