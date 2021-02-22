@@ -39,15 +39,14 @@ class PdfRenderer
      *
      * @param View|string $content
      * @param Options|null $options
-     * @param array|null $metadata
      */
-    public function __construct($content, Options $options = null, array $metadata = null)
+    public function __construct($content, Options $options = null)
     {
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = $options ?? new DefaultOptions();
 
         // Instantiate Metadata
-        $this->metadata = new Metadata($metadata);
+        $this->metadata = new Metadata();
 
         // Content of the PDF
         $this->content = $content;
