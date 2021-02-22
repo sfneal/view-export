@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Pdf\Utils;
-
 
 class Metadata
 {
     /**
-     * Array of valid metadata keys
+     * Array of valid metadata keys.
      *
      * @var string[]
      */
@@ -24,7 +22,7 @@ class Metadata
     ];
 
     /**
-     * Metadata info to add to the PDF
+     * Metadata info to add to the PDF.
      *
      *  - keys are validated from $validMetadata property
      *
@@ -39,7 +37,7 @@ class Metadata
      */
     public function __construct(array $metadata = null)
     {
-        if (!empty($metadata)) {
+        if (! empty($metadata)) {
             $this->set($metadata ?? config('view-export.metadata'));
         }
     }
@@ -55,7 +53,7 @@ class Metadata
     }
 
     /**
-     * Set the entire $metadata array
+     * Set the entire $metadata array.
      *
      * @param array $metadata
      * @return $this
