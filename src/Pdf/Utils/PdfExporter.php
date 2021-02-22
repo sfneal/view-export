@@ -3,94 +3,43 @@
 namespace Sfneal\ViewExport\Pdf\Utils;
 
 use Dompdf\Dompdf;
-use Dompdf\Exception;
-use Dompdf\Options;
-use Illuminate\Contracts\View\View;
 use Sfneal\Helpers\Aws\S3\S3;
-use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfExporter
 {
-    // todo: make dispatchable
-    use Accessors;
-
-    /**
-     * @var Options
-     */
-    public $options;
-
-    /**
-     * @var Metadata
-     */
-    public $metadata;
-
     /**
      * @var Dompdf
      */
     private $pdf;
 
     /**
-     * @var View|string
+     * @var string|null AWS S3 file path
      */
-    private $content;
+    private $path;
+
+    /**
+     * @var string|null AWS S3 file URL
+     */
+    private $url;
+
+    /**
+     * @var string|null
+     */
+    private $output;
 
     /**
      * PdfExporter constructor.
      *
      * - $content can be a View or HTML file contents
      *
-     * @param View|string $content
-     * @param Options|null $options
-     * @param array|null $metadata
+     * @param Dompdf $pdf
      */
-    public function __construct($content, Options $options = null, array $metadata = null)
+    public function __construct(Dompdf $pdf)
     {
-        // Declare PDF options (use DefaultOptions) if none provided
-        $this->options = $options ?? new DefaultOptions();
-
-        // Instantiate Metadata
-        $this->metadata = new Metadata($metadata);
-
-        // Content of the PDF
-        $this->content = $content;
-    }
-
-    /**
-     * Load PDF content to the Dompdf instance and render the output.
-     *
-     *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
-     *
-     * @return $this
-     * @throws Exception
-     */
-    public function render(): self
-    {
-        // Instantiate dompdf
-        $this->pdf = new Dompdf($this->options);
-
-        // Add metadata
-        $this->applyMetadata();
-
-        // Create local HTML file path
-        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
-
-        // Store View (or HTML) as HTML file within Dompdf root
-        touch($localHTML);
-        file_put_contents($localHTML, $this->content);
-
-        // Load HTML
-        $this->pdf->loadHtmlFile($localHTML);
-
-        // Remove temp HTML file
-        unlink($localHTML);
-
-        // Render the PDF
-        $this->pdf->render();
+        $this->pdf = $pdf;
 
         // Store output to a property to avoid retrieving twice
         $this->output = $this->pdf->output();
-
-        return $this;
     }
 
     /**
@@ -128,19 +77,32 @@ class PdfExporter
     }
 
     /**
-     * Add Metadata to the PDF.
+     * Retrieve the PDF's output.
      *
-     * @return bool
+     * @return string
      */
-    private function applyMetadata(): bool
+    public function getOutput(): string
     {
-        // Add Metadata if the array isn't empty
-        if ($hasMetadata = ! empty($this->metadata->get())) {
-            foreach ($this->metadata->get() as $key => $value) {
-                $this->pdf->add_info($key, $value);
-            }
-        }
+        return $this->output;
+    }
 
-        return $hasMetadata;
+    /**
+     * Retrieve the PDF's AWS S3 path.
+     *
+     * @return string|null
+     */
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Retrieve the PDF's AWS S3 url.
+     *
+     * @return string|null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }

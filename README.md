@@ -16,6 +16,11 @@ You can install the package via composer:
 composer require sfneal/view-export
 ```
 
+To modify the view-export config file publish the ServiceProvider.
+
+``` php
+php artisan vendor:publish --provider="Sfneal\ViewExport\Providers\ViewExportServiceProvider"
+
 ## Usage
 
 ``` php

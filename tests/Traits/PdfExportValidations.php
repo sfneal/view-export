@@ -5,29 +5,31 @@ namespace Sfneal\ViewExport\Tests\Traits;
 use Dompdf\Exception;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
 trait PdfExportValidations
 {
     /**
-     * @var PdfExporter
+     * @var PdfRenderer
      */
-    private $exporter;
+    private $renderer;
 
     /**
      * Execute PDfExport assertions.
+     * @param PdfExporter $exporter
      */
-    private function executeAssertions(): void
+    private function executeAssertions(PdfExporter $exporter): void
     {
-        $this->assertNull($this->exporter->getPath());
-        $this->assertNull($this->exporter->getUrl());
-        $this->assertIsString($this->exporter->getOutput());
-        $this->assertTrue(LaravelHelpers::isBinary($this->exporter->getOutput()));
+        $this->assertNull($exporter->getPath());
+        $this->assertNull($exporter->getUrl());
+        $this->assertIsString($exporter->getOutput());
+        $this->assertTrue(LaravelHelpers::isBinary($exporter->getOutput()));
     }
 
     /** @test */
     public function initialize_exporter()
     {
-        $this->assertInstanceOf(PdfExporter::class, $this->exporter);
+        $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
     }
 
     /**
@@ -37,10 +39,10 @@ trait PdfExportValidations
     public function validate_standard_output()
     {
         // Render the PDF
-        $this->exporter->render();
+        $exporter = $this->renderer->render();
 
         // Execute assertions
-        $this->executeAssertions();
+        $this->executeAssertions($exporter);
     }
 
     /**
@@ -50,13 +52,13 @@ trait PdfExportValidations
     public function validate_output_with_metadata()
     {
         // Add metadata
-        $this->exporter->metadata->add('Title', 'Test Title');
+        $this->renderer->metadata->add('Title', 'Test Title');
 
         // Render the PDF
-        $this->exporter->render();
+        $exporter = $this->renderer->render();
 
         // Execute assertions
-        $this->executeAssertions();
+        $this->executeAssertions($exporter);
     }
 
     /**
@@ -67,13 +69,13 @@ trait PdfExportValidations
     {
         // todo: add checks to confirm orientation
         // Change orientation to landscape
-        $this->exporter->options->setLandscape();
+        $this->renderer->options->setLandscape();
 
         // Render the PDF
-        $this->exporter->render();
+        $exporter = $this->renderer->render();
 
         // Execute assertions
-        $this->executeAssertions();
+        $this->executeAssertions($exporter);
     }
 
     /**
@@ -84,12 +86,12 @@ trait PdfExportValidations
     {
         // todo: add checks to confirm orientation
         // Change orientation to landscape
-        $this->exporter->options->setPortrait();
+        $this->renderer->options->setPortrait();
 
         // Render the PDF
-        $this->exporter->render();
+        $exporter = $this->renderer->render();
 
         // Execute assertions
-        $this->executeAssertions();
+        $this->executeAssertions($exporter);
     }
 }
