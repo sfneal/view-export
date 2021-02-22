@@ -38,18 +38,17 @@ class PdfRenderer
      * - $content can be a View or HTML file contents
      *
      * @param View|string $content
-     * @param Options|null $options
      */
-    public function __construct($content, Options $options = null)
+    public function __construct($content)
     {
+        // Content of the PDF
+        $this->content = $content;
+
         // Declare PDF options (use DefaultOptions) if none provided
-        $this->options = $options ?? new DefaultOptions();
+        $this->options = new DefaultOptions();
 
         // Instantiate Metadata
         $this->metadata = new Metadata();
-
-        // Content of the PDF
-        $this->content = $content;
     }
 
     /**
