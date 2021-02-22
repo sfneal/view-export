@@ -2,6 +2,7 @@
 
 namespace Sfneal\ViewExport\Tests\Traits;
 
+use Dompdf\Exception;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 
@@ -18,9 +19,16 @@ trait PdfExportValidations
         $this->assertInstanceOf(PdfExporter::class, $this->exporter);
     }
 
-    /** @test */
-    public function validate_output_is_binary()
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_output()
     {
+        // Render the PDF
+        $this->exporter->render();
+
+        // Execute assertions
         $this->assertNull($this->exporter->getPath());
         $this->assertNull($this->exporter->getUrl());
         $this->assertIsString($this->exporter->getOutput());
