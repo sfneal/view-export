@@ -20,8 +20,6 @@ class PdfExportFromHtmlPathTest extends TestCase
     {
         parent::setUp();
 
-        $this->exporter = PdfExportService::fromHtmlPath(
-            base_path('tests/resources/html/test.html')
-        )->render();
+        $this->exporter = PdfExportService::fromHtmlPath(base_path('tests/resources/html/test.html'));
     }
 }

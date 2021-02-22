@@ -21,8 +21,6 @@ class PdfExportFromViewModelTest extends TestCase
     {
         parent::setUp();
 
-        $this->exporter = PdfExportService::fromViewModel(
-            new TestViewModel()
-        )->render();
+        $this->exporter = PdfExportService::fromViewModel(new TestViewModel());
     }
 }

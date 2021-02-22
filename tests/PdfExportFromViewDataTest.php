@@ -20,11 +20,6 @@ class PdfExportFromViewDataTest extends TestCase
     {
         parent::setUp();
 
-        $this->exporter = PdfExportService::fromViewData(
-            'test',
-            [
-                'string' => "Here's a string!"
-            ]
-        )->render();
+        $this->exporter = PdfExportService::fromViewData('test', ['string'=>"Here's a string!"]);
     }
 }
