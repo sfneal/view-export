@@ -13,6 +13,17 @@ trait PdfExportValidations
      */
     private $exporter;
 
+    /**
+     * Execute PDfExport assertions
+     */
+    private function executeAssertions(): void
+    {
+        $this->assertNull($this->exporter->getPath());
+        $this->assertNull($this->exporter->getUrl());
+        $this->assertIsString($this->exporter->getOutput());
+        $this->assertTrue(LaravelHelpers::isBinary($this->exporter->getOutput()));
+    }
+
     /** @test */
     public function initialize_exporter()
     {
@@ -23,15 +34,44 @@ trait PdfExportValidations
      * @test
      * @throws Exception
      */
-    public function validate_output()
+    public function validate_standard_output()
     {
         // Render the PDF
         $this->exporter->render();
 
         // Execute assertions
-        $this->assertNull($this->exporter->getPath());
-        $this->assertNull($this->exporter->getUrl());
-        $this->assertIsString($this->exporter->getOutput());
-        $this->assertTrue(LaravelHelpers::isBinary($this->exporter->getOutput()));
+        $this->executeAssertions();
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_landscape_output()
+    {
+        // Change orientation to landscape
+        $this->exporter->options->setLandscape();
+
+        // Render the PDF
+        $this->exporter->render();
+
+        // Execute assertions
+        $this->executeAssertions();
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_portrait_output()
+    {
+        // Change orientation to landscape
+        $this->exporter->options->setPortrait();
+
+        // Render the PDF
+        $this->exporter->render();
+
+        // Execute assertions
+        $this->executeAssertions();
     }
 }
