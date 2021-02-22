@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Pdf\Utils;
-
 
 use Dompdf\Options;
 
@@ -21,7 +19,7 @@ class DefaultOptions extends Options
     }
 
     /**
-     * Set the default Dompdf Options
+     * Set the default Dompdf Options.
      *
      * @return $this
      */
