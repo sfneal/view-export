@@ -50,7 +50,7 @@ trait PdfExportValidations
     public function validate_output_with_metadata()
     {
         // Add metadata
-        $this->exporter->addMetadata('Title', 'Test Title');
+        $this->exporter->metadata->add('Title', 'Test Title');
 
         // Render the PDF
         $this->exporter->render();

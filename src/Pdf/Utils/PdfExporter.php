@@ -13,12 +13,16 @@ class PdfExporter
 {
     // todo: make dispatchable
     use Accessors;
-    use Metadata;
 
     /**
      * @var Options
      */
     public $options;
+
+    /**
+     * @var Metadata
+     */
+    public $metadata;
 
     /**
      * @var Dompdf
@@ -37,11 +41,15 @@ class PdfExporter
      *
      * @param View|string $content
      * @param Options|null $options
+     * @param array|null $metadata
      */
-    public function __construct($content, Options $options = null)
+    public function __construct($content, Options $options = null, array $metadata = null)
     {
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = $options ?? new DefaultOptions();
+
+        // Instantiate Metadata
+        $this->metadata = new Metadata($metadata);
 
         // Content of the PDF
         $this->content = $content;
@@ -117,5 +125,22 @@ class PdfExporter
     public function download(string $filename = 'output.pdf')
     {
         $this->pdf->stream($filename, ['Attachment' => true]);
+    }
+
+    /**
+     * Add Metadata to the PDF.
+     *
+     * @return bool
+     */
+    private function applyMetadata(): bool
+    {
+        // Add Metadata if the array isn't empty
+        if ($hasMetadata = ! empty($this->metadata->get())) {
+            foreach ($this->metadata->get() as $key => $value) {
+                $this->pdf->add_info($key, $value);
+            }
+        }
+
+        return $hasMetadata;
     }
 }

@@ -4,7 +4,7 @@
 namespace Sfneal\ViewExport\Pdf\Utils;
 
 
-trait Metadata
+class Metadata
 {
     /**
      * Array of valid metadata keys
@@ -33,12 +33,34 @@ trait Metadata
     private $metadata = [];
 
     /**
+     * Metadata constructor.
+     *
+     * @param array|null $metadata
+     */
+    public function __construct(array $metadata = null)
+    {
+        if (!empty($metadata)) {
+            $this->set($metadata);
+        }
+    }
+
+    /**
+     * Retrieve an array of metadata.
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        return $this->metadata;
+    }
+
+    /**
      * Set the entire $metadata array
      *
      * @param array $metadata
      * @return $this
      */
-    public function setMetadata(array $metadata): self
+    public function set(array $metadata): self
     {
         $this->metadata = array_filter($metadata, function ($key) {
             return $this->validateMetadata($key);
@@ -54,31 +76,13 @@ trait Metadata
      * @param $value
      * @return $this
      */
-    public function addMetadata(string $key, $value): self
+    public function add(string $key, $value): self
     {
         if ($this->validateMetadata($key)) {
             $this->metadata[$key] = $value;
         }
 
         return $this;
-    }
-
-    /**
-     * Add Metadata to the PDF.
-     *
-     * @return bool
-     */
-    protected function applyMetadata(): bool
-    {
-        // Add Metadata if the array isn't empty
-        $hasMetadata = ! empty($this->metadata);
-        if ($hasMetadata) {
-            foreach ($this->metadata as $key => $value) {
-                $this->pdf->add_info($key, $value);
-            }
-        }
-
-        return $hasMetadata;
     }
 
     /**
