@@ -110,3 +110,8 @@ All notable changes to `view-export` will be documented in this file
 ## 0.8.1 - 2021-02-22
 - make Metadata that's used in PdfExporter for handling adding metadata to a PDF
 - add 'metadata' key to config file for setting default metadata values
+
+
+## 0.8.2 - 2021-02-22
+- refactor PdfExporter to PdfRender & make separate PdfExporter
+- optimize PdfRenderer::render() method to return a PdfExporter with export methods
