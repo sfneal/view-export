@@ -13,6 +13,7 @@ class PdfExporter
 {
     // todo: make dispatchable
     use Accessors;
+    use Metadata;
 
     /**
      * @var Options
@@ -58,6 +59,9 @@ class PdfExporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
+
+        // Add metadata
+        $this->applyMetadata();
 
         // Create local HTML file path
         $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
