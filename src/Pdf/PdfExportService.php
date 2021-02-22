@@ -2,7 +2,6 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Sfneal\Actions\AbstractService;
@@ -19,7 +18,6 @@ class PdfExportService extends AbstractService
      * @param View $view
      * @param Options|null $options
      * @return PdfExporter
-     * @throws Exception
      */
     public static function fromView(View $view, Options $options = null): PdfExporter
     {
@@ -33,7 +31,6 @@ class PdfExportService extends AbstractService
      * @param array $viewData
      * @param Options|null $options
      * @return PdfExporter
-     * @throws Exception
      */
     public static function fromViewData(string $viewName, array $viewData = [], Options $options = null): PdfExporter
     {
@@ -46,7 +43,6 @@ class PdfExportService extends AbstractService
      * @param AbstractViewModel $viewModel
      * @param Options|null $options
      * @return PdfExporter
-     * @throws Exception
      */
     public static function fromViewModel(AbstractViewModel $viewModel, Options $options = null): PdfExporter
     {
@@ -59,7 +55,6 @@ class PdfExportService extends AbstractService
      * @param string $html
      * @param Options|null $options
      * @return PdfExporter
-     * @throws Exception
      */
     public static function fromHtml(string $html, Options $options = null): PdfExporter
     {
@@ -72,7 +67,6 @@ class PdfExportService extends AbstractService
      * @param string $path
      * @param Options|null $options
      * @return PdfExporter
-     * @throws Exception
      */
     public static function fromHtmlPath(string $path, Options $options = null): PdfExporter
     {
