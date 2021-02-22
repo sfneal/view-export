@@ -47,6 +47,22 @@ trait PdfExportValidations
      * @test
      * @throws Exception
      */
+    public function validate_output_with_metadata()
+    {
+        // Add metadata
+        $this->exporter->metadata->add('Title', 'Test Title');
+
+        // Render the PDF
+        $this->exporter->render();
+
+        // Execute assertions
+        $this->executeAssertions();
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
     public function validate_landscape_output()
     {
         // todo: add checks to confirm orientation

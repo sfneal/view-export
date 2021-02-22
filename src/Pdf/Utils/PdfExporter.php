@@ -11,30 +11,23 @@ use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfExporter
 {
+    // todo: make dispatchable
+    use Accessors;
+
     /**
      * @var Options
      */
     public $options;
 
     /**
+     * @var Metadata
+     */
+    public $metadata;
+
+    /**
      * @var Dompdf
      */
     private $pdf;
-
-    /**
-     * @var string|null AWS S3 file path
-     */
-    private $path;
-
-    /**
-     * @var string|null AWS S3 file URL
-     */
-    private $url;
-
-    /**
-     * @var string|null
-     */
-    private $output;
 
     /**
      * @var View|string
@@ -48,11 +41,15 @@ class PdfExporter
      *
      * @param View|string $content
      * @param Options|null $options
+     * @param array|null $metadata
      */
-    public function __construct($content, Options $options = null)
+    public function __construct($content, Options $options = null, array $metadata = null)
     {
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = $options ?? new DefaultOptions();
+
+        // Instantiate Metadata
+        $this->metadata = new Metadata($metadata);
 
         // Content of the PDF
         $this->content = $content;
@@ -70,6 +67,9 @@ class PdfExporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
+
+        // Add metadata
+        $this->applyMetadata();
 
         // Create local HTML file path
         $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
@@ -128,32 +128,19 @@ class PdfExporter
     }
 
     /**
-     * Retrieve the PDF's output.
+     * Add Metadata to the PDF.
      *
-     * @return string
+     * @return bool
      */
-    public function getOutput(): string
+    private function applyMetadata(): bool
     {
-        return $this->output;
-    }
+        // Add Metadata if the array isn't empty
+        if ($hasMetadata = ! empty($this->metadata->get())) {
+            foreach ($this->metadata->get() as $key => $value) {
+                $this->pdf->add_info($key, $value);
+            }
+        }
 
-    /**
-     * Retrieve the PDF's AWS S3 path.
-     *
-     * @return string|null
-     */
-    public function getPath(): ?string
-    {
-        return $this->path;
-    }
-
-    /**
-     * Retrieve the PDF's AWS S3 url.
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->url;
+        return $hasMetadata;
     }
 }

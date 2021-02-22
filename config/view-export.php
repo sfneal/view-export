@@ -95,4 +95,24 @@ return [
     */
     'remote_enabled' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | PDF Metadata default
+    |--------------------------------------------------------------------------
+    |
+    | PDF metadata that should be used by default.
+    |
+    */
+    'metadata' => [
+        //        'Title' => '',
+        //        'Author' => '',
+        //        'Subject' => '',
+        //        'Keywords' => '',
+        //        'Creator' => '',
+        //        'Producer' => '',
+        //        'CreationDate' => '',
+        //        'ModDate' => '',
+        //        'Trapped' => '',
+    ],
+
 ];
