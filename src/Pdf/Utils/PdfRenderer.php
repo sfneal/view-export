@@ -7,11 +7,10 @@ use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Sfneal\Helpers\Strings\StringHelpers;
+use Sfneal\Queueables\AbstractJob;
 
-class PdfRenderer
+class PdfRenderer extends AbstractJob
 {
-    // todo: make dispatchable
-
     /**
      * @var View|string PDF content (either a View or HTML string)
      */
@@ -68,7 +67,7 @@ class PdfRenderer
      * @return PdfExporter
      * @throws Exception
      */
-    public function render(): PdfExporter
+    public function handle(): PdfExporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);

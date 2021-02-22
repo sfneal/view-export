@@ -45,7 +45,7 @@ class PdfExportAction extends AbstractAction
     public function execute(): string
     {
         // Create & Render the PDF
-        $exporter = PdfExportService::fromViewData($this->view, $this->view_data)->render();
+        $exporter = PdfExportService::fromViewData($this->view, $this->view_data)->handle();
 
         // Upload the PDF to AWS S3
         $exporter->upload($this->path);

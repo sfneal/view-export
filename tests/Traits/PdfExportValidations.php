@@ -39,7 +39,7 @@ trait PdfExportValidations
     public function validate_standard_output()
     {
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -55,7 +55,7 @@ trait PdfExportValidations
         $this->renderer->metadata->add('Title', 'Test Title');
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -72,7 +72,7 @@ trait PdfExportValidations
         $this->renderer->options->setLandscape();
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -89,7 +89,7 @@ trait PdfExportValidations
         $this->renderer->options->setPortrait();
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
