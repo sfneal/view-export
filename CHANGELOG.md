@@ -105,3 +105,8 @@ All notable changes to `view-export` will be documented in this file
 - refactor PdfExporter to not load content or render the pdf from the __construct method requiring a call to `render()`
 - refactor PdfExporter's $options property to be public to allow easier manipulation
 - add setLandscape() & setPortrait() methods to DefaultOptions for quickly changing paper orientation
+
+
+## 0.8.1 - 2021-02-22
+- make Metadata that's used in PdfExporter for handling adding metadata to a PDF
+- add 'metadata' key to config file for setting default metadata values
