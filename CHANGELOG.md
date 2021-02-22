@@ -115,3 +115,12 @@ All notable changes to `view-export` will be documented in this file
 ## 0.8.2 - 2021-02-22
 - refactor PdfExporter to PdfRender & make separate PdfExporter
 - optimize PdfRenderer::render() method to return a PdfExporter with export methods
+
+
+## 0.9.0 - 2021-02-22
+- refactor PdfRenderer::render() method to handle()
+- refactor PdfRenderer to Renderer & PdfExporter to Exporter
+- fix Renderer to extend AbstractJob to allow it to be queueable
+- add ability to provide n file upload path to the __construct method of Renderer
+- cut $options params from PdfExportService & PdfRenderer
+- cut $metadata param from Renderer::__construct method

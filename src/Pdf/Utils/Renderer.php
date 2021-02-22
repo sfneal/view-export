@@ -7,10 +7,19 @@ use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Sfneal\Helpers\Strings\StringHelpers;
+use Sfneal\Queueables\AbstractJob;
 
-class PdfRenderer
+class Renderer extends AbstractJob
 {
-    // todo: make dispatchable
+    /**
+     * @var View|string PDF content (either a View or HTML string)
+     */
+    private $content;
+
+    /**
+     * @var string|null AWS S3 path to upload PDF to after render (if provided)
+     */
+    private $uploadPath;
 
     /**
      * @var Options
@@ -28,29 +37,26 @@ class PdfRenderer
     private $pdf;
 
     /**
-     * @var View|string
-     */
-    private $content;
-
-    /**
      * PdfExporter constructor.
      *
      * - $content can be a View or HTML file contents
      *
      * @param View|string $content
-     * @param Options|null $options
-     * @param array|null $metadata
+     * @param string|null $uploadPath
      */
-    public function __construct($content, Options $options = null, array $metadata = null)
+    public function __construct($content, string $uploadPath = null)
     {
-        // Declare PDF options (use DefaultOptions) if none provided
-        $this->options = $options ?? new DefaultOptions();
-
-        // Instantiate Metadata
-        $this->metadata = new Metadata($metadata);
-
         // Content of the PDF
         $this->content = $content;
+
+        // Upload PDF after rendering (defaults to false)
+        $this->uploadPath = $uploadPath;
+
+        // Declare PDF options (use DefaultOptions) if none provided
+        $this->options = new DefaultOptions();
+
+        // Instantiate Metadata
+        $this->metadata = new Metadata();
     }
 
     /**
@@ -58,10 +64,10 @@ class PdfRenderer
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
-     * @return PdfExporter
+     * @return Exporter
      * @throws Exception
      */
-    public function render(): PdfExporter
+    public function handle(): Exporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -75,8 +81,16 @@ class PdfRenderer
         // Render the PDF
         $this->pdf->render();
 
+        // Initialize the PdfExporter
+        $exporter = new Exporter($this->pdf);
+
+        // Upload after rendering if an upload path was provided
+        if ($this->uploadPath) {
+            $exporter->upload($this->uploadPath);
+        }
+
         // Return a PdfExporter
-        return new PdfExporter($this->pdf);
+        return $exporter;
     }
 
     /**

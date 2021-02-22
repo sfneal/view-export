@@ -3,22 +3,23 @@
 namespace Sfneal\ViewExport\Tests\Traits;
 
 use Dompdf\Exception;
+use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
-use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
-use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Pdf\Utils\Exporter;
+use Sfneal\ViewExport\Pdf\Utils\Renderer;
 
 trait PdfExportValidations
 {
     /**
-     * @var PdfRenderer
+     * @var Renderer
      */
     private $renderer;
 
     /**
      * Execute PDfExport assertions.
-     * @param PdfExporter $exporter
+     * @param Exporter $exporter
      */
-    private function executeAssertions(PdfExporter $exporter): void
+    private function executeAssertions(Exporter $exporter): void
     {
         $this->assertNull($exporter->getPath());
         $this->assertNull($exporter->getUrl());
@@ -29,7 +30,7 @@ trait PdfExportValidations
     /** @test */
     public function initialize_exporter()
     {
-        $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
+        $this->assertInstanceOf(Renderer::class, $this->renderer);
     }
 
     /**
@@ -39,7 +40,7 @@ trait PdfExportValidations
     public function validate_standard_output()
     {
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -55,7 +56,7 @@ trait PdfExportValidations
         $this->renderer->metadata->add('Title', 'Test Title');
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -72,7 +73,7 @@ trait PdfExportValidations
         $this->renderer->options->setLandscape();
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
@@ -89,9 +90,25 @@ trait PdfExportValidations
         $this->renderer->options->setPortrait();
 
         // Render the PDF
-        $exporter = $this->renderer->render();
+        $exporter = $this->renderer->handle();
 
         // Execute assertions
         $this->executeAssertions($exporter);
+    }
+
+    /** @test */
+    public function validate_queueable_renderer()
+    {
+        // Enable queue faking
+        Queue::fake();
+
+        // Assert that no jobs were pushed...
+        Queue::assertNothingPushed();
+
+        // Dispatch the first job...
+        Queue::push($this->renderer);
+
+        // Assert a job was pushed twice...
+        Queue::assertPushed(Renderer::class, 1);
     }
 }
