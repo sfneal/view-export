@@ -14,7 +14,7 @@ class PdfExporter
     /**
      * @var Options
      */
-    private $options;
+    public $options;
 
     /**
      * @var Dompdf
