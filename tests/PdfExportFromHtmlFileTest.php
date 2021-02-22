@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Tests;
 use Sfneal\ViewExport\Pdf\PdfExportService;
 use Sfneal\ViewExport\Tests\Traits\PdfExportValidations;
 
-class PdfExportFromHtmlPathTest extends TestCase
+class PdfExportFromHtmlFileTest extends TestCase
 {
     use PdfExportValidations;
 
