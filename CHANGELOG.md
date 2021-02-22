@@ -98,4 +98,10 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.7.5 - 2021-02-19
 - make DefaultOptions class for retrieving a Dompdf\Options instance with the defaults set
-- add ability to pass Options instances to PdfExportService methods.
+- add ability to pass Options instances to PdfExportService methods
+
+
+## 0.8.0 - 2021-02-22
+- refactor PdfExporter to not load content or render the pdf from the __construct method requiring a call to `render()`
+- refactor PdfExporter's $options property to be public to allow easier manipulation
+- add setLandscape() & setPortrait() methods to DefaultOptions for quickly changing paper orientation

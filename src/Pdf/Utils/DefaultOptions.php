@@ -35,4 +35,28 @@ class DefaultOptions extends Options
 
         return $this;
     }
+
+    /**
+     * Set the paper orientation to 'landscape'.
+     *
+     * @return $this
+     */
+    public function setLandscape(): self
+    {
+        $this->setDefaultPaperOrientation('landscape');
+
+        return $this;
+    }
+
+    /**
+     * Set the paper orientation to 'portrait'.
+     *
+     * @return $this
+     */
+    public function setPortrait(): self
+    {
+        $this->setDefaultPaperOrientation('portrait');
+
+        return $this;
+    }
 }
