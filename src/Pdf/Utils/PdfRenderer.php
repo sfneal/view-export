@@ -13,6 +13,16 @@ class PdfRenderer
     // todo: make dispatchable
 
     /**
+     * @var View|string PDF content (either a View or HTML string)
+     */
+    private $content;
+
+    /**
+     * @var string|null AWS S3 path to upload PDF to after render (if provided)
+     */
+    private $uploadPath;
+
+    /**
      * @var Options
      */
     public $options;
@@ -28,21 +38,20 @@ class PdfRenderer
     private $pdf;
 
     /**
-     * @var View|string
-     */
-    private $content;
-
-    /**
      * PdfExporter constructor.
      *
      * - $content can be a View or HTML file contents
      *
      * @param View|string $content
+     * @param string|null $uploadPath
      */
-    public function __construct($content)
+    public function __construct($content, string $uploadPath = null)
     {
         // Content of the PDF
         $this->content = $content;
+
+        // Upload PDF after rendering (defaults to false)
+        $this->uploadPath = $uploadPath;
 
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = new DefaultOptions();
@@ -73,8 +82,16 @@ class PdfRenderer
         // Render the PDF
         $this->pdf->render();
 
+        // Initialize the PdfExporter
+        $exporter = new PdfExporter($this->pdf);
+
+        // Upload after rendering if an upload path was provided
+        if ($this->uploadPath) {
+            $exporter->upload($this->uploadPath);
+        }
+
         // Return a PdfExporter
-        return new PdfExporter($this->pdf);
+        return $exporter;
     }
 
     /**

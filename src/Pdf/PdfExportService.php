@@ -15,11 +15,12 @@ class PdfExportService extends AbstractService
      * Provide a view to build the PDF from.
      *
      * @param View $view
+     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromView(View $view): PdfRenderer
+    public static function fromView(View $view, string $uploadPath = null): PdfRenderer
     {
-        return new PdfRenderer($view);
+        return new PdfRenderer($view, $uploadPath);
     }
 
     /**
@@ -27,43 +28,47 @@ class PdfExportService extends AbstractService
      *
      * @param string $viewName
      * @param array $viewData
+     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromViewData(string $viewName, array $viewData = []): PdfRenderer
+    public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): PdfRenderer
     {
-        return new PdfRenderer(view($viewName, $viewData));
+        return new PdfRenderer(view($viewName, $viewData), $uploadPath);
     }
 
     /**
      * Provide a view to build the PDF from.
      *
      * @param AbstractViewModel $viewModel
+     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel): PdfRenderer
+    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): PdfRenderer
     {
-        return new PdfRenderer($viewModel->renderNoCache());
+        return new PdfRenderer($viewModel->renderNoCache(), $uploadPath);
     }
 
     /**
      * Provide an HTML string to build the PDF from.
      *
      * @param string $html
+     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromHtml(string $html): PdfRenderer
+    public static function fromHtml(string $html, string $uploadPath = null): PdfRenderer
     {
-        return new PdfRenderer($html);
+        return new PdfRenderer($html, $uploadPath);
     }
 
     /**
      * Provide an HTML path to build the PDF from.
      *
      * @param string $path
+     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromHtmlFile(string $path): PdfRenderer
+    public static function fromHtmlFile(string $path, string $uploadPath = null): PdfRenderer
     {
-        return new PdfRenderer(file_get_contents($path));
+        return new PdfRenderer(file_get_contents($path), $uploadPath);
     }
 }
