@@ -4,7 +4,7 @@ namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
 use Sfneal\Actions\AbstractService;
-use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Pdf\Utils\Renderer;
 use Sfneal\ViewModels\AbstractViewModel;
 
 class PdfExportService extends AbstractService
@@ -16,11 +16,11 @@ class PdfExportService extends AbstractService
      *
      * @param View $view
      * @param string|null $uploadPath
-     * @return PdfRenderer
+     * @return Renderer
      */
-    public static function fromView(View $view, string $uploadPath = null): PdfRenderer
+    public static function fromView(View $view, string $uploadPath = null): Renderer
     {
-        return new PdfRenderer($view, $uploadPath);
+        return new Renderer($view, $uploadPath);
     }
 
     /**
@@ -29,11 +29,11 @@ class PdfExportService extends AbstractService
      * @param string $viewName
      * @param array $viewData
      * @param string|null $uploadPath
-     * @return PdfRenderer
+     * @return Renderer
      */
-    public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): PdfRenderer
+    public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): Renderer
     {
-        return new PdfRenderer(view($viewName, $viewData), $uploadPath);
+        return new Renderer(view($viewName, $viewData), $uploadPath);
     }
 
     /**
@@ -41,11 +41,11 @@ class PdfExportService extends AbstractService
      *
      * @param AbstractViewModel $viewModel
      * @param string|null $uploadPath
-     * @return PdfRenderer
+     * @return Renderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): PdfRenderer
+    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): Renderer
     {
-        return new PdfRenderer($viewModel->renderNoCache(), $uploadPath);
+        return new Renderer($viewModel->renderNoCache(), $uploadPath);
     }
 
     /**
@@ -53,11 +53,11 @@ class PdfExportService extends AbstractService
      *
      * @param string $html
      * @param string|null $uploadPath
-     * @return PdfRenderer
+     * @return Renderer
      */
-    public static function fromHtml(string $html, string $uploadPath = null): PdfRenderer
+    public static function fromHtml(string $html, string $uploadPath = null): Renderer
     {
-        return new PdfRenderer($html, $uploadPath);
+        return new Renderer($html, $uploadPath);
     }
 
     /**
@@ -65,10 +65,10 @@ class PdfExportService extends AbstractService
      *
      * @param string $path
      * @param string|null $uploadPath
-     * @return PdfRenderer
+     * @return Renderer
      */
-    public static function fromHtmlFile(string $path, string $uploadPath = null): PdfRenderer
+    public static function fromHtmlFile(string $path, string $uploadPath = null): Renderer
     {
-        return new PdfRenderer(file_get_contents($path), $uploadPath);
+        return new Renderer(file_get_contents($path), $uploadPath);
     }
 }

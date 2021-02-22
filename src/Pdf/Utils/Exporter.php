@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Pdf\Utils;
 use Dompdf\Dompdf;
 use Sfneal\Helpers\Aws\S3\S3;
 
-class PdfExporter
+class Exporter
 {
     /**
      * @var Dompdf

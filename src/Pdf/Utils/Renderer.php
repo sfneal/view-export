@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Sfneal\Helpers\Strings\StringHelpers;
 use Sfneal\Queueables\AbstractJob;
 
-class PdfRenderer extends AbstractJob
+class Renderer extends AbstractJob
 {
     /**
      * @var View|string PDF content (either a View or HTML string)
@@ -64,10 +64,10 @@ class PdfRenderer extends AbstractJob
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
-     * @return PdfExporter
+     * @return Exporter
      * @throws Exception
      */
-    public function handle(): PdfExporter
+    public function handle(): Exporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -82,7 +82,7 @@ class PdfRenderer extends AbstractJob
         $this->pdf->render();
 
         // Initialize the PdfExporter
-        $exporter = new PdfExporter($this->pdf);
+        $exporter = new Exporter($this->pdf);
 
         // Upload after rendering if an upload path was provided
         if ($this->uploadPath) {

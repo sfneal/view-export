@@ -6,21 +6,21 @@ use Dompdf\Exception;
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\Queueables\Tests\Mocks\FirstTestQueueable;
-use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
-use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Pdf\Utils\Exporter;
+use Sfneal\ViewExport\Pdf\Utils\Renderer;
 
 trait PdfExportValidations
 {
     /**
-     * @var PdfRenderer
+     * @var Renderer
      */
     private $renderer;
 
     /**
      * Execute PDfExport assertions.
-     * @param PdfExporter $exporter
+     * @param Exporter $exporter
      */
-    private function executeAssertions(PdfExporter $exporter): void
+    private function executeAssertions(Exporter $exporter): void
     {
         $this->assertNull($exporter->getPath());
         $this->assertNull($exporter->getUrl());
@@ -31,7 +31,7 @@ trait PdfExportValidations
     /** @test */
     public function initialize_exporter()
     {
-        $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
+        $this->assertInstanceOf(Renderer::class, $this->renderer);
     }
 
     /**
@@ -110,6 +110,6 @@ trait PdfExportValidations
         Queue::push($this->renderer);
 
         // Assert a job was pushed twice...
-        Queue::assertPushed(PdfRenderer::class, 1);
+        Queue::assertPushed(Renderer::class, 1);
     }
 }
