@@ -18,6 +18,6 @@ class PdfExportFromViewTest extends TestCase
     {
         parent::setUp();
 
-        $this->exporter = PdfExportService::fromView(view('test'));
+        $this->renderer = PdfExportService::fromView(view('test'));
     }
 }

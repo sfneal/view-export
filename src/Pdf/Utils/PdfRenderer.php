@@ -6,13 +6,11 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
-use Sfneal\Helpers\Aws\S3\S3;
 use Sfneal\Helpers\Strings\StringHelpers;
 
 class PdfRenderer
 {
     // todo: make dispatchable
-    use Accessors;
 
     /**
      * @var Options
@@ -60,10 +58,10 @@ class PdfRenderer
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
-     * @return $this
+     * @return PdfExporter
      * @throws Exception
      */
-    public function render(): self
+    public function render(): PdfExporter
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -87,44 +85,8 @@ class PdfRenderer
         // Render the PDF
         $this->pdf->render();
 
-        // Store output to a property to avoid retrieving twice
-        $this->output = $this->pdf->output();
-
-        return $this;
-    }
-
-    /**
-     * Upload a rendered PDF to an AWS S3 file store.
-     *
-     * @param string $path
-     * @return $this
-     */
-    public function upload(string $path): self
-    {
-        $this->path = $path;
-        $this->url = (new S3($path))->upload_raw($this->getOutput());
-
-        return $this;
-    }
-
-    /**
-     * View the PDF in the clients browser.
-     *
-     * @param string $filename
-     */
-    public function view(string $filename = 'output.pdf')
-    {
-        $this->pdf->stream($filename, ['Attachment' => false]);
-    }
-
-    /**
-     * Download the PDF using the clients browser.
-     *
-     * @param string $filename
-     */
-    public function download(string $filename = 'output.pdf')
-    {
-        $this->pdf->stream($filename, ['Attachment' => true]);
+        // Return a PdfExporter
+        return new PdfExporter($this->pdf);
     }
 
     /**
