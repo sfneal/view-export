@@ -49,6 +49,7 @@ trait PdfExportValidations
      */
     public function validate_landscape_output()
     {
+        // todo: add checks to confirm orientation
         // Change orientation to landscape
         $this->exporter->options->setLandscape();
 
@@ -65,6 +66,7 @@ trait PdfExportValidations
      */
     public function validate_portrait_output()
     {
+        // todo: add checks to confirm orientation
         // Change orientation to landscape
         $this->exporter->options->setPortrait();
 
