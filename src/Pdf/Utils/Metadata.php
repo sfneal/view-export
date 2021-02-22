@@ -20,7 +20,7 @@ class Metadata
         'Producer',
         'CreationDate',
         'ModDate',
-        'Trapped'
+        'Trapped',
     ];
 
     /**
@@ -40,7 +40,7 @@ class Metadata
     public function __construct(array $metadata = null)
     {
         if (!empty($metadata)) {
-            $this->set($metadata);
+            $this->set($metadata ?? config('view-export.metadata'));
         }
     }
 
