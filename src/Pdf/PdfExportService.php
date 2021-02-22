@@ -68,7 +68,7 @@ class PdfExportService extends AbstractService
      * @param Options|null $options
      * @return PdfRenderer
      */
-    public static function fromHtmlPath(string $path, Options $options = null): PdfRenderer
+    public static function fromHtmlFile(string $path, Options $options = null): PdfRenderer
     {
         return new PdfRenderer(file_get_contents($path), $options);
     }
