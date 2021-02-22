@@ -14,7 +14,7 @@ trait PdfExportValidations
     private $exporter;
 
     /**
-     * Execute PDfExport assertions
+     * Execute PDfExport assertions.
      */
     private function executeAssertions(): void
     {
