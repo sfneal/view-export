@@ -4,12 +4,12 @@ namespace Sfneal\ViewExport\Tests\Traits;
 
 use Dompdf\Exception;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
-use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
 trait PdfExportValidations
 {
     /**
-     * @var PdfExporter
+     * @var PdfRenderer
      */
     private $exporter;
 
@@ -27,7 +27,7 @@ trait PdfExportValidations
     /** @test */
     public function initialize_exporter()
     {
-        $this->assertInstanceOf(PdfExporter::class, $this->exporter);
+        $this->assertInstanceOf(PdfRenderer::class, $this->exporter);
     }
 
     /**

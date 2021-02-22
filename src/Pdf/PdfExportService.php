@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Pdf;
 use Dompdf\Options;
 use Illuminate\Contracts\View\View;
 use Sfneal\Actions\AbstractService;
-use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 use Sfneal\ViewModels\AbstractViewModel;
 
 class PdfExportService extends AbstractService
@@ -17,11 +17,11 @@ class PdfExportService extends AbstractService
      *
      * @param View $view
      * @param Options|null $options
-     * @return PdfExporter
+     * @return PdfRenderer
      */
-    public static function fromView(View $view, Options $options = null): PdfExporter
+    public static function fromView(View $view, Options $options = null): PdfRenderer
     {
-        return new PdfExporter($view, $options);
+        return new PdfRenderer($view, $options);
     }
 
     /**
@@ -30,11 +30,11 @@ class PdfExportService extends AbstractService
      * @param string $viewName
      * @param array $viewData
      * @param Options|null $options
-     * @return PdfExporter
+     * @return PdfRenderer
      */
-    public static function fromViewData(string $viewName, array $viewData = [], Options $options = null): PdfExporter
+    public static function fromViewData(string $viewName, array $viewData = [], Options $options = null): PdfRenderer
     {
-        return new PdfExporter(view($viewName, $viewData), $options);
+        return new PdfRenderer(view($viewName, $viewData), $options);
     }
 
     /**
@@ -42,11 +42,11 @@ class PdfExportService extends AbstractService
      *
      * @param AbstractViewModel $viewModel
      * @param Options|null $options
-     * @return PdfExporter
+     * @return PdfRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel, Options $options = null): PdfExporter
+    public static function fromViewModel(AbstractViewModel $viewModel, Options $options = null): PdfRenderer
     {
-        return new PdfExporter($viewModel->renderNoCache(), $options);
+        return new PdfRenderer($viewModel->renderNoCache(), $options);
     }
 
     /**
@@ -54,11 +54,11 @@ class PdfExportService extends AbstractService
      *
      * @param string $html
      * @param Options|null $options
-     * @return PdfExporter
+     * @return PdfRenderer
      */
-    public static function fromHtml(string $html, Options $options = null): PdfExporter
+    public static function fromHtml(string $html, Options $options = null): PdfRenderer
     {
-        return new PdfExporter($html, $options);
+        return new PdfRenderer($html, $options);
     }
 
     /**
@@ -66,10 +66,10 @@ class PdfExportService extends AbstractService
      *
      * @param string $path
      * @param Options|null $options
-     * @return PdfExporter
+     * @return PdfRenderer
      */
-    public static function fromHtmlPath(string $path, Options $options = null): PdfExporter
+    public static function fromHtmlPath(string $path, Options $options = null): PdfRenderer
     {
-        return new PdfExporter(file_get_contents($path), $options);
+        return new PdfRenderer(file_get_contents($path), $options);
     }
 }

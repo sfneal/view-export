@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Sfneal\Helpers\Aws\S3\S3;
 use Sfneal\Helpers\Strings\StringHelpers;
 
-class PdfExporter
+class PdfRenderer
 {
     // todo: make dispatchable
     use Accessors;
