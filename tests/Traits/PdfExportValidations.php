@@ -3,7 +3,9 @@
 namespace Sfneal\ViewExport\Tests\Traits;
 
 use Dompdf\Exception;
+use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
+use Sfneal\Queueables\Tests\Mocks\FirstTestQueueable;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
@@ -93,5 +95,21 @@ trait PdfExportValidations
 
         // Execute assertions
         $this->executeAssertions($exporter);
+    }
+
+    /** @test */
+    public function validate_queueable_renderer()
+    {
+        // Enable queue faking
+        Queue::fake();
+
+        // Assert that no jobs were pushed...
+        Queue::assertNothingPushed();
+
+        // Dispatch the first job...
+        Queue::push($this->renderer);
+
+        // Assert a job was pushed twice...
+        Queue::assertPushed(PdfRenderer::class, 1);
     }
 }
