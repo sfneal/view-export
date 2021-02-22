@@ -69,18 +69,8 @@ class PdfRenderer
         // Add metadata
         $this->applyMetadata();
 
-        // Create local HTML file path
-        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
-
-        // Store View (or HTML) as HTML file within Dompdf root
-        touch($localHTML);
-        file_put_contents($localHTML, $this->content);
-
-        // Load HTML
-        $this->pdf->loadHtmlFile($localHTML);
-
-        // Remove temp HTML file
-        unlink($localHTML);
+        // Load content
+        $this->loadContent();
 
         // Render the PDF
         $this->pdf->render();
@@ -104,5 +94,26 @@ class PdfRenderer
         }
 
         return $hasMetadata;
+    }
+
+    /**
+     * Load content into the Dompdf instance.
+     *
+     * @throws Exception
+     */
+    private function loadContent(): void
+    {
+        // Create local HTML file path
+        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
+
+        // Store View (or HTML) as HTML file within Dompdf root
+        touch($localHTML);
+        file_put_contents($localHTML, $this->content);
+
+        // Load HTML
+        $this->pdf->loadHtmlFile($localHTML);
+
+        // Remove temp HTML file
+        unlink($localHTML);
     }
 }
