@@ -5,7 +5,6 @@ namespace Sfneal\ViewExport\Tests\Traits;
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
-use Sfneal\Queueables\Tests\Mocks\FirstTestQueueable;
 use Sfneal\ViewExport\Pdf\Utils\Exporter;
 use Sfneal\ViewExport\Pdf\Utils\Renderer;
 
