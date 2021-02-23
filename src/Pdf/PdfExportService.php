@@ -3,11 +3,10 @@
 namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
-use Sfneal\Actions\AbstractService;
 use Sfneal\ViewExport\Pdf\Utils\Renderer;
 use Sfneal\ViewModels\AbstractViewModel;
 
-class PdfExportService extends AbstractService
+class PdfExportService
 {
     // todo: add ability to pass urls to export
 
