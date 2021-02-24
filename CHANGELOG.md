@@ -124,3 +124,9 @@ All notable changes to `view-export` will be documented in this file
 - add ability to provide n file upload path to the __construct method of Renderer
 - cut $options params from PdfExportService & PdfRenderer
 - cut $metadata param from Renderer::__construct method
+
+
+## 0.9.1 - 2021-02-24
+- refactor PdfRenderer::render() method to handle()
+- fix issue with View's being non-serializable and causing errors when pushing to queues
+- refactor Renderer to use a non-static `dispatch()` method for dispatching a Renderer instance to the Job queue
