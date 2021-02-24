@@ -41,6 +41,6 @@ class PdfExportJob extends AbstractJob
      */
     public function handle(): string
     {
-        $this->renderer->handle()->path();
+        return $this->renderer->handle()->path();
     }
 }
