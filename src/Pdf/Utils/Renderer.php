@@ -64,7 +64,7 @@ class Renderer
     }
 
     /**
-     * Dispatch this renderer instance to the Job queue without having to construct it statically
+     * Dispatch this renderer instance to the Job queue without having to construct it statically.
      *
      * @return mixed
      */
