@@ -6,6 +6,7 @@ use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
+use Sfneal\ViewExport\Pdf\PdfExportJob;
 use Sfneal\ViewExport\Pdf\Utils\Exporter;
 use Sfneal\ViewExport\Pdf\Utils\Renderer;
 
@@ -127,5 +128,21 @@ trait PdfExportValidations
 
         // Assert a job was pushed twice...
         Bus::assertDispatched(Renderer::class);
+    }
+
+    /** @test */
+    public function pdf_export_job()
+    {
+        // Enable queue faking
+        Bus::fake();
+
+        // Assert that no jobs were pushed...
+        Bus::assertNotDispatched(PdfExportJob::class);
+
+        // Dispatch the first job...
+        PdfExportJob::dispatch($this->renderer);
+
+        // Assert a job was pushed twice...
+        Bus::assertDispatched(PdfExportJob::class);
     }
 }

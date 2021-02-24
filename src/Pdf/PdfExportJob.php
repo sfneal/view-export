@@ -2,8 +2,8 @@
 
 namespace Sfneal\ViewExport\Pdf;
 
-use Dompdf\Exception;
 use Sfneal\Queueables\AbstractJob;
+use Sfneal\ViewExport\Pdf\Utils\Renderer;
 
 class PdfExportJob extends AbstractJob
 {
@@ -18,49 +18,27 @@ class PdfExportJob extends AbstractJob
     public $connection = 'database';
 
     /**
-     * @var string
+     * @var Renderer
      */
-    protected $path;
+    private $renderer;
 
     /**
-     * @var string
-     */
-    protected $view;
-
-    /**
-     * @var array|null
-     */
-    protected $view_data;
-
-    /**
-     * CreatePdfFromViewJob constructor.
+     * PdfExportJob constructor.
      *
-     * @param string     $path
-     * @param string     $view
-     * @param array|null $view_data
+     * @param Renderer $renderer
      */
-    public function __construct(string $path, string $view, array $view_data = null)
+    public function __construct(Renderer $renderer)
     {
-        $this->path = $path;
-        $this->view = $view;
-        $this->view_data = $view_data;
+        $this->renderer = $renderer;
     }
 
     /**
-     * Create a PDF from a view & return its file path.
+     * Render a PDF & upload it to AWS S3.
      *
-     * @throws Exception
      * @return string
      */
     public function handle(): string
     {
-        // Create & Render the PDF
-        $exporter = PdfExportService::fromView(view($this->view, $this->view_data))->handle();
-
-        // Upload the PDF to AWS S3
-        $exporter->upload($this->path);
-
-        // Return the path
-        return $exporter->path();
+        $this->renderer->handleJob();
     }
 }
