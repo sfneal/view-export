@@ -144,3 +144,8 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.10.1 - 2021-02-24
 - refactor PdfExportJob to accept a Renderer instance as its __construct param
+
+
+## 0.10.2 - 2021-02-24
+- fix issues with PdfExportJob failing due to `$renderer` property being 'private'
+- fix PdfExportJob::handle() method to return the PDF's upload path
