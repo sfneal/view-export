@@ -3,11 +3,10 @@
 namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
-use Sfneal\Actions\AbstractService;
 use Sfneal\ViewExport\Pdf\Utils\Renderer;
 use Sfneal\ViewModels\AbstractViewModel;
 
-class PdfExportService extends AbstractService
+class PdfExportService
 {
     // todo: add ability to pass urls to export
 
@@ -20,11 +19,13 @@ class PdfExportService extends AbstractService
      */
     public static function fromView(View $view, string $uploadPath = null): Renderer
     {
-        return new Renderer($view, $uploadPath);
+        return new Renderer($view->render(), $uploadPath);
     }
 
     /**
      * Create a view to build the PDF from.
+     *
+     * // todo: remove this method?
      *
      * @param string $viewName
      * @param array $viewData
@@ -33,7 +34,7 @@ class PdfExportService extends AbstractService
      */
     public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): Renderer
     {
-        return new Renderer(view($viewName, $viewData), $uploadPath);
+        return new Renderer(view($viewName, $viewData)->render(), $uploadPath);
     }
 
     /**
