@@ -19,7 +19,7 @@ class PdfExportService
      */
     public static function fromView(View $view, string $uploadPath = null): Renderer
     {
-        return new Renderer($view, $uploadPath);
+        return new Renderer($view->render(), $uploadPath);
     }
 
     /**
@@ -34,7 +34,7 @@ class PdfExportService
      */
     public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): Renderer
     {
-        return new Renderer(view($viewName, $viewData), $uploadPath);
+        return new Renderer(view($viewName, $viewData)->render(), $uploadPath);
     }
 
     /**
