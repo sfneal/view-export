@@ -51,6 +51,6 @@ class PdfExportAction extends AbstractAction
         $exporter->upload($this->path);
 
         // Return the path
-        return $exporter->getPath();
+        return $exporter->path();
     }
 }
