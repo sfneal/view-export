@@ -5,14 +5,18 @@ namespace Sfneal\ViewExport\Pdf\Utils;
 use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
-use Illuminate\Contracts\View\View;
+use Illuminate\Bus\Queueable as QueueableTrait;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Bus;
 use Sfneal\Helpers\Strings\StringHelpers;
-use Sfneal\Queueables\AbstractJob;
 
-class Renderer extends AbstractJob
+class Renderer
 {
+    use InteractsWithQueue, QueueableTrait, SerializesModels;
+
     /**
-     * @var View|string PDF content (either a View or HTML string)
+     * @var string PDF content (either a rendered View or HTML string)
      */
     private $content;
 
@@ -41,10 +45,10 @@ class Renderer extends AbstractJob
      *
      * - $content can be a View or HTML file contents
      *
-     * @param View|string $content
+     * @param string $content
      * @param string|null $uploadPath
      */
-    public function __construct($content, string $uploadPath = null)
+    public function __construct(string $content, string $uploadPath = null)
     {
         // Content of the PDF
         $this->content = $content;
@@ -57,6 +61,16 @@ class Renderer extends AbstractJob
 
         // Instantiate Metadata
         $this->metadata = new Metadata();
+    }
+
+    /**
+     * Dispatch this renderer instance to the Job queue without having to construct it statically
+     *
+     * @return mixed
+     */
+    public function dispatch()
+    {
+        return Bus::dispatch($this);
     }
 
     /**

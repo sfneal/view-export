@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Tests\Traits;
 
 use Dompdf\Exception;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\Exporter;
@@ -97,7 +98,7 @@ trait PdfExportValidations
     }
 
     /** @test */
-    public function validate_queueable_renderer()
+    public function validate_queueable_renderer_with_queue()
     {
         // Enable queue faking
         Queue::fake();
@@ -110,5 +111,21 @@ trait PdfExportValidations
 
         // Assert a job was pushed twice...
         Queue::assertPushed(Renderer::class, 1);
+    }
+
+    /** @test */
+    public function validate_queueable_non_static()
+    {
+        // Enable queue faking
+        Bus::fake();
+
+        // Assert that no jobs were pushed...
+        Bus::assertNotDispatched(Renderer::class);
+
+        // Dispatch the first job...
+        $this->renderer->dispatch();
+
+        // Assert a job was pushed twice...
+        Bus::assertDispatched(Renderer::class);
     }
 }
