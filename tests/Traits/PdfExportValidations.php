@@ -123,7 +123,7 @@ trait PdfExportValidations
         Bus::assertNotDispatched(Renderer::class);
 
         // Dispatch the first job...
-        $this->renderer->dispatch();
+        $this->renderer->handleJob();
 
         // Assert a job was pushed twice...
         Bus::assertDispatched(Renderer::class);
