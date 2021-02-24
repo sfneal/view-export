@@ -140,3 +140,7 @@ All notable changes to `view-export` will be documented in this file
 - cut 'get' prefix from Exporter's `output()`, `path()` & `url()` methods
 - cut `fromViewData()` method from PdfExportService as there's no advantage of using that instead of `fromView()`
 - fix use of PdfExportService in PdfExportAction to use `fromView()` method instead of `fromViewData()`
+
+
+## 0.10.1 - 2021-02-24
+- refactor PdfExportJob to accept a Renderer instance as its __construct param
