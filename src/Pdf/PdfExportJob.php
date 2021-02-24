@@ -47,14 +47,20 @@ class PdfExportJob extends AbstractJob
     }
 
     /**
-     * Create a PDF from a View.
+     * Create a PDF from a view & return its file path.
      *
      * @throws Exception
-     *
-     * @return mixed|void
+     * @return string
      */
-    public function handle()
+    public function handle(): string
     {
-        (new PdfExportAction($this->path, $this->view, $this->view_data))->execute();
+        // Create & Render the PDF
+        $exporter = PdfExportService::fromView(view($this->view, $this->view_data))->handle();
+
+        // Upload the PDF to AWS S3
+        $exporter->upload($this->path);
+
+        // Return the path
+        return $exporter->path();
     }
 }
