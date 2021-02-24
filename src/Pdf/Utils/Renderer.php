@@ -5,16 +5,12 @@ namespace Sfneal\ViewExport\Pdf\Utils;
 use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
-use Illuminate\Bus\Queueable as QueueableTrait;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Bus;
 use Sfneal\Helpers\Strings\StringHelpers;
+use Sfneal\Queueables\AbstractJob;
 
-class Renderer
+class Renderer extends AbstractJob
 {
-    use InteractsWithQueue, QueueableTrait, SerializesModels;
-
     /**
      * @var string PDF content (either a rendered View or HTML string)
      */
@@ -68,7 +64,7 @@ class Renderer
      *
      * @return mixed
      */
-    public function dispatch()
+    public function handleJob()
     {
         return Bus::dispatch($this);
     }
