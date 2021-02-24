@@ -130,3 +130,7 @@ All notable changes to `view-export` will be documented in this file
 - refactor PdfRenderer::render() method to handle()
 - fix issue with View's being non-serializable and causing errors when pushing to queues
 - refactor Renderer to use a non-static `dispatch()` method for dispatching a Renderer instance to the Job queue
+
+
+## 0.9.2 - 2021-02-24
+- fix issues queueing non-static Renderer instances by refactoring `dispatch()` method to `handleJob()` to prevent conflicts
