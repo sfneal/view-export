@@ -134,3 +134,9 @@ All notable changes to `view-export` will be documented in this file
 
 ## 0.9.2 - 2021-02-24
 - fix issues queueing non-static Renderer instances by refactoring `dispatch()` method to `handleJob()` to prevent conflicts
+
+
+## 0.10.0 - 2021-02-24
+- cut 'get' prefix from Exporter's `output()`, `path()` & `url()` methods
+- cut `fromViewData()` method from PdfExportService as there's no advantage of using that instead of `fromView()`
+- fix use of PdfExportService in PdfExportAction to use `fromView()` method instead of `fromViewData()`

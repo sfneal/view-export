@@ -51,7 +51,7 @@ class Exporter
     public function upload(string $path): self
     {
         $this->path = $path;
-        $this->url = (new S3($path))->upload_raw($this->getOutput());
+        $this->url = (new S3($path))->upload_raw($this->output());
 
         return $this;
     }
@@ -81,7 +81,7 @@ class Exporter
      *
      * @return string
      */
-    public function getOutput(): string
+    public function output(): string
     {
         return $this->output;
     }
@@ -91,7 +91,7 @@ class Exporter
      *
      * @return string|null
      */
-    public function getPath(): ?string
+    public function path(): ?string
     {
         return $this->path;
     }
@@ -101,7 +101,7 @@ class Exporter
      *
      * @return string|null
      */
-    public function getUrl(): ?string
+    public function url(): ?string
     {
         return $this->url;
     }

@@ -23,21 +23,6 @@ class PdfExportService
     }
 
     /**
-     * Create a view to build the PDF from.
-     *
-     * // todo: remove this method?
-     *
-     * @param string $viewName
-     * @param array $viewData
-     * @param string|null $uploadPath
-     * @return Renderer
-     */
-    public static function fromViewData(string $viewName, array $viewData = [], string $uploadPath = null): Renderer
-    {
-        return new Renderer(view($viewName, $viewData)->render(), $uploadPath);
-    }
-
-    /**
      * Provide a view to build the PDF from.
      *
      * @param AbstractViewModel $viewModel

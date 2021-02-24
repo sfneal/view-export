@@ -22,10 +22,10 @@ trait PdfExportValidations
      */
     private function executeAssertions(Exporter $exporter): void
     {
-        $this->assertNull($exporter->getPath());
-        $this->assertNull($exporter->getUrl());
-        $this->assertIsString($exporter->getOutput());
-        $this->assertTrue(LaravelHelpers::isBinary($exporter->getOutput()));
+        $this->assertNull($exporter->path());
+        $this->assertNull($exporter->url());
+        $this->assertIsString($exporter->output());
+        $this->assertTrue(LaravelHelpers::isBinary($exporter->output()));
     }
 
     /** @test */

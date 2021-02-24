@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Tests;
 use Sfneal\ViewExport\Pdf\PdfExportService;
 use Sfneal\ViewExport\Tests\Traits\PdfExportValidations;
 
-class PdfExportFromViewDataTest extends TestCase
+class PdfExportFromViewWithTest extends TestCase
 {
     use PdfExportValidations;
 
@@ -18,6 +18,6 @@ class PdfExportFromViewDataTest extends TestCase
     {
         parent::setUp();
 
-        $this->renderer = PdfExportService::fromViewData('test', ['string'=>"Here's a string!"]);
+        $this->renderer = PdfExportService::fromView(view('test', ['string'=>"Here's a string!"]));
     }
 }
