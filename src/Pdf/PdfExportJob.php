@@ -21,7 +21,7 @@ class PdfExportJob extends AbstractJob
     /**
      * @var Renderer
      */
-    private $renderer;
+    protected $renderer;
 
     /**
      * PdfExportJob constructor.
