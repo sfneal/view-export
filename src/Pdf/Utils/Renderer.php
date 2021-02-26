@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Bus;
+use Sfneal\Helpers\Strings\StringHelpers;
 use Sfneal\Queueables\AbstractJob;
 
 class Renderer extends AbstractJob
@@ -126,19 +127,20 @@ class Renderer extends AbstractJob
      */
     private function loadContent(): void
     {
-        $this->pdf->loadHtml($this->content);
+        // todo: implement this if it improves performance
+//        $this->pdf->loadHtml($this->content);
 
-//        // Create local HTML file path
-//        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
-//
-//        // Store View (or HTML) as HTML file within Dompdf root
-//        touch($localHTML);
-//        file_put_contents($localHTML, $this->content);
-//
-//        // Load HTML
-//        $this->pdf->loadHtmlFile($localHTML);
-//
-//        // Remove temp HTML file
-//        unlink($localHTML);
+        // Create local HTML file path
+        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
+
+        // Store View (or HTML) as HTML file within Dompdf root
+        touch($localHTML);
+        file_put_contents($localHTML, $this->content);
+
+        // Load HTML
+        $this->pdf->loadHtmlFile($localHTML);
+
+        // Remove temp HTML file
+        unlink($localHTML);
     }
 }
