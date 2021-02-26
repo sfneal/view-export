@@ -149,3 +149,7 @@ All notable changes to `view-export` will be documented in this file
 ## 0.10.2 - 2021-02-24
 - fix issues with PdfExportJob failing due to `$renderer` property being 'private'
 - fix PdfExportJob::handle() method to return the PDF's upload path
+
+
+## 0.11.0 - 2021-02-26
+- refactor sfneal/dompdf dependency to dompdf/dompdf to try and fix remote style sheets issues
