@@ -15,7 +15,7 @@ class LaravelConfigTest extends TestCase
     public function chroot()
     {
         $output = config('view-export.chroot');
-        $expected = base_path('vendor/sfneal/dompdf');
+        $expected = base_path('vendor/dompdf/dompdf');
 
         $this->assertIsString($output);
         $this->assertDirectoryExists($output);

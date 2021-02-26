@@ -21,7 +21,7 @@ return [
     | https://github.com/dompdf/dompdf/wiki
     |
     */
-    'chroot' => base_path('vendor/sfneal/dompdf'),
+    'chroot' => base_path('vendor/dompdf/dompdf'),
 
     /*
     |--------------------------------------------------------------------------

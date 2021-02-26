@@ -127,6 +127,9 @@ class Renderer extends AbstractJob
      */
     private function loadContent(): void
     {
+        // todo: implement this if it improves performance
+//        $this->pdf->loadHtml($this->content);
+
         // Create local HTML file path
         $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
 
