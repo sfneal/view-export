@@ -32,6 +32,7 @@ class DefaultOptions extends Options
 
         // Set file permissions
         $this->setChroot(config('view-export.chroot'));
+        $this->setRootDir(public_path());
 
         return $this;
     }
