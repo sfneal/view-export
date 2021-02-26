@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Log;
 use Sfneal\Helpers\Strings\StringHelpers;
 use Sfneal\Queueables\AbstractJob;
 
@@ -138,6 +139,7 @@ class Renderer extends AbstractJob
         $this->pdf->loadHtmlFile($localHTML);
 
         // Remove temp HTML file
-        unlink($localHTML);
+//        unlink($localHTML);
+        Log::debug($localHTML);
     }
 }
