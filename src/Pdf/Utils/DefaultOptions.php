@@ -33,6 +33,9 @@ class DefaultOptions extends Options
         // Set file permissions
         $this->setChroot(config('view-export.chroot'));
 
+        // Set logging directory
+        $this->setLogOutputFile(config('view-export.log_output'));
+
         return $this;
     }
 
