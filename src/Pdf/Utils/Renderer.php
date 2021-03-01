@@ -144,10 +144,5 @@ class Renderer extends AbstractJob
         if (! config('app.debug')) {
             unlink($localHTML);
         }
-
-        // Move HTML file to storage directory for further debugging
-        else {
-            rename($localHTML, storage_path(StringHelpers::joinPaths('app/dompdf', basename($localHTML))));
-        }
     }
 }
