@@ -141,6 +141,6 @@ class Renderer extends AbstractJob
         $this->pdf->loadHtmlFile($localHTML);
 
         // Remove temp HTML file
-//        unlink($localHTML);
+        unlink($localHTML);
     }
 }
