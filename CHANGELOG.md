@@ -152,4 +152,9 @@ All notable changes to `view-export` will be documented in this file
 
 
 ## 0.11.0 - 2021-02-26
-- refactor sfneal/dompdf dependency to dompdf/dompdf to try and fix remote style sheets issues
+- refactor sfneal/dompdf dependency to dompdf/dompdf to try to fix remote style sheets issues
+
+
+## 0.11.1 - 2021-03-01
+- add default dompdf logging location
+- add conditional that prevents deleting the local HTML file used to create a PDF when the app is in 'debug' mode

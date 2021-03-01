@@ -140,7 +140,9 @@ class Renderer extends AbstractJob
         // Load HTML
         $this->pdf->loadHtmlFile($localHTML);
 
-        // Remove temp HTML file
-        unlink($localHTML);
+        // Remove temp HTML file if app is NOT in 'debug' mode
+        if (! config('app.debug')) {
+            unlink($localHTML);
+        }
     }
 }
