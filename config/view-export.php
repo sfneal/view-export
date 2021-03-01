@@ -103,7 +103,7 @@ return [
     | The file that Dompdf logs should be written to.
     |
     */
-    'log_output' => storage_path('logs/dompdf.log'),
+    'log_output' => storage_path('logs/dompdf.htm'),
 
     /*
     |--------------------------------------------------------------------------
