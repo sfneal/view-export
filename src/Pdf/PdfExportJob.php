@@ -4,7 +4,7 @@ namespace Sfneal\ViewExport\Pdf;
 
 use Dompdf\Exception;
 use Sfneal\Queueables\AbstractJob;
-use Sfneal\ViewExport\Pdf\Utils\Renderer;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
 class PdfExportJob extends AbstractJob
 {
@@ -19,16 +19,16 @@ class PdfExportJob extends AbstractJob
     public $connection = 'database';
 
     /**
-     * @var Renderer
+     * @var PdfRenderer
      */
     protected $renderer;
 
     /**
      * PdfExportJob constructor.
      *
-     * @param Renderer $renderer
+     * @param PdfRenderer $renderer
      */
-    public function __construct(Renderer $renderer)
+    public function __construct(PdfRenderer $renderer)
     {
         $this->renderer = $renderer;
     }

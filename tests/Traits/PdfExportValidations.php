@@ -7,21 +7,21 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\PdfExportJob;
-use Sfneal\ViewExport\Pdf\Utils\Exporter;
-use Sfneal\ViewExport\Pdf\Utils\Renderer;
+use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
 trait PdfExportValidations
 {
     /**
-     * @var Renderer
+     * @var PdfRenderer
      */
     private $renderer;
 
     /**
      * Execute PDfExport assertions.
-     * @param Exporter $exporter
+     * @param PdfExporter $exporter
      */
-    private function executeAssertions(Exporter $exporter): void
+    private function executeAssertions(PdfExporter $exporter): void
     {
         $this->assertNull($exporter->path());
         $this->assertNull($exporter->url());
@@ -32,7 +32,7 @@ trait PdfExportValidations
     /** @test */
     public function initialize_exporter()
     {
-        $this->assertInstanceOf(Renderer::class, $this->renderer);
+        $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
     }
 
     /**
@@ -111,7 +111,7 @@ trait PdfExportValidations
         Queue::push($this->renderer);
 
         // Assert a job was pushed twice...
-        Queue::assertPushed(Renderer::class, 1);
+        Queue::assertPushed(PdfRenderer::class, 1);
     }
 
     /** @test */
@@ -121,13 +121,13 @@ trait PdfExportValidations
         Bus::fake();
 
         // Assert that no jobs were pushed...
-        Bus::assertNotDispatched(Renderer::class);
+        Bus::assertNotDispatched(PdfRenderer::class);
 
         // Dispatch the first job...
         $this->renderer->handleJob();
 
         // Assert a job was pushed twice...
-        Bus::assertDispatched(Renderer::class);
+        Bus::assertDispatched(PdfRenderer::class);
     }
 
     /** @test */
