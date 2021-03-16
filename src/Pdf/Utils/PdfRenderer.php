@@ -70,14 +70,12 @@ class PdfRenderer extends AbstractJob
     }
 
     /**
-     * Load PDF content to the Dompdf instance and render the output.
+     * Render the PDF & return a Dompdf instance.
      *
-     *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
-     *
-     * @return PdfExporter
+     * @return Dompdf
      * @throws Exception
      */
-    public function handle(): PdfExporter
+    protected function render(): Dompdf
     {
         // Instantiate dompdf
         $this->pdf = new Dompdf($this->options);
@@ -91,8 +89,25 @@ class PdfRenderer extends AbstractJob
         // Render the PDF
         $this->pdf->render();
 
+        // Return the PDF
+        return $this->pdf;
+    }
+
+    /**
+     * Load PDF content to the Dompdf instance and render the output.
+     *
+     *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
+     *
+     * @return PdfExporter
+     * @throws Exception
+     */
+    public function handle(): PdfExporter
+    {
+        // Render the PDF
+        $pdf = $this->render();
+
         // Instantiate the Exporter
-        return $this->export($this->pdf);
+        return $this->export($pdf);
     }
 
     /**
