@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Support;
-
 
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
