@@ -3,29 +3,15 @@
 namespace Sfneal\ViewExport\Pdf\Utils;
 
 use Dompdf\Dompdf;
-use Sfneal\Helpers\Aws\S3\S3;
+use Sfneal\ViewExport\Support\Exporter;
+use Sfneal\ViewExport\Support\Streamable;
 
-class PdfExporter
+class PdfExporter extends Exporter implements Streamable
 {
     /**
      * @var Dompdf
      */
     private $pdf;
-
-    /**
-     * @var string|null AWS S3 file path
-     */
-    private $path;
-
-    /**
-     * @var string|null AWS S3 file URL
-     */
-    private $url;
-
-    /**
-     * @var string|null
-     */
-    private $output;
 
     /**
      * Exporter constructor.
@@ -43,25 +29,12 @@ class PdfExporter
     }
 
     /**
-     * Upload a rendered PDF to an AWS S3 file store.
-     *
-     * @param string $path
-     * @return $this
-     */
-    public function upload(string $path): self
-    {
-        $this->path = $path;
-        $this->url = (new S3($path))->upload_raw($this->output());
-
-        return $this;
-    }
-
-    /**
      * View the PDF in the clients browser.
      *
      * @param string $filename
+     * @return void
      */
-    public function view(string $filename = 'output.pdf')
+    public function view(string $filename = 'output.pdf'): void
     {
         $this->pdf->stream($filename, ['Attachment' => false]);
     }
@@ -70,39 +43,10 @@ class PdfExporter
      * Download the PDF using the clients browser.
      *
      * @param string $filename
+     * @return void
      */
-    public function download(string $filename = 'output.pdf')
+    public function download(string $filename = 'output.pdf'): void
     {
         $this->pdf->stream($filename, ['Attachment' => true]);
-    }
-
-    /**
-     * Retrieve the PDF's output.
-     *
-     * @return string
-     */
-    public function output(): string
-    {
-        return $this->output;
-    }
-
-    /**
-     * Retrieve the PDF's AWS S3 path.
-     *
-     * @return string|null
-     */
-    public function path(): ?string
-    {
-        return $this->path;
-    }
-
-    /**
-     * Retrieve the PDF's AWS S3 url.
-     *
-     * @return string|null
-     */
-    public function url(): ?string
-    {
-        return $this->url;
     }
 }
