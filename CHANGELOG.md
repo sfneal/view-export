@@ -164,4 +164,5 @@ All notable changes to `view-export` will be documented in this file
 - initial production release
 - cut support for php7.3 & php7.2
 - add ability to pass a url to a PdfExportService
-- make abstraction layers (ExportService, Exporter, Renderer) for future expansion of view-export
+- make abstraction layers (ExportService, Exporter, Renderer) for future expansion of view-export 
+- add scrutinizer/ocular to composer dev requirements to support code coverage uploading in Travis CI builds
