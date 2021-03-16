@@ -28,7 +28,7 @@ class Exporter
     private $output;
 
     /**
-     * PdfExporter constructor.
+     * Exporter constructor.
      *
      * - $content can be a View or HTML file contents
      *
