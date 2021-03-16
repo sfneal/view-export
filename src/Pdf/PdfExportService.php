@@ -4,9 +4,10 @@ namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Support\ExportService;
 use Sfneal\ViewModels\AbstractViewModel;
 
-class PdfExportService
+class PdfExportService extends ExportService
 {
     /**
      * Provide a view to build the PDF from.
