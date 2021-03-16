@@ -158,3 +158,11 @@ All notable changes to `view-export` will be documented in this file
 ## 0.11.1 - 2021-03-01
 - add default dompdf logging location
 - add conditional that prevents deleting the local HTML file used to create a PDF when the app is in 'debug' mode
+
+
+## 1.0.0 - 2021-03-16
+- initial production release
+- cut support for php7.3 & php7.2
+- add ability to pass a url to a PdfExportService
+- make abstraction layers (ExportService, Exporter, Renderer) for future expansion of view-export 
+- add scrutinizer/ocular to composer dev requirements to support code coverage uploading in Travis CI builds

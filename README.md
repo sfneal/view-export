@@ -20,11 +20,46 @@ To modify the view-export config file publish the ServiceProvider.
 
 ``` php
 php artisan vendor:publish --provider="Sfneal\ViewExport\Providers\ViewExportServiceProvider"
+```
 
 ## Usage
 
+
+### PDFs
+Exporting a PDF from a 'view'.
 ``` php
-// Usage description here
+use Sfneal\ViewExport\Pdf\PdfExportService;
+
+// Set the view & upload path
+$view = view('your.view', ['example_data' => ['a'=> 2001, 'b' => 3012]]);
+$s3Key = 'path/to/save/your/file/example.pdf';
+
+// Initialize an Exporter instance
+$exporter = PdfExportService::fromView($view)->handle();
+
+// Upload the PDF
+$exporter->upload($s3Key);
+
+// Download in browser
+$exporter->download();
+
+// Retrieve the upload path
+$path = $exporter->path();
+```
+
+### Excel
+Exporting an Excel file from a 'view'.
+
+``` php
+use Sfneal\ViewExport\Excel\ExcelExportAction;
+
+// Set the view & upload path
+$view = 'your.view';
+$view_data = ['example_data' => ['a'=> 2001, 'b' => 3012]];
+$s3Key = 'path/to/save/your/file/example.xlsx';
+
+// Retrieve the upload path
+$path = (new ExcelExportAction($s3Key, $view, $view_data))->execute();
 ```
 
 ### Testing

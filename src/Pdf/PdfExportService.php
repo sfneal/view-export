@@ -3,23 +3,22 @@
 namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
-use Sfneal\ViewExport\Pdf\Utils\Renderer;
+use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Support\ExportService;
 use Sfneal\ViewModels\AbstractViewModel;
 
-class PdfExportService
+class PdfExportService extends ExportService
 {
-    // todo: add ability to pass urls to export
-
     /**
      * Provide a view to build the PDF from.
      *
      * @param View $view
      * @param string|null $uploadPath
-     * @return Renderer
+     * @return PdfRenderer
      */
-    public static function fromView(View $view, string $uploadPath = null): Renderer
+    public static function fromView(View $view, string $uploadPath = null): PdfRenderer
     {
-        return new Renderer($view->render(), $uploadPath);
+        return new PdfRenderer($view->render(), $uploadPath);
     }
 
     /**
@@ -27,11 +26,11 @@ class PdfExportService
      *
      * @param AbstractViewModel $viewModel
      * @param string|null $uploadPath
-     * @return Renderer
+     * @return PdfRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): Renderer
+    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): PdfRenderer
     {
-        return new Renderer($viewModel->renderNoCache(), $uploadPath);
+        return new PdfRenderer($viewModel->renderNoCache(), $uploadPath);
     }
 
     /**
@@ -39,22 +38,22 @@ class PdfExportService
      *
      * @param string $html
      * @param string|null $uploadPath
-     * @return Renderer
+     * @return PdfRenderer
      */
-    public static function fromHtml(string $html, string $uploadPath = null): Renderer
+    public static function fromHtml(string $html, string $uploadPath = null): PdfRenderer
     {
-        return new Renderer($html, $uploadPath);
+        return new PdfRenderer($html, $uploadPath);
     }
 
     /**
-     * Provide an HTML path to build the PDF from.
+     * Provide an HTML path or URL to build the PDF from.
      *
      * @param string $path
      * @param string|null $uploadPath
-     * @return Renderer
+     * @return PdfRenderer
      */
-    public static function fromHtmlFile(string $path, string $uploadPath = null): Renderer
+    public static function fromHtmlFile(string $path, string $uploadPath = null): PdfRenderer
     {
-        return new Renderer(file_get_contents($path), $uploadPath);
+        return new PdfRenderer(file_get_contents($path), $uploadPath);
     }
 }
