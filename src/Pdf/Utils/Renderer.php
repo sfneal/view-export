@@ -91,6 +91,17 @@ class Renderer extends AbstractJob
         // Render the PDF
         $this->pdf->render();
 
+        // Instantiate the Exporter
+        return $this->export();
+    }
+
+    /**
+     * Create & return an Exporter instance.
+     *
+     * @return Exporter
+     */
+    private function export(): Exporter
+    {
         // Initialize the PdfExporter
         $exporter = new Exporter($this->pdf);
 
