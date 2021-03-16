@@ -5,22 +5,12 @@ namespace Sfneal\ViewExport\Pdf\Utils;
 use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
-use Illuminate\Support\Facades\Bus;
 use Sfneal\Helpers\Strings\StringHelpers;
-use Sfneal\Queueables\AbstractJob;
+use Sfneal\ViewExport\Support\Exporter;
+use Sfneal\ViewExport\Support\Renderer;
 
-class PdfRenderer extends AbstractJob
+class PdfRenderer extends Renderer
 {
-    /**
-     * @var string PDF content (either a rendered View or HTML string)
-     */
-    private $content;
-
-    /**
-     * @var string|null AWS S3 path to upload PDF to after render (if provided)
-     */
-    private $uploadPath;
-
     /**
      * @var Options
      */
@@ -37,36 +27,21 @@ class PdfRenderer extends AbstractJob
     private $pdf;
 
     /**
-     * PdfExporter constructor.
-     *
-     * - $content can be a View or HTML file contents
+     * PdfRenderer constructor.
      *
      * @param string $content
      * @param string|null $uploadPath
      */
     public function __construct(string $content, string $uploadPath = null)
     {
-        // Content of the PDF
-        $this->content = $content;
-
-        // Upload PDF after rendering (defaults to false)
-        $this->uploadPath = $uploadPath;
+        // Call Parent constructor
+        parent::__construct($content, $uploadPath);
 
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = new DefaultOptions();
 
         // Instantiate Metadata
         $this->metadata = new Metadata();
-    }
-
-    /**
-     * Dispatch this renderer instance to the Job queue without having to construct it statically.
-     *
-     * @return mixed
-     */
-    public function handleJob()
-    {
-        return Bus::dispatch($this);
     }
 
     /**
@@ -94,40 +69,14 @@ class PdfRenderer extends AbstractJob
     }
 
     /**
-     * Load PDF content to the Dompdf instance and render the output.
-     *
-     *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
-     *
-     * @return PdfExporter
-     * @throws Exception
-     */
-    public function handle(): PdfExporter
-    {
-        // Render the PDF
-        $pdf = $this->render();
-
-        // Instantiate the Exporter
-        return $this->export($pdf);
-    }
-
-    /**
-     * Create & return an Exporter instance.
+     * Initialize the Exporter.
      *
      * @param $exportable
      * @return PdfExporter
      */
-    private function export($exportable): PdfExporter
+    protected function exporter($exportable): PdfExporter
     {
-        // Initialize the PdfExporter
-        $exporter = new PdfExporter($exportable);
-
-        // Upload after rendering if an upload path was provided
-        if ($this->uploadPath) {
-            $exporter->upload($this->uploadPath);
-        }
-
-        // Return a PdfExporter
-        return $exporter;
+        return new PdfExporter($exportable);
     }
 
     /**
@@ -171,5 +120,16 @@ class PdfRenderer extends AbstractJob
         if (! config('app.debug')) {
             unlink($localHTML);
         }
+    }
+
+    /**
+     * Load renderable content to an Exporter instance and render the output.
+     *
+     * @return Exporter|PdfExporter
+     * @throws Exception
+     */
+    public function handle(): PdfExporter
+    {
+        return parent::handle();
     }
 }
