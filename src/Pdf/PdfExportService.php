@@ -8,8 +8,6 @@ use Sfneal\ViewModels\AbstractViewModel;
 
 class PdfExportService
 {
-    // todo: add ability to pass urls to export
-
     /**
      * Provide a view to build the PDF from.
      *
@@ -47,7 +45,7 @@ class PdfExportService
     }
 
     /**
-     * Provide an HTML path to build the PDF from.
+     * Provide an HTML path or URL to build the PDF from.
      *
      * @param string $path
      * @param string|null $uploadPath
