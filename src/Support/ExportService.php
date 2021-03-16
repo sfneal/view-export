@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Support;
-
 
 use Illuminate\Contracts\View\View;
 use Sfneal\ViewModels\AbstractViewModel;
