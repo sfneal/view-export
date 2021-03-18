@@ -171,6 +171,7 @@ All notable changes to `view-export` will be documented in this file
 ## 1.1.0 - 2021-03-18
 - cut `PdfExportJob` in favor of dispatching pdf exports from the PdfExportService
 
+
 ## 1.2.0 - 2021-03-18
 - add ability to store PDF file on the local filesystem
 - optimize test suite for easier future expansion
