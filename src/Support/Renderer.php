@@ -9,7 +9,7 @@ use Sfneal\Queueables\AbstractJob;
 abstract class Renderer extends AbstractJob
 {
     /**
-     * @var string PDF content (either a rendered View or HTML string)
+     * @var mixed Renderable content
      */
     protected $content;
 
@@ -23,10 +23,10 @@ abstract class Renderer extends AbstractJob
      *
      * - $content can be a View or HTML file contents
      *
-     * @param string $content
+     * @param mixed $content
      * @param string|null $uploadPath
      */
-    public function __construct(string $content, string $uploadPath = null)
+    public function __construct($content, string $uploadPath = null)
     {
         // Content of the PDF
         $this->content = $content;
