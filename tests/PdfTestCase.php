@@ -43,7 +43,7 @@ abstract class PdfTestCase extends TestCase
     {
         $stored = $this->renderer
             ->handle()
-            ->store(storage_path('pdfs/output-'.random_int(1000, 9999).'.pdf'));
+            ->store('pdfs/output-'.random_int(1000, 9999).'.pdf');
         $localPath = $stored->localPath();
 
         $this->assertIsString($localPath);
