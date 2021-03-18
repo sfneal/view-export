@@ -3,12 +3,9 @@
 namespace Sfneal\ViewExport\Tests;
 
 use Sfneal\ViewExport\Pdf\PdfExportService;
-use Sfneal\ViewExport\Tests\Traits\PdfExportValidations;
 
-class PdfExportFromHtmlFileTest extends TestCase
+class PdfExportFromHtmlFileTest extends PdfTestCase
 {
-    use PdfExportValidations;
-
     /**
      * Setup the test environment.
      *
