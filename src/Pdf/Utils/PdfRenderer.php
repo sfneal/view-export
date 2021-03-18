@@ -126,7 +126,6 @@ class PdfRenderer extends Renderer
      * Load renderable content to an Exporter instance and render the output.
      *
      * @return Exporter|PdfExporter
-     * @throws Exception
      */
     public function handle(): PdfExporter
     {

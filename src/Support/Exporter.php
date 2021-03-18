@@ -2,14 +2,23 @@
 
 namespace Sfneal\ViewExport\Support;
 
+use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Aws\S3\S3;
 
-abstract class Exporter
+class Exporter
 {
+    // todo: add ability to store locally
+    // todo: fix docstrings to not be pdf specific
+
+    /**
+     * @var string|null local file path
+     */
+    protected $localPath;
+
     /**
      * @var string|null AWS S3 file path
      */
-    protected $path;
+    protected $uploadPath;
 
     /**
      * @var string|null AWS S3 file URL
@@ -29,8 +38,24 @@ abstract class Exporter
      */
     public function upload(string $path): self
     {
-        $this->path = $path;
+        $this->uploadPath = $path;
+
+        // todo: add use of Storage
         $this->url = (new S3($path))->upload_raw($this->output());
+
+        return $this;
+    }
+
+    /**
+     * Store a rendered PDF on the local file system.
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function store(string $path): self
+    {
+        $this->localPath = $path;
+        Storage::put($path, $this->output());
 
         return $this;
     }
@@ -38,11 +63,21 @@ abstract class Exporter
     /**
      * Retrieve the PDF's output.
      *
-     * @return string
+     * @return string|null
      */
-    public function output(): string
+    public function output(): ?string
     {
         return $this->output;
+    }
+
+    /**
+     * Retrieve the PDF's AWS S3 path if available or the local file path.
+     *
+     * @return string|null
+     */
+    public function path(): ?string
+    {
+        return $this->uploadPath() ?? $this->localPath();
     }
 
     /**
@@ -50,9 +85,19 @@ abstract class Exporter
      *
      * @return string|null
      */
-    public function path(): ?string
+    public function uploadPath(): ?string
     {
-        return $this->path;
+        return $this->uploadPath;
+    }
+
+    /**
+     * Retrieve the PDF's local file path.
+     *
+     * @return string|null
+     */
+    public function localPath(): ?string
+    {
+        return $this->localPath;
     }
 
     /**
