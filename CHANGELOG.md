@@ -166,3 +166,7 @@ All notable changes to `view-export` will be documented in this file
 - add ability to pass a url to a PdfExportService
 - make abstraction layers (ExportService, Exporter, Renderer) for future expansion of view-export 
 - add scrutinizer/ocular to composer dev requirements to support code coverage uploading in Travis CI builds
+
+
+## 1.1.0 - 2021-03-16
+- cut `PdfExportJob` in favor of dispatching pdf exports from the PdfExportService
