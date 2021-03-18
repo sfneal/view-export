@@ -2,7 +2,6 @@
 
 namespace Sfneal\ViewExport\Support;
 
-use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Sfneal\Queueables\AbstractJob;
 
@@ -38,7 +37,6 @@ abstract class Renderer extends AbstractJob
     /**
      * Render the content to a exportable object.
      *
-     * @throws Exception
      * @return object
      */
     abstract protected function render(): object;
@@ -67,7 +65,6 @@ abstract class Renderer extends AbstractJob
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
      * @return Exporter
-     * @throws Exception
      */
     public function handle(): Exporter
     {
