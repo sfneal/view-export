@@ -1,20 +1,21 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Traits;
+namespace Sfneal\ViewExport\Tests;
 
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
-trait PdfExportValidations
+abstract class PdfTestCase extends TestCase
 {
     /**
      * @var PdfRenderer
      */
-    private $renderer;
+    protected $renderer;
 
     /**
      * Execute PDfExport assertions.
@@ -32,6 +33,22 @@ trait PdfExportValidations
     public function initialize_exporter()
     {
         $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
+    }
+
+    /**
+     * @test
+     * @throws \Exception
+     */
+    public function pdf_can_be_stored()
+    {
+        $stored = $this->renderer
+            ->handle()
+            ->store(storage_path('pdfs/output-'.random_int(1000, 9999).'.pdf'));
+        $localPath = $stored->localPath();
+
+        $this->assertIsString($localPath);
+        $this->assertIsString(Storage::path($localPath));
+        $this->assertTrue(Storage::exists($localPath));
     }
 
     /**
