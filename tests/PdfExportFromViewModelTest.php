@@ -7,7 +7,6 @@ use Sfneal\ViewExport\Tests\ViewModels\TestViewModel;
 
 class PdfExportFromViewModelTest extends PdfTestCase
 {
-
     /**
      * Setup the test environment.
      *
