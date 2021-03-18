@@ -4,7 +4,7 @@ namespace Sfneal\ViewExport\Support;
 
 use Sfneal\Helpers\Aws\S3\S3;
 
-abstract class Exporter
+class Exporter
 {
     /**
      * @var string|null AWS S3 file path
@@ -38,9 +38,9 @@ abstract class Exporter
     /**
      * Retrieve the PDF's output.
      *
-     * @return string
+     * @return string|null
      */
-    public function output(): string
+    public function output(): ?string
     {
         return $this->output;
     }
