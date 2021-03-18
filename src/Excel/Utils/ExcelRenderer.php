@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Excel\Utils;
-
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;

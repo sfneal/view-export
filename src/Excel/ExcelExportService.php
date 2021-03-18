@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Excel;
-
 
 use Illuminate\Contracts\View\View;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
@@ -11,7 +9,6 @@ use Sfneal\ViewModels\AbstractViewModel;
 
 class ExcelExportService extends ExportService
 {
-
     /**
      * Provide a view to build the PDF from.
      *
