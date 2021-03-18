@@ -5,6 +5,7 @@ namespace Sfneal\ViewExport\Excel\Utils;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
+use Sfneal\ViewExport\Support\Exporter;
 use Sfneal\ViewExport\Support\Renderer;
 
 class ExcelRenderer extends Renderer implements FromView
@@ -40,5 +41,15 @@ class ExcelRenderer extends Renderer implements FromView
     public function view(): View
     {
         return $this->content;
+    }
+
+    /**
+     * Load renderable content to an Exporter instance and render the output.
+     *
+     * @return Exporter|ExcelExporter
+     */
+    public function handle(): ExcelExporter
+    {
+        return parent::handle();
     }
 }
