@@ -11,17 +11,17 @@ abstract class ExportService
      * Provide a view to build the PDF from.
      *
      * @param View $view
-     * @param string $uploadPath
+     * @param string|null $uploadPath
      * @return Renderer
      */
-    abstract public static function fromView(View $view, string $uploadPath): Renderer;
+    abstract public static function fromView(View $view, string $uploadPath = null): Renderer;
 
     /**
      * Provide a view to build the PDF from.
      *
      * @param AbstractViewModel $viewModel
-     * @param string $uploadPath
+     * @param string|null $uploadPath
      * @return Renderer
      */
-    abstract public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath): Renderer;
+    abstract public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): Renderer;
 }
