@@ -6,6 +6,8 @@ use Sfneal\Helpers\Aws\S3\S3;
 
 class Exporter
 {
+    // todo: add ability to store locally
+
     /**
      * @var string|null AWS S3 file path
      */
