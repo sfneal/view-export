@@ -49,13 +49,13 @@ class Exporter
     /**
      * Store a rendered PDF on the local file system.
      *
-     * @param string $storagePath
+     * @param string $path
      * @return $this
      */
-    public function store(string $storagePath): self
+    public function store(string $path): self
     {
-        $this->localPath = $storagePath;
-        Storage::put($storagePath, $this->output());
+        $this->localPath = $path;
+        Storage::put($path, $this->output());
 
         return $this;
     }
