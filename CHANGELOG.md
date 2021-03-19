@@ -180,3 +180,4 @@ All notable changes to `view-export` will be documented in this file
 
 ## 2.0.0 - 2021-03-19
 - make `ExcelExportService` that makes use of `ExportService`, `Renderer` & `Exporter` abstractions for consistency of use with `PdfExportService`
+- cut `ExportExcelAction` in favor of using `ExcelExportService` 
