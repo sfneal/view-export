@@ -11,7 +11,7 @@ class ExcelRenderer extends Renderer
     /**
      * @var ClassString
      */
-    private $excelViewClass;
+    private $excelViewClass = ExcelView::class;
 
     /**
      * Set the ExcelView class to be used to render the Excel file.
@@ -32,7 +32,7 @@ class ExcelRenderer extends Renderer
      */
     protected function render(): object
     {
-        return new $this->excelViewClass($this->content) ?? new ExcelView($this->content);
+        return new $this->excelViewClass($this->content);
     }
 
     /**
