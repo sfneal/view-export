@@ -2,11 +2,29 @@
 
 namespace Sfneal\ViewExport\Excel\Utils;
 
+use phpDocumentor\Reflection\Types\ClassString;
 use Sfneal\ViewExport\Support\Exporter;
 use Sfneal\ViewExport\Support\Renderer;
 
 class ExcelRenderer extends Renderer
 {
+    /**
+     * @var ClassString
+     */
+    private $excelViewClass;
+
+    /**
+     * Set the ExcelView class to be used to render the Excel file.
+     *
+     * @param ClassString $viewClass
+     * @return $this
+     */
+    public function setView(ClassString $viewClass): self
+    {
+        $this->excelViewClass = $viewClass;
+        return $this;
+    }
+
     /**
      * Render the content to a exportable object.
      *
@@ -14,7 +32,7 @@ class ExcelRenderer extends Renderer
      */
     protected function render(): object
     {
-        return new ExcelView($this->content);
+        return new $this->excelViewClass($this->content) ?? new ExcelView($this->content);
     }
 
     /**
