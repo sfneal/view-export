@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Maatwebsite\Excel\ExcelServiceProvider;
 
 class ViewExportServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,8 @@ class ViewExportServiceProvider extends ServiceProvider
     {
         // Load config file
         $this->mergeConfigFrom(__DIR__.'/../../config/view-export.php', 'view-export');
+
+        // Register Excel service provider
+        $this->app->register(ExcelServiceProvider::class);
     }
 }

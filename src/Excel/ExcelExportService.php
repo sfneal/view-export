@@ -18,7 +18,7 @@ class ExcelExportService extends ExportService
      */
     public static function fromView(View $view, string $uploadPath = null): ExcelRenderer
     {
-        return new ExcelRenderer($view->render(), $uploadPath);
+        return new ExcelRenderer($view, $uploadPath);
     }
 
     /**

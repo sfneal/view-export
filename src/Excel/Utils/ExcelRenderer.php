@@ -2,16 +2,11 @@
 
 namespace Sfneal\ViewExport\Excel\Utils;
 
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromView;
 use Sfneal\ViewExport\Support\Exporter;
 use Sfneal\ViewExport\Support\Renderer;
 
-class ExcelRenderer extends Renderer implements FromView
+class ExcelRenderer extends Renderer
 {
-    use Exportable;
-
     /**
      * Render the content to a exportable object.
      *
@@ -19,7 +14,7 @@ class ExcelRenderer extends Renderer implements FromView
      */
     protected function render(): object
     {
-        return $this;
+        return new ExcelView($this->content);
     }
 
     /**
@@ -30,17 +25,7 @@ class ExcelRenderer extends Renderer implements FromView
      */
     protected function exporter($exportable): ExcelExporter
     {
-        return new ExcelExporter();
-    }
-
-    /**
-     * Return a used in the Excel export.
-     *
-     * @return View
-     */
-    public function view(): View
-    {
-        return $this->content;
+        return new ExcelExporter($exportable);
     }
 
     /**
