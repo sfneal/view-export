@@ -30,6 +30,6 @@ class ExcelExportService extends ExportService
      */
     public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): ExcelRenderer
     {
-        return new ExcelRenderer($viewModel->renderNoCache(), $uploadPath);
+        return new ExcelRenderer(view($viewModel->view, $viewModel->toArray()), $uploadPath);
     }
 }
