@@ -17,7 +17,7 @@ class ExcelExportFromViewTest extends ExcelTestCase
         parent::setUp();
 
         $this->renderer = ExcelExportService::fromView(view('table', [
-            'data' => (new TestViewModel())->data()
+            'data' => (new TestViewModel())->data(),
         ]));
     }
 }
