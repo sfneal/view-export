@@ -176,3 +176,9 @@ All notable changes to `view-export` will be documented in this file
 - add ability to store PDF file on the local filesystem
 - optimize test suite for easier future expansion
 - start preparing for improvements to the `Excel` module
+
+
+## 2.0.0 - 2021-03-19
+- make `ExcelExportService` that makes use of `ExportService`, `Renderer` & `Exporter` abstractions for consistency of use with `PdfExportService`
+- cut `ExportExcelAction` in favor of using `ExcelExportService`
+- optimize composer requirements by removing unused dependencies
