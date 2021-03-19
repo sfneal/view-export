@@ -7,6 +7,8 @@ use Sfneal\ViewExport\Support\Exporter;
 
 class ExcelExporter extends Exporter
 {
+    // todo: add ability to download
+
     /**
      * @var ExcelView
      */
