@@ -19,7 +19,7 @@ class ExcelRenderer extends Renderer
      * @param ClassString $viewClass
      * @return $this
      */
-    public function setView(ClassString $viewClass): self
+    public function setExcelView(ClassString $viewClass): self
     {
         $this->excelViewClass = $viewClass;
         return $this;
