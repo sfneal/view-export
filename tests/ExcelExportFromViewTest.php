@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Tests;
 
 use Sfneal\ViewExport\Excel\ExcelExportService;
+use Sfneal\ViewExport\Tests\ViewModels\TestViewModel;
 
 class ExcelExportFromViewTest extends ExcelTestCase
 {
@@ -15,6 +16,8 @@ class ExcelExportFromViewTest extends ExcelTestCase
     {
         parent::setUp();
 
-        $this->renderer = ExcelExportService::fromView(view('test'));
+        $this->renderer = ExcelExportService::fromView(view('table', [
+            'data' => (new TestViewModel())->data()
+        ]));
     }
 }

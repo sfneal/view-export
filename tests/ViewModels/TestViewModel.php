@@ -25,4 +25,48 @@ class TestViewModel extends AbstractViewModel
     {
         return "Here's a string!";
     }
+
+    /**
+     * @return array[]
+     */
+    public function data(): array
+    {
+        return [
+            [
+                'player' => 'Mario Lemieux',
+                'team' => 'PIT',
+                'gp' => 70,
+                'g' => 69,
+                'a' => 92,
+            ],
+            [
+                'player' => 'Jaromir Jagr',
+                'team' => 'PIT',
+                'gp' => 82,
+                'g' => 62,
+                'a' => 87,
+            ],
+            [
+                'player' => 'Joe Sakic',
+                'team' => 'COL',
+                'gp' => 82,
+                'g' => 51,
+                'a' => 69,
+            ],
+            [
+                'player' => 'Ron Francis',
+                'team' => 'PIT',
+                'gp' => 77,
+                'g' => 27,
+                'a' => 92,
+            ],
+            [
+                'player' => 'Peter Forsberg',
+                'team' => 'COL',
+                'gp' => 82,
+                'g' => 30,
+                'a' => 86,
+            ],
+        ];
+    }
 }
