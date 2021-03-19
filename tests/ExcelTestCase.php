@@ -6,7 +6,6 @@ use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
-use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
 
@@ -26,7 +25,6 @@ abstract class ExcelTestCase extends TestCase
         $this->assertNull($exporter->path());
         $this->assertNull($exporter->url());
         $this->assertIsString($exporter->output());
-        $this->assertTrue(LaravelHelpers::isBinary($exporter->output()));
     }
 
     /** @test */

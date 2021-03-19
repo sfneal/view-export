@@ -20,6 +20,7 @@ class ExcelExporter extends Exporter
     public function __construct(ExcelView $excel)
     {
         $this->excel = $excel;
+        $this->output = $excel->view()->render();
     }
 
     /**
