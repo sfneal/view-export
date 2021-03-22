@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Excel;
 
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
 use Sfneal\ViewExport\Tests\Assets\Exports\TestViewExcelExport;
+use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class ExcelTestCase extends TestCase
 {
