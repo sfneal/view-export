@@ -91,10 +91,13 @@ abstract class ExcelTestCase extends TestCase
         $this->renderer->setExcelView(TestCollectionExcelExport::class);
 
         // Render the PDF
-        $exporter = $this->renderer->handle();
+        $exporter = $this->renderer->handle()->store('excel/output-'.random_int(1000, 9999).'.xlsx');
+        $localPath = $exporter->localPath();
 
         // Execute assertions
-        $this->executeAssertions($exporter);
+        $this->assertIsString($localPath);
+        $this->assertIsString(Storage::path($localPath));
+        $this->assertTrue(Storage::exists($localPath));
     }
 
     /** @test */
