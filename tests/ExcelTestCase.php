@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
+use Sfneal\ViewExport\Tests\Exports\TestExcelViewExport;
 
 abstract class ExcelTestCase extends TestCase
 {
@@ -55,6 +56,22 @@ abstract class ExcelTestCase extends TestCase
      */
     public function validate_standard_output()
     {
+        // Render the PDF
+        $exporter = $this->renderer->handle();
+
+        // Execute assertions
+        $this->executeAssertions($exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_output_with_custom_view_export()
+    {
+        // Add use of custom ExcelViewExport
+        $this->renderer->setExcelView(TestExcelViewExport::class);
+
         // Render the PDF
         $exporter = $this->renderer->handle();
 
