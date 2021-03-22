@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Excel\Utils;
 
 use phpDocumentor\Reflection\Types\ClassString;
+use Sfneal\ViewExport\Excel\Exports\ExcelViewExport;
 use Sfneal\ViewExport\Support\Exporter;
 use Sfneal\ViewExport\Support\Renderer;
 
@@ -11,7 +12,7 @@ class ExcelRenderer extends Renderer
     /**
      * @var ClassString
      */
-    private $excelViewClass = ExcelView::class;
+    private $excelViewClass = ExcelViewExport::class;
 
     /**
      * Set the ExcelView class to be used to render the Excel file.

@@ -1,11 +1,11 @@
 <?php
 
-namespace Sfneal\ViewExport\Excel\Utils;
+namespace Sfneal\ViewExport\Excel\Exports;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class ExcelView implements FromView
+class ExcelViewExport implements FromView
 {
     /**
      * @var View
