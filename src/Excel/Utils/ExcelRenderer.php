@@ -2,7 +2,7 @@
 
 namespace Sfneal\ViewExport\Excel\Utils;
 
-use Sfneal\ViewExport\Excel\Exports\ExcelViewExport;
+use Sfneal\ViewExport\Excel\Exports\ViewExcelExport;
 use Sfneal\ViewExport\Support\Exporter;
 use Sfneal\ViewExport\Support\Renderer;
 
@@ -11,7 +11,7 @@ class ExcelRenderer extends Renderer
     /**
      * @var string
      */
-    private $excelViewClass = ExcelViewExport::class;
+    private $excelViewClass = ViewExcelExport::class;
 
     /**
      * Set the ExcelView class to be used to render the Excel file.

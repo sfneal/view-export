@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Excel\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class ExcelViewExport implements FromView
+class ViewExcelExport implements FromView
 {
     /**
      * @var View
