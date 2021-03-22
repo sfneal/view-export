@@ -1,10 +1,10 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Pdf;
 
 use Sfneal\ViewExport\Pdf\PdfExportService;
 
-class PdfExportFromHtmlTest extends PdfTestCase
+class PdfExportFromHtmlFileTest extends PdfTestCase
 {
     /**
      * Setup the test environment.
@@ -15,6 +15,6 @@ class PdfExportFromHtmlTest extends PdfTestCase
     {
         parent::setUp();
 
-        $this->renderer = PdfExportService::fromHtml(file_get_contents(base_path('tests/resources/html/test.html')));
+        $this->renderer = PdfExportService::fromHtmlFile(base_path('tests/resources/html/test.html'));
     }
 }

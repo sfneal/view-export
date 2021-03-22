@@ -1,9 +1,9 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Excel;
 
 use Sfneal\ViewExport\Excel\ExcelExportService;
-use Sfneal\ViewExport\Tests\ViewModels\TestViewModel;
+use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
 
 class ExcelExportFromViewModelTest extends ExcelTestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Pdf;
 
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
+use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class PdfTestCase extends TestCase
 {

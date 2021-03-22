@@ -5,7 +5,7 @@ namespace Sfneal\ViewExport\Support;
 use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Aws\S3\S3;
 
-class Exporter
+abstract class Exporter
 {
     // todo: add ability to store locally
     // todo: fix docstrings to not be pdf specific

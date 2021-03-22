@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Excel;
 
 use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
+use Sfneal\ViewExport\Tests\Assets\Exports\TestCollectionExcelExport;
+use Sfneal\ViewExport\Tests\Assets\Exports\TestViewExcelExport;
+use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class ExcelTestCase extends TestCase
 {
@@ -60,6 +63,41 @@ abstract class ExcelTestCase extends TestCase
 
         // Execute assertions
         $this->executeAssertions($exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_output_with_custom_view_export()
+    {
+        // Add use of custom ExcelViewExport
+        $this->renderer->setExcelView(TestViewExcelExport::class);
+
+        // Render the PDF
+        $exporter = $this->renderer->handle();
+
+        // Execute assertions
+        $this->executeAssertions($exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function validate_output_with_custom_collection_export()
+    {
+        // Add use of custom ExcelViewExport
+        $this->renderer->setExcelView(TestCollectionExcelExport::class);
+
+        // Render the PDF
+        $exporter = $this->renderer->handle()->store('excel/output-'.random_int(1000, 9999).'.xlsx');
+        $localPath = $exporter->localPath();
+
+        // Execute assertions
+        $this->assertIsString($localPath);
+        $this->assertIsString(Storage::path($localPath));
+        $this->assertTrue(Storage::exists($localPath));
     }
 
     /** @test */

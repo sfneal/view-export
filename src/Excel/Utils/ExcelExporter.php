@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Excel\Utils;
 
 use Maatwebsite\Excel\Facades\Excel;
+use Sfneal\ViewExport\Support\ExcelExport;
 use Sfneal\ViewExport\Support\Exporter;
 
 class ExcelExporter extends Exporter
@@ -10,19 +11,23 @@ class ExcelExporter extends Exporter
     // todo: add ability to download
 
     /**
-     * @var ExcelView
+     * @var ExcelExport
      */
     private $excel;
 
     /**
      * ExcelExporter constructor.
      *
-     * @param ExcelView $excel
+     * @param ExcelExport $excel
      */
-    public function __construct(ExcelView $excel)
+    public function __construct(ExcelExport $excel)
     {
         $this->excel = $excel;
-        $this->output = $excel->view()->render();
+
+        // Only set output if the ExcelExport has a 'view' method
+        if (method_exists($excel, 'view')) {
+            $this->output = $excel->view()->render();
+        }
     }
 
     /**
