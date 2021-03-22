@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\ViewModels;
+namespace Sfneal\ViewExport\Tests\Assets\ViewModels;
 
 use Sfneal\ViewModels\AbstractViewModel;
 

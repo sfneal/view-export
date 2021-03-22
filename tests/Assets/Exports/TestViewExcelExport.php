@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sfneal\ViewExport\Tests\Exports;
+namespace Sfneal\ViewExport\Tests\Assets\Exports;
 
 
 use Sfneal\ViewExport\Excel\Exports\ViewExcelExport;

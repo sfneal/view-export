@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
-use Sfneal\ViewExport\Tests\Exports\TestViewExcelExport;
+use Sfneal\ViewExport\Tests\Assets\Exports\TestViewExcelExport;
 
 abstract class ExcelTestCase extends TestCase
 {

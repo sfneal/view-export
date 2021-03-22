@@ -3,7 +3,7 @@
 namespace Sfneal\ViewExport\Tests;
 
 use Sfneal\ViewExport\Pdf\PdfExportService;
-use Sfneal\ViewExport\Tests\ViewModels\TestViewModel;
+use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
 
 class PdfExportFromViewModelTest extends PdfTestCase
 {

@@ -3,7 +3,7 @@
 namespace Sfneal\ViewExport\Tests;
 
 use Sfneal\ViewExport\Excel\ExcelExportService;
-use Sfneal\ViewExport\Tests\ViewModels\TestViewModel;
+use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
 
 class ExcelExportFromViewModelTest extends ExcelTestCase
 {
