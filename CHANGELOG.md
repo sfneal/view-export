@@ -182,3 +182,9 @@ All notable changes to `view-export` will be documented in this file
 - make `ExcelExportService` that makes use of `ExportService`, `Renderer` & `Exporter` abstractions for consistency of use with `PdfExportService`
 - cut `ExportExcelAction` in favor of using `ExcelExportService`
 - optimize composer requirements by removing unused dependencies
+
+
+## 2.1.0 - 2021-03-22
+- refactor `Sfneal\ViewExport\Excel\Utils\ExcelView` to `Sfneal\ViewExport\Excel\Exports\ExcelViewExport` for easier expansion
+- fix `ExcelRenderer::setExcelView()` method to use string type hinting for $viewClass param
+- add test method for testing exporting Excel files from a Collection
