@@ -8,7 +8,7 @@ interface Downloadable
      * Download the exported view using the clients browser.
      *
      * @param string $filename
-     * @return void
+     * @return void|mixed
      */
-    public function download(string $filename): void;
+    public function download(string $filename);
 }

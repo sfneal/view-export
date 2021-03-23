@@ -5,11 +5,11 @@ namespace Sfneal\ViewExport\Excel\Utils;
 use Maatwebsite\Excel\Facades\Excel;
 use Sfneal\ViewExport\Support\Adapters\ExcelExport;
 use Sfneal\ViewExport\Support\Adapters\Exporter;
+use Sfneal\ViewExport\Support\Interfaces\Downloadable;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExcelExporter extends Exporter
+class ExcelExporter extends Exporter implements Downloadable
 {
-    // todo: add ability to download
-
     /**
      * @var ExcelExport
      */
@@ -56,5 +56,16 @@ class ExcelExporter extends Exporter
         Excel::store($this->excel, $storagePath);
 
         return $this;
+    }
+
+    /**
+     * Download the exported view using the clients browser.
+     *
+     * @param string $filename
+     * @return BinaryFileResponse
+     */
+    public function download(string $filename): BinaryFileResponse
+    {
+        return Excel::download($this->excel, $filename);
     }
 }
