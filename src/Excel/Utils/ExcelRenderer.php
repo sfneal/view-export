@@ -3,25 +3,25 @@
 namespace Sfneal\ViewExport\Excel\Utils;
 
 use Sfneal\ViewExport\Excel\Exports\ViewExcelExport;
-use Sfneal\ViewExport\Support\Exporter;
-use Sfneal\ViewExport\Support\Renderer;
+use Sfneal\ViewExport\Support\Adapters\Exporter;
+use Sfneal\ViewExport\Support\Adapters\Renderer;
 
 class ExcelRenderer extends Renderer
 {
     /**
      * @var string
      */
-    private $excelViewClass = ViewExcelExport::class;
+    private $excelExportClass = ViewExcelExport::class;
 
     /**
-     * Set the ExcelView class to be used to render the Excel file.
+     * Set the `ExcelExport` class to be used to render the Excel file.
      *
-     * @param string $viewClass
+     * @param string $exportClass
      * @return $this
      */
-    public function setExcelView(string $viewClass): self
+    public function setExcelExport(string $exportClass): self
     {
-        $this->excelViewClass = $viewClass;
+        $this->excelExportClass = $exportClass;
 
         return $this;
     }
@@ -33,7 +33,7 @@ class ExcelRenderer extends Renderer
      */
     protected function render(): object
     {
-        return new $this->excelViewClass($this->content);
+        return new $this->excelExportClass($this->content);
     }
 
     /**

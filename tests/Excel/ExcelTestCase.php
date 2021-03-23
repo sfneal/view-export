@@ -72,7 +72,7 @@ abstract class ExcelTestCase extends TestCase
     public function validate_output_with_custom_view_export()
     {
         // Add use of custom ExcelViewExport
-        $this->renderer->setExcelView(TestViewExcelExport::class);
+        $this->renderer->setExcelExport(TestViewExcelExport::class);
 
         // Render the PDF
         $exporter = $this->renderer->handle();
@@ -88,7 +88,7 @@ abstract class ExcelTestCase extends TestCase
     public function validate_output_with_custom_collection_export()
     {
         // Add use of custom ExcelViewExport
-        $this->renderer->setExcelView(TestCollectionExcelExport::class);
+        $this->renderer->setExcelExport(TestCollectionExcelExport::class);
 
         // Render the PDF
         $exporter = $this->renderer->handle()->store('excel/output-'.random_int(1000, 9999).'.xlsx');

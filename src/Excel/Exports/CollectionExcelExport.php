@@ -4,7 +4,7 @@ namespace Sfneal\ViewExport\Excel\Exports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Sfneal\ViewExport\Support\ExcelExport;
+use Sfneal\ViewExport\Support\Adapters\ExcelExport;
 
 class CollectionExcelExport extends ExcelExport implements FromCollection
 {

@@ -188,3 +188,12 @@ All notable changes to `view-export` will be documented in this file
 - refactor `Sfneal\ViewExport\Excel\Utils\ExcelView` to `Sfneal\ViewExport\Excel\Exports\ExcelViewExport` for easier expansion
 - fix `ExcelRenderer::setExcelView()` method to use string type hinting for $viewClass param
 - add test method for testing exporting Excel files from a Collection
+
+
+## 2.2.0 - 2021-03-23
+- refactor `ExcelRenderer@setExcelView()` to `ExcelRenderer@setExcelExport()`
+- refactor `Streamable` interface into two separate `Viewable` & `Downloadable` interfaces
+- refactor abstract classes from 'Support' namespace into 'Sfneal\ViewExport\Support\Adapters' namespace
+- refactor interfaces from 'Support' namespace into 'Sfneal\ViewExport\Support\Interfaces' namespace.
+- add `download()` method to `ExcelExporter`
+- add use of `Storage` facade for uploading files to S3 instead of the S3 helper

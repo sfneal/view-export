@@ -1,15 +1,11 @@
 <?php
 
-namespace Sfneal\ViewExport\Support;
+namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Storage;
-use Sfneal\Helpers\Aws\S3\S3;
 
 abstract class Exporter
 {
-    // todo: add ability to store locally
-    // todo: fix docstrings to not be pdf specific
-
     /**
      * @var string|null local file path
      */
@@ -31,23 +27,22 @@ abstract class Exporter
     protected $output;
 
     /**
-     * Upload a rendered PDF to an AWS S3 file store.
+     * Upload a rendered export to an AWS S3 file store.
      *
      * @param string $path
      * @return $this
      */
     public function upload(string $path): self
     {
+        Storage::disk('s3')->put($path, $this->output());
         $this->uploadPath = $path;
-
-        // todo: add use of Storage
-        $this->url = (new S3($path))->upload_raw($this->output());
+        $this->url = Storage::disk('s3')->url($path);
 
         return $this;
     }
 
     /**
-     * Store a rendered PDF on the local file system.
+     * Store a rendered export on the local file system.
      *
      * @param string $storagePath
      * @return $this
@@ -61,7 +56,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's output.
+     * Retrieve the export's output.
      *
      * @return string|null
      */
@@ -71,7 +66,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 path if available or the local file path.
+     * Retrieve the export's AWS S3 path if available or the local file path.
      *
      * @return string|null
      */
@@ -81,7 +76,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 path.
+     * Retrieve the export's AWS S3 path.
      *
      * @return string|null
      */
@@ -91,7 +86,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's local file path.
+     * Retrieve the export's local file path.
      *
      * @return string|null
      */
@@ -101,7 +96,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 url.
+     * Retrieve the export's AWS S3 url.
      *
      * @return string|null
      */

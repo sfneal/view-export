@@ -3,10 +3,11 @@
 namespace Sfneal\ViewExport\Pdf\Utils;
 
 use Dompdf\Dompdf;
-use Sfneal\ViewExport\Support\Exporter;
-use Sfneal\ViewExport\Support\Streamable;
+use Sfneal\ViewExport\Support\Adapters\Exporter;
+use Sfneal\ViewExport\Support\Interfaces\Downloadable;
+use Sfneal\ViewExport\Support\Interfaces\Viewable;
 
-class PdfExporter extends Exporter implements Streamable
+class PdfExporter extends Exporter implements Viewable, Downloadable
 {
     /**
      * @var Dompdf

@@ -1,6 +1,8 @@
 <?php
 
-namespace Sfneal\ViewExport\Support;
+namespace Sfneal\ViewExport\Support\Interfaces;
+
+use Sfneal\ViewExport\Support\Adapters\Renderer;
 
 interface FromHtml
 {
