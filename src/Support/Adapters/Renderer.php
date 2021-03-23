@@ -13,7 +13,7 @@ abstract class Renderer extends AbstractJob
     protected $content;
 
     /**
-     * @var string|null AWS S3 path to upload PDF to after render (if provided)
+     * @var string|null AWS S3 path to upload a file to after render (if provided)
      */
     protected $uploadPath;
 

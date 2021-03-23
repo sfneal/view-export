@@ -29,7 +29,7 @@ abstract class Exporter
     protected $output;
 
     /**
-     * Upload a rendered PDF to an AWS S3 file store.
+     * Upload a rendered export to an AWS S3 file store.
      *
      * @param string $path
      * @return $this
@@ -44,7 +44,7 @@ abstract class Exporter
     }
 
     /**
-     * Store a rendered PDF on the local file system.
+     * Store a rendered export on the local file system.
      *
      * @param string $storagePath
      * @return $this
@@ -58,7 +58,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's output.
+     * Retrieve the export's output.
      *
      * @return string|null
      */
@@ -68,7 +68,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 path if available or the local file path.
+     * Retrieve the export's AWS S3 path if available or the local file path.
      *
      * @return string|null
      */
@@ -78,7 +78,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 path.
+     * Retrieve the export's AWS S3 path.
      *
      * @return string|null
      */
@@ -88,7 +88,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's local file path.
+     * Retrieve the export's local file path.
      *
      * @return string|null
      */
@@ -98,7 +98,7 @@ abstract class Exporter
     }
 
     /**
-     * Retrieve the PDF's AWS S3 url.
+     * Retrieve the export's AWS S3 url.
      *
      * @return string|null
      */
