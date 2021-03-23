@@ -188,3 +188,7 @@ All notable changes to `view-export` will be documented in this file
 - refactor `Sfneal\ViewExport\Excel\Utils\ExcelView` to `Sfneal\ViewExport\Excel\Exports\ExcelViewExport` for easier expansion
 - fix `ExcelRenderer::setExcelView()` method to use string type hinting for $viewClass param
 - add test method for testing exporting Excel files from a Collection
+
+
+## 2.1.1 - 2021-03-23
+- refactor `ExcelRenderer@setExcelView()` to `ExcelRenderer@setExcelExport()`
