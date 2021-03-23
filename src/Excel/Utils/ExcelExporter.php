@@ -3,8 +3,8 @@
 namespace Sfneal\ViewExport\Excel\Utils;
 
 use Maatwebsite\Excel\Facades\Excel;
-use Sfneal\ViewExport\Support\ExcelExport;
-use Sfneal\ViewExport\Support\Exporter;
+use Sfneal\ViewExport\Support\Adapters\ExcelExport;
+use Sfneal\ViewExport\Support\Adapters\Exporter;
 
 class ExcelExporter extends Exporter
 {

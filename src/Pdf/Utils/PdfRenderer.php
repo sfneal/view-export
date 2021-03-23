@@ -6,8 +6,8 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Sfneal\Helpers\Strings\StringHelpers;
-use Sfneal\ViewExport\Support\Exporter;
-use Sfneal\ViewExport\Support\Renderer;
+use Sfneal\ViewExport\Support\Adapters\Exporter;
+use Sfneal\ViewExport\Support\Adapters\Renderer;
 
 class PdfRenderer extends Renderer
 {

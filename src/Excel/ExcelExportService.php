@@ -4,7 +4,7 @@ namespace Sfneal\ViewExport\Excel;
 
 use Illuminate\Contracts\View\View;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
-use Sfneal\ViewExport\Support\ExportService;
+use Sfneal\ViewExport\Support\Adapters\ExportService;
 use Sfneal\ViewModels\AbstractViewModel;
 
 class ExcelExportService extends ExportService

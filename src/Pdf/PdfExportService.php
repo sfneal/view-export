@@ -4,8 +4,8 @@ namespace Sfneal\ViewExport\Pdf;
 
 use Illuminate\Contracts\View\View;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
-use Sfneal\ViewExport\Support\ExportService;
-use Sfneal\ViewExport\Support\FromHtml;
+use Sfneal\ViewExport\Support\Adapters\ExportService;
+use Sfneal\ViewExport\Support\Interfaces\FromHtml;
 use Sfneal\ViewModels\AbstractViewModel;
 
 class PdfExportService extends ExportService implements FromHtml

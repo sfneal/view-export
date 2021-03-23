@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Support;
+namespace Sfneal\ViewExport\Support\Interfaces;
 
 interface Viewable
 {

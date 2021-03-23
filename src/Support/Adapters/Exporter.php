@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Support;
+namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Aws\S3\S3;
