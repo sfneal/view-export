@@ -3,7 +3,6 @@
 namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Storage;
-use Sfneal\Helpers\Aws\S3\S3;
 
 abstract class Exporter
 {
@@ -37,10 +36,9 @@ abstract class Exporter
      */
     public function upload(string $path): self
     {
+        Storage::disk('s3')->put($path, $this->output());
         $this->uploadPath = $path;
-
-        // todo: add use of Storage
-        $this->url = (new S3($path))->upload_raw($this->output());
+        $this->url = Storage::disk('s3')->url($path);
 
         return $this;
     }
