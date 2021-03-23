@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Storage;
 
 abstract class Exporter
 {
-    // todo: fix docstrings to not be pdf specific
-
     /**
      * @var string|null local file path
      */
