@@ -3,8 +3,10 @@
 namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Storage;
+use Sfneal\ViewExport\Support\Interfaces\Storable;
+use Sfneal\ViewExport\Support\Interfaces\Uploadable;
 
-abstract class Exporter
+abstract class Exporter implements Uploadable, Storable
 {
     /**
      * @var string|null local file path
