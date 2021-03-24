@@ -6,7 +6,6 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Sfneal\Helpers\Strings\StringHelpers;
-use Sfneal\ViewExport\Support\Adapters\Exporter;
 use Sfneal\ViewExport\Support\Adapters\Renderer;
 
 class PdfRenderer extends Renderer
@@ -125,7 +124,7 @@ class PdfRenderer extends Renderer
     /**
      * Load renderable content to an Exporter instance and render the output.
      *
-     * @return Exporter|PdfExporter
+     * @return PdfExporter
      */
     public function handle(): PdfExporter
     {

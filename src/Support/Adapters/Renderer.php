@@ -64,7 +64,7 @@ abstract class Renderer extends AbstractJob
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
-     * @return Exporter
+     * @return Exporter|mixed
      */
     public function handle(): Exporter
     {
