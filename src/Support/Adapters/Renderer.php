@@ -4,10 +4,8 @@ namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Bus;
 use Sfneal\Queueables\AbstractJob;
-use Sfneal\ViewExport\Support\Interfaces\Storable;
-use Sfneal\ViewExport\Support\Interfaces\Uploadable;
 
-abstract class Renderer extends AbstractJob implements Uploadable, Storable
+abstract class Renderer extends AbstractJob
 {
     /**
      * @var mixed Renderable content
@@ -43,7 +41,7 @@ abstract class Renderer extends AbstractJob implements Uploadable, Storable
      * @param string $path
      * @return $this
      */
-    public function upload(string $path): self
+    public function setUploadPath(string $path): self
     {
         $this->uploadPath = $path;
 
@@ -56,7 +54,7 @@ abstract class Renderer extends AbstractJob implements Uploadable, Storable
      * @param string $storagePath
      * @return $this
      */
-    public function store(string $storagePath): Storable
+    public function setStorePath(string $storagePath): self
     {
         $this->storePath = $storagePath;
 

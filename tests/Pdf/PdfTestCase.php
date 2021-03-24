@@ -172,7 +172,7 @@ abstract class PdfTestCase extends TestCase
         Bus::assertNotDispatched(PdfRenderer::class);
 
         // Set a storage path
-        $this->renderer->store($this->getStoragePath());
+        $this->renderer->setStorePath($this->getStoragePath());
 
         // Dispatch the first job...
         $this->renderer->handleJob();
