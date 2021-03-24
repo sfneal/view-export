@@ -4,9 +4,10 @@ namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Bus;
 use Sfneal\Queueables\AbstractJob;
+use Sfneal\ViewExport\Support\Interfaces\Storable;
 use Sfneal\ViewExport\Support\Interfaces\Uploadable;
 
-abstract class Renderer extends AbstractJob implements Uploadable
+abstract class Renderer extends AbstractJob implements Uploadable, Storable
 {
     /**
      * @var mixed Renderable content
@@ -14,7 +15,12 @@ abstract class Renderer extends AbstractJob implements Uploadable
     protected $content;
 
     /**
-     * @var string|null AWS S3 path to upload a file to after render (if provided)
+     * @var string|null Local path to write a file to after rendering
+     */
+    protected $storePath;
+
+    /**
+     * @var string|null AWS S3 path to upload a file to after rendering
      */
     protected $uploadPath;
 
@@ -40,6 +46,19 @@ abstract class Renderer extends AbstractJob implements Uploadable
     public function upload(string $path): self
     {
         $this->uploadPath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Store a rendered export on the local file system.
+     *
+     * @param string $storagePath
+     * @return $this
+     */
+    public function store(string $storagePath): Storable
+    {
+        $this->storePath = $storagePath;
 
         return $this;
     }
@@ -96,12 +115,15 @@ abstract class Renderer extends AbstractJob implements Uploadable
         // Initialize the PdfExporter
         $exporter = $this->exporter($exportable);
 
-        // Upload after rendering if an upload path was provided
+        // Upload after rendering
         if ($this->uploadPath) {
             $exporter->upload($this->uploadPath);
         }
 
-        // todo: add storing?
+        // Store after rendering
+        if ($this->storePath) {
+            $exporter->store($this->storePath);
+        }
 
         // Return a PdfExporter
         return $exporter;
