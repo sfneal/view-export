@@ -184,6 +184,11 @@ All notable changes to `view-export` will be documented in this file
 - optimize composer requirements by removing unused dependencies
 
 
+## 2.1.0 - 2021-03-24
+- cut $uploadPath param from `ExportService` methods & `Renderer` constructor in favor of using `Renderer::upload()` method
+- add methods to `Renderer` that allow for setting upload or storage paths prior to executing rendering (useful when interacting with the queue)
+
+
 ## 2.1.0 - 2021-03-22
 - refactor `Sfneal\ViewExport\Excel\Utils\ExcelView` to `Sfneal\ViewExport\Excel\Exports\ExcelViewExport` for easier expansion
 - fix `ExcelRenderer::setExcelView()` method to use string type hinting for $viewClass param
