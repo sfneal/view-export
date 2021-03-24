@@ -13,7 +13,12 @@ abstract class Renderer extends AbstractJob
     protected $content;
 
     /**
-     * @var string|null AWS S3 path to upload a file to after render (if provided)
+     * @var string|null Local path to write a file to after rendering
+     */
+    protected $storePath;
+
+    /**
+     * @var string|null AWS S3 path to upload a file to after rendering
      */
     protected $uploadPath;
 
@@ -23,15 +28,37 @@ abstract class Renderer extends AbstractJob
      * - $content can be a View or HTML file contents
      *
      * @param mixed $content
-     * @param string|null $uploadPath
      */
-    public function __construct($content, string $uploadPath = null)
+    public function __construct($content)
     {
         // Content of the PDF
         $this->content = $content;
+    }
 
-        // Upload PDF after rendering (defaults to false)
-        $this->uploadPath = $uploadPath;
+    /**
+     * Set a path to upload the Exportable to after it's been rendered.
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function setUploadPath(string $path): self
+    {
+        $this->uploadPath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Store a rendered export on the local file system.
+     *
+     * @param string $storagePath
+     * @return $this
+     */
+    public function setStorePath(string $storagePath): self
+    {
+        $this->storePath = $storagePath;
+
+        return $this;
     }
 
     /**
@@ -64,7 +91,7 @@ abstract class Renderer extends AbstractJob
      *
      *  - storing output in a property avoids potentially calling expensive 'output()' method multiple times
      *
-     * @return Exporter
+     * @return Exporter|mixed
      */
     public function handle(): Exporter
     {
@@ -86,9 +113,14 @@ abstract class Renderer extends AbstractJob
         // Initialize the PdfExporter
         $exporter = $this->exporter($exportable);
 
-        // Upload after rendering if an upload path was provided
+        // Upload after rendering
         if ($this->uploadPath) {
             $exporter->upload($this->uploadPath);
+        }
+
+        // Store after rendering
+        if ($this->storePath) {
+            $exporter->store($this->storePath);
         }
 
         // Return a PdfExporter

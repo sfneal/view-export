@@ -197,3 +197,8 @@ All notable changes to `view-export` will be documented in this file
 - refactor interfaces from 'Support' namespace into 'Sfneal\ViewExport\Support\Interfaces' namespace.
 - add `download()` method to `ExcelExporter`
 - add use of `Storage` facade for uploading files to S3 instead of the S3 helper
+
+
+## 2.3.0 - 2021-03-24
+- cut $uploadPath param from `ExportService` methods & `Renderer` constructor in favor of using `Renderer::upload()` method
+- add methods to `Renderer` that allow for setting upload or storage paths prior to executing rendering (useful when interacting with the queue)

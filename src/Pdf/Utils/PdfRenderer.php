@@ -6,7 +6,6 @@ use Dompdf\Dompdf;
 use Dompdf\Exception;
 use Dompdf\Options;
 use Sfneal\Helpers\Strings\StringHelpers;
-use Sfneal\ViewExport\Support\Adapters\Exporter;
 use Sfneal\ViewExport\Support\Adapters\Renderer;
 
 class PdfRenderer extends Renderer
@@ -30,12 +29,11 @@ class PdfRenderer extends Renderer
      * PdfRenderer constructor.
      *
      * @param string $content
-     * @param string|null $uploadPath
      */
-    public function __construct(string $content, string $uploadPath = null)
+    public function __construct(string $content)
     {
         // Call Parent constructor
-        parent::__construct($content, $uploadPath);
+        parent::__construct($content);
 
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = new DefaultOptions();
@@ -125,7 +123,7 @@ class PdfRenderer extends Renderer
     /**
      * Load renderable content to an Exporter instance and render the output.
      *
-     * @return Exporter|PdfExporter
+     * @return PdfExporter
      */
     public function handle(): PdfExporter
     {

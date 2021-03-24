@@ -30,6 +30,22 @@ abstract class PdfTestCase extends TestCase
         $this->assertTrue(LaravelHelpers::isBinary($exporter->output()));
     }
 
+    /**
+     * Retrieve a storage path for a test PDF.
+     *
+     * @return string
+     */
+    private function getStoragePath(): string
+    {
+        try {
+            $int = random_int(1000, 9999);
+        } catch (\Exception $e) {
+            $int = 1000;
+        }
+
+        return 'pdfs/output-'.$int.'.pdf';
+    }
+
     /** @test */
     public function initialize_exporter()
     {
@@ -44,7 +60,7 @@ abstract class PdfTestCase extends TestCase
     {
         $stored = $this->renderer
             ->handle()
-            ->store('pdfs/output-'.random_int(1000, 9999).'.pdf');
+            ->store($this->getStoragePath());
         $localPath = $stored->localPath();
 
         $this->assertIsString($localPath);
@@ -139,6 +155,25 @@ abstract class PdfTestCase extends TestCase
 
         // Assert that no jobs were pushed...
         Bus::assertNotDispatched(PdfRenderer::class);
+
+        // Dispatch the first job...
+        $this->renderer->handleJob();
+
+        // Assert a job was pushed...
+        Bus::assertDispatched(PdfRenderer::class);
+    }
+
+    /** @test */
+    public function validate_queueable_stored()
+    {
+        // Enable queue faking
+        Bus::fake();
+
+        // Assert that no jobs were pushed...
+        Bus::assertNotDispatched(PdfRenderer::class);
+
+        // Set a storage path
+        $this->renderer->setStorePath($this->getStoragePath());
 
         // Dispatch the first job...
         $this->renderer->handleJob();

@@ -13,23 +13,21 @@ class ExcelExportService extends ExportService
      * Provide a view to build the PDF from.
      *
      * @param View $view
-     * @param string|null $uploadPath
      * @return ExcelRenderer
      */
-    public static function fromView(View $view, string $uploadPath = null): ExcelRenderer
+    public static function fromView(View $view): ExcelRenderer
     {
-        return new ExcelRenderer($view, $uploadPath);
+        return new ExcelRenderer($view);
     }
 
     /**
      * Provide a view to build the PDF from.
      *
      * @param AbstractViewModel $viewModel
-     * @param string|null $uploadPath
      * @return ExcelRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): ExcelRenderer
+    public static function fromViewModel(AbstractViewModel $viewModel): ExcelRenderer
     {
-        return new ExcelRenderer(view($viewModel->view, $viewModel->toArray()), $uploadPath);
+        return new ExcelRenderer(view($viewModel->view, $viewModel->toArray()));
     }
 }

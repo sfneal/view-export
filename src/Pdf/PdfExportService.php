@@ -14,47 +14,43 @@ class PdfExportService extends ExportService implements FromHtml
      * Provide a view to build the PDF from.
      *
      * @param View $view
-     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromView(View $view, string $uploadPath = null): PdfRenderer
+    public static function fromView(View $view): PdfRenderer
     {
-        return new PdfRenderer($view->render(), $uploadPath);
+        return new PdfRenderer($view->render());
     }
 
     /**
      * Provide a view to build the PDF from.
      *
      * @param AbstractViewModel $viewModel
-     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel, string $uploadPath = null): PdfRenderer
+    public static function fromViewModel(AbstractViewModel $viewModel): PdfRenderer
     {
-        return new PdfRenderer($viewModel->renderNoCache(), $uploadPath);
+        return new PdfRenderer($viewModel->renderNoCache());
     }
 
     /**
      * Provide an HTML string to build the PDF from.
      *
      * @param string $html
-     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromHtml(string $html, string $uploadPath = null): PdfRenderer
+    public static function fromHtml(string $html): PdfRenderer
     {
-        return new PdfRenderer($html, $uploadPath);
+        return new PdfRenderer($html);
     }
 
     /**
      * Provide an HTML path or URL to build the PDF from.
      *
      * @param string $path
-     * @param string|null $uploadPath
      * @return PdfRenderer
      */
-    public static function fromHtmlFile(string $path, string $uploadPath = null): PdfRenderer
+    public static function fromHtmlFile(string $path): PdfRenderer
     {
-        return new PdfRenderer(file_get_contents($path), $uploadPath);
+        return new PdfRenderer(file_get_contents($path));
     }
 }
