@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Support\Interfaces;
-
 
 interface Storable
 {
