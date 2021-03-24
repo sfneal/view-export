@@ -31,7 +31,7 @@ abstract class PdfTestCase extends TestCase
     }
 
     /**
-     * Retrieve a storage path for a test PDF
+     * Retrieve a storage path for a test PDF.
      *
      * @return string
      */
@@ -42,6 +42,7 @@ abstract class PdfTestCase extends TestCase
         } catch (\Exception $e) {
             $int = 1000;
         }
+
         return 'pdfs/output-'.$int.'.pdf';
     }
 
