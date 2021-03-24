@@ -4,8 +4,9 @@ namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Bus;
 use Sfneal\Queueables\AbstractJob;
+use Sfneal\ViewExport\Support\Interfaces\Uploadable;
 
-abstract class Renderer extends AbstractJob
+abstract class Renderer extends AbstractJob implements Uploadable
 {
     /**
      * @var mixed Renderable content
@@ -23,15 +24,24 @@ abstract class Renderer extends AbstractJob
      * - $content can be a View or HTML file contents
      *
      * @param mixed $content
-     * @param string|null $uploadPath
      */
-    public function __construct($content, string $uploadPath = null)
+    public function __construct($content)
     {
         // Content of the PDF
         $this->content = $content;
+    }
 
-        // Upload PDF after rendering (defaults to false)
-        $this->uploadPath = $uploadPath;
+    /**
+     * Set a path to upload the Exportable to after it's been rendered.
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function upload(string $path): self
+    {
+        $this->uploadPath = $path;
+
+        return $this;
     }
 
     /**
@@ -90,6 +100,8 @@ abstract class Renderer extends AbstractJob
         if ($this->uploadPath) {
             $exporter->upload($this->uploadPath);
         }
+
+        // todo: add storing?
 
         // Return a PdfExporter
         return $exporter;

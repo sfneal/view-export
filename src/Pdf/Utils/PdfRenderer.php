@@ -29,12 +29,11 @@ class PdfRenderer extends Renderer
      * PdfRenderer constructor.
      *
      * @param string $content
-     * @param string|null $uploadPath
      */
-    public function __construct(string $content, string $uploadPath = null)
+    public function __construct(string $content)
     {
         // Call Parent constructor
-        parent::__construct($content, $uploadPath);
+        parent::__construct($content);
 
         // Declare PDF options (use DefaultOptions) if none provided
         $this->options = new DefaultOptions();
