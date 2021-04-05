@@ -21,7 +21,7 @@
         "laravel/framework": ">=7",
         "maatwebsite/excel": ">=3.1",
         "sfneal/laravel-helpers": ">=1.0.3",
-        "sfneal/queueables": ">=1.0",
+        "sfneal/queueables": "^1.0",
         "sfneal/string-helpers": ">=1.1",
         "sfneal/view-models": ">=1.1"
     },
