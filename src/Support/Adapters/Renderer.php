@@ -3,9 +3,9 @@
 namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Bus;
-use Sfneal\Queueables\AbstractJob;
+use Sfneal\Queueables\Job;
 
-abstract class Renderer extends AbstractJob
+abstract class Renderer extends Job
 {
     /**
      * @var mixed Renderable content
