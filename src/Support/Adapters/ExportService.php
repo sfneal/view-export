@@ -3,7 +3,7 @@
 namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Contracts\View\View;
-use Sfneal\ViewModels\AbstractViewModel;
+use Sfneal\ViewModels\ViewModel;
 
 abstract class ExportService
 {
@@ -18,8 +18,8 @@ abstract class ExportService
     /**
      * Provide a view to build the export from.
      *
-     * @param AbstractViewModel $viewModel
+     * @param ViewModel $viewModel
      * @return Renderer
      */
-    abstract public static function fromViewModel(AbstractViewModel $viewModel): Renderer;
+    abstract public static function fromViewModel(ViewModel $viewModel): Renderer;
 }

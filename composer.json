@@ -23,7 +23,7 @@
         "sfneal/laravel-helpers": ">=1.0.3",
         "sfneal/queueables": "^2.0",
         "sfneal/string-helpers": ">=1.1",
-        "sfneal/view-models": "^2.1"
+        "sfneal/view-models": "^3.0"
     },
     "require-dev": {
         "orchestra/testbench": ">=3.8.0",

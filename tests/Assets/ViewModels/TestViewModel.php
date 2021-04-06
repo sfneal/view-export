@@ -2,9 +2,9 @@
 
 namespace Sfneal\ViewExport\Tests\Assets\ViewModels;
 
-use Sfneal\ViewModels\AbstractViewModel;
+use Sfneal\ViewModels\ViewModel;
 
-class TestViewModel extends AbstractViewModel
+class TestViewModel extends ViewModel
 {
     /**
      * TestViewModel constructor.
