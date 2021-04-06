@@ -210,3 +210,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 2.4.0 - 2021-04-05
 - bump sfneal/queueables (^2.0) & sfneal/view-models (^2.1) version constraints
+
+
+## 2.5.0 - 2021-04-05
+- bump sfneal/view-models (^3.0) min version

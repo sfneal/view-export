@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 use Sfneal\ViewExport\Support\Adapters\ExportService;
 use Sfneal\ViewExport\Support\Interfaces\FromHtml;
-use Sfneal\ViewModels\AbstractViewModel;
+use Sfneal\ViewModels\ViewModel;
 
 class PdfExportService extends ExportService implements FromHtml
 {
@@ -24,10 +24,10 @@ class PdfExportService extends ExportService implements FromHtml
     /**
      * Provide a view to build the PDF from.
      *
-     * @param AbstractViewModel $viewModel
+     * @param ViewModel $viewModel
      * @return PdfRenderer
      */
-    public static function fromViewModel(AbstractViewModel $viewModel): PdfRenderer
+    public static function fromViewModel(ViewModel $viewModel): PdfRenderer
     {
         return new PdfRenderer($viewModel->renderNoCache());
     }
