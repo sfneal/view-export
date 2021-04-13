@@ -15,6 +15,6 @@ class PdfExportFromUrlTest extends PdfTestCase
     {
         parent::setUp();
 
-        $this->renderer = PdfExportService::fromHtmlFile('http://example.com/');
+        $this->renderer = PdfExportService::fromHtmlFile('https://example.com/');
     }
 }
