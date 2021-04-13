@@ -25,13 +25,19 @@ class DefaultOptions extends Options
      */
     private function setDefaults(): self
     {
+        // Set file permissions
+        $this->setChroot(config('view-export.chroot'));
+
+        // Set font cache directory (if overwritten in config)
+        if (config('view-export.font_cache')) {
+            $this->setFontCache(config('view-export.font_cache'));
+        }
+
+        // Set parsing options
         $this->setIsPhpEnabled(config('view-export.php_enabled'));
         $this->setIsJavascriptEnabled(config('view-export.javascript_enabled'));
         $this->setIsHtml5ParserEnabled(config('view-export.html5_parsable'));
         $this->setIsRemoteEnabled(config('view-export.remote_enabled'));
-
-        // Set file permissions
-        $this->setChroot(config('view-export.chroot'));
 
         // Set logging directory
         $this->setLogOutputFile(config('view-export.log_output'));

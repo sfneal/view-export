@@ -25,6 +25,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Font Cache
+    |--------------------------------------------------------------------------
+    |
+    | dompdf's font cache directory.
+    |
+    | The location of the DOMPDF font cache directory
+    |
+    | This directory contains the cached font metrics for the fonts used by DOMPDF.
+    | This directory can be the same as $fontDir
+    |
+    | Note: This directory must exist and be writable by the webserver process.
+    |
+    | Default: leaving as 'null' will result in the 'chroot' being used as the
+    | font cache directory.
+    |
+    */
+    'font_cache' => null,
+
+    /*
+    |--------------------------------------------------------------------------
     | PHP enabled
     |--------------------------------------------------------------------------
     |

@@ -32,6 +32,7 @@ class TestCase extends OrchestraTestCase
     {
         $app->setBasePath(__DIR__.'/../');
         $app['config']->set('view-export.chroot', $app->basePath().'/vendor/dompdf/dompdf');
+        $app['config']->set('view-export.font_cache', $app->storagePath().'/fonts');
         chmod(config('view-export.chroot'), 0755);
     }
 
