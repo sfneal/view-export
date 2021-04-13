@@ -38,7 +38,7 @@ class Metadata
     public function __construct(array $metadata = null)
     {
         if (! empty($metadata)) {
-            $this->set($metadata ?? config('view-export.metadata'));
+            $this->set($metadata ?? config('view-export.pdf.metadata'));
         }
     }
 

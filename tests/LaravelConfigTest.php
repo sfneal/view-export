@@ -8,13 +8,14 @@ class LaravelConfigTest extends TestCase
     public function config_is_accessible()
     {
         // Confirm the view-export config array exists
+        $this->assertIsArray(config('view-export.pdf'));
         $this->assertIsArray(config('view-export'));
     }
 
     /** @test */
     public function chroot()
     {
-        $output = config('view-export.chroot');
+        $output = config('view-export.pdf.chroot');
         $expected = base_path('vendor/dompdf/dompdf');
 
         $this->assertIsString($output);
@@ -25,7 +26,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function php_enabled()
     {
-        $output = config('view-export.php_enabled');
+        $output = config('view-export.pdf.php_enabled');
         $expected = true;
 
         $this->assertIsBool($output);
@@ -35,7 +36,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function javascript_enabled()
     {
-        $output = config('view-export.javascript_enabled');
+        $output = config('view-export.pdf.javascript_enabled');
         $expected = true;
 
         $this->assertIsBool($output);
@@ -45,7 +46,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function html5_parsable()
     {
-        $output = config('view-export.html5_parsable');
+        $output = config('view-export.pdf.html5_parsable');
         $expected = true;
 
         $this->assertIsBool($output);
@@ -55,7 +56,7 @@ class LaravelConfigTest extends TestCase
     /** @test */
     public function remote_enabled()
     {
-        $output = config('view-export.remote_enabled');
+        $output = config('view-export.pdf.remote_enabled');
         $expected = true;
 
         $this->assertIsBool($output);
@@ -72,9 +73,9 @@ class LaravelConfigTest extends TestCase
             'Creator' => 'sfneal/view-export',
             'Producer' => 'dompdf/dompdf',
         ];
-        $this->app['config']->set('view-export.metadata', $metadata);
+        $this->app['config']->set('view-export.pdf.metadata', $metadata);
 
-        $output = config('view-export.metadata');
+        $output = config('view-export.pdf.metadata');
         $expected = $metadata;
 
         $this->assertIsArray($output);
