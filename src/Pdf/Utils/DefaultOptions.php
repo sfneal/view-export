@@ -25,16 +25,22 @@ class DefaultOptions extends Options
      */
     private function setDefaults(): self
     {
-        $this->setIsPhpEnabled(config('view-export.php_enabled'));
-        $this->setIsJavascriptEnabled(config('view-export.javascript_enabled'));
-        $this->setIsHtml5ParserEnabled(config('view-export.html5_parsable'));
-        $this->setIsRemoteEnabled(config('view-export.remote_enabled'));
-
         // Set file permissions
-        $this->setChroot(config('view-export.chroot'));
+        $this->setChroot(config('view-export.pdf.chroot'));
+
+        // Set font cache directory (if overwritten in config)
+        if (config('view-export.pdf.font_cache')) {
+            $this->setFontCache(config('view-export.pdf.font_cache'));
+        }
+
+        // Set parsing options
+        $this->setIsPhpEnabled(config('view-export.pdf.php_enabled'));
+        $this->setIsJavascriptEnabled(config('view-export.pdf.javascript_enabled'));
+        $this->setIsHtml5ParserEnabled(config('view-export.pdf.html5_parsable'));
+        $this->setIsRemoteEnabled(config('view-export.pdf.remote_enabled'));
 
         // Set logging directory
-        $this->setLogOutputFile(config('view-export.log_output'));
+        $this->setLogOutputFile(config('view-export.pdf.log_output'));
 
         return $this;
     }

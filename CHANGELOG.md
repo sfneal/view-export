@@ -214,3 +214,8 @@ All notable changes to `view-export` will be documented in this file
 
 ## 2.5.0 - 2021-04-06
 - bump sfneal/view-models (^3.0) min version
+
+
+## 2.6.0 - 2021-04-13
+- add 'font_cache' key to view-export config for overriding the font cache directory
+- refactor config keys to be nested within a 'pdf' key (changes config access from `config('view-export.metadata')` to `config('view-export.pdf.metadata')`)
