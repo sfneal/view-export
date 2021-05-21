@@ -1,6 +1,8 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests;
+namespace Sfneal\ViewExport\Tests\Feature;
+
+use Sfneal\ViewExport\Tests\TestCase;
 
 class LaravelConfigTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Excel;
+namespace Sfneal\ViewExport\Tests\Feature\Excel;
 
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;

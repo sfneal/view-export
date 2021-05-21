@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Pdf;
+namespace Sfneal\ViewExport\Tests\Feature\Pdf;
 
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;

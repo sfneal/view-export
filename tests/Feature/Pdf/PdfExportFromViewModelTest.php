@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Pdf;
+namespace Sfneal\ViewExport\Tests\Feature\Pdf;
 
 use Sfneal\ViewExport\Pdf\PdfExportService;
 use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;

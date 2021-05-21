@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Excel;
+namespace Sfneal\ViewExport\Tests\Feature\Excel;
 
 use Sfneal\ViewExport\Excel\ExcelExportService;
 use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
