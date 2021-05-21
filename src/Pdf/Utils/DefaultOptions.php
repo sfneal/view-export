@@ -53,7 +53,7 @@ class DefaultOptions extends Options
         $this->setLogOutputFile(config('view-export.pdf.log_output'));
 
         // Set content loader
-        $this->setContentLoader(config('view-export.pdf.content_loader'));
+        $this->setContentLoader(config('view-export.pdf.content_loader', 'disk'));
     }
 
     /**
