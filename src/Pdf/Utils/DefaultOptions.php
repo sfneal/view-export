@@ -7,6 +7,16 @@ use Dompdf\Options;
 class DefaultOptions extends Options
 {
     /**
+     * Set the content loader convention.
+     *
+     *  - If this setting is set to 'disk' PDF content will be exported to a static HTML.
+     *  - If this setting is set to 'memory' PDF content will be loaded directly to the PDF.
+     *
+     * @var string
+     */
+    private $contentLoader;
+
+    /**
      * DefaultOptions constructor.
      *
      * @param array|null $attributes
@@ -21,9 +31,9 @@ class DefaultOptions extends Options
     /**
      * Set the default Dompdf Options.
      *
-     * @return $this
+     * @return void
      */
-    private function setDefaults(): self
+    private function setDefaults(): void
     {
         // Set file permissions
         $this->setChroot(config('view-export.pdf.chroot'));
@@ -42,7 +52,8 @@ class DefaultOptions extends Options
         // Set logging directory
         $this->setLogOutputFile(config('view-export.pdf.log_output'));
 
-        return $this;
+        // Set content loader
+        $this->setContentLoader(config('view-export.pdf.content_loader', 'disk'));
     }
 
     /**
@@ -67,5 +78,68 @@ class DefaultOptions extends Options
         $this->setDefaultPaperOrientation('portrait');
 
         return $this;
+    }
+
+    /**
+     * Set the content loader type as 'disk'.
+     *
+     * @return $this
+     */
+    public function setContentLoaderDisk(): self
+    {
+        return $this->setContentLoader('disk');
+    }
+
+    /**
+     * Set the content loader type as 'memory'.
+     *
+     * @return $this
+     */
+    public function setContentLoaderMemory(): self
+    {
+        return $this->setContentLoader('memory');
+    }
+
+    /**
+     * Set the content loader type.
+     *
+     * @param string $loader
+     * @return $this
+     */
+    private function setContentLoader(string $loader): self
+    {
+        $this->contentLoader = $loader;
+
+        return $this;
+    }
+
+    /**
+     * Determine if the content loader type is 'disk'.
+     *
+     * @return bool
+     */
+    public function isContentLoaderDisk(): bool
+    {
+        return $this->getContentLoader() == 'disk';
+    }
+
+    /**
+     * Determine if the content loader type is 'memory'.
+     *
+     * @return bool
+     */
+    public function isContentLoaderMemory(): bool
+    {
+        return $this->getContentLoader() == 'memory';
+    }
+
+    /**
+     * Retrieve the content loader type.
+     *
+     * @return string
+     */
+    public function getContentLoader(): string
+    {
+        return $this->contentLoader;
     }
 }

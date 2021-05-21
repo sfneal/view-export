@@ -219,3 +219,9 @@ All notable changes to `view-export` will be documented in this file
 ## 2.6.0 - 2021-04-13
 - add 'font_cache' key to view-export config for overriding the font cache directory
 - refactor config keys to be nested within a 'pdf' key (changes config access from `config('view-export.metadata')` to `config('view-export.pdf.metadata')`)
+
+
+## 2.7.0 - 2021-05-21
+- add ability to load content via a static HTML file or directly into the PDF
+- add contentLoader methods to `DefaultOptions` for getting & setting pdf content loader types
+- add 'content_loader' config key for setting a default loader

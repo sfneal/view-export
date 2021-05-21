@@ -80,18 +80,16 @@ class PdfRenderer extends Renderer
     /**
      * Add Metadata to the PDF.
      *
-     * @return bool
+     * @return void
      */
-    private function applyMetadata(): bool
+    private function applyMetadata(): void
     {
         // Add Metadata if the array isn't empty
-        if ($hasMetadata = ! empty($this->metadata->get())) {
+        if (! empty($this->metadata->get())) {
             foreach ($this->metadata->get() as $key => $value) {
                 $this->pdf->add_info($key, $value);
             }
         }
-
-        return $hasMetadata;
     }
 
     /**
@@ -101,22 +99,28 @@ class PdfRenderer extends Renderer
      */
     private function loadContent(): void
     {
-        // todo: implement this if it improves performance
-//        $this->pdf->loadHtml($this->content);
+        // Use 'memory' content loader
+        if ($this->options->isContentLoaderMemory()) {
+            $this->pdf->loadHtml($this->content);
+        }
 
-        // Create local HTML file path
-        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
+        // Use 'disk' content loader
+        elseif ($this->options->isContentLoaderDisk()) {
 
-        // Store View (or HTML) as HTML file within Dompdf root
-        touch($localHTML);
-        file_put_contents($localHTML, $this->content);
+            // Create local HTML file path
+            $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
 
-        // Load HTML
-        $this->pdf->loadHtmlFile($localHTML);
+            // Store View (or HTML) as HTML file within Dompdf root
+            touch($localHTML);
+            file_put_contents($localHTML, $this->content);
 
-        // Remove temp HTML file if app is NOT in 'debug' mode
-        if (! config('app.debug')) {
-            unlink($localHTML);
+            // Load HTML
+            $this->pdf->loadHtmlFile($localHTML);
+
+            // Remove temp HTML file if app is NOT in 'debug' mode
+            if (! config('app.debug')) {
+                unlink($localHTML);
+            }
         }
     }
 
