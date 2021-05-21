@@ -9,6 +9,8 @@ use Sfneal\ViewExport\Providers\ViewExportServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
+    // todo: refactor test suite into Unit & Feature
+
     /**
      * Get package providers.
      *
