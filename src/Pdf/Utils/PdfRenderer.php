@@ -80,18 +80,17 @@ class PdfRenderer extends Renderer
     /**
      * Add Metadata to the PDF.
      *
-     * @return bool
+     * @return void
      */
-    private function applyMetadata(): bool
+    private function applyMetadata(): void
     {
         // Add Metadata if the array isn't empty
-        if ($hasMetadata = ! empty($this->metadata->get())) {
+        if (! empty($this->metadata->get())) {
             foreach ($this->metadata->get() as $key => $value) {
                 $this->pdf->add_info($key, $value);
             }
         }
 
-        return $hasMetadata;
     }
 
     /**
