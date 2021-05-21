@@ -145,6 +145,20 @@ return [
             //        'ModDate' => '',
             //        'Trapped' => '',
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | PDF Content Loader convention
+        |--------------------------------------------------------------------------
+        |
+        | Determine if PDF content should be loaded using the 'disk' to export a
+        | static HTML file prior to loading into the PDF.  Set the value to
+        | 'memory' if you would like load HTML stored in memory directly to the PDF.
+        |
+        | Values: 'memory' or 'disk'
+        |
+        */
+        'content_loader' => 'disk',
     ],
 
 ];

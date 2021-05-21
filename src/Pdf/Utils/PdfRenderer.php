@@ -100,23 +100,30 @@ class PdfRenderer extends Renderer
      */
     private function loadContent(): void
     {
-        // todo: implement this if it improves performance
-//        $this->pdf->loadHtml($this->content);
-
-        // Create local HTML file path
-        $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
-
-        // Store View (or HTML) as HTML file within Dompdf root
-        touch($localHTML);
-        file_put_contents($localHTML, $this->content);
-
-        // Load HTML
-        $this->pdf->loadHtmlFile($localHTML);
-
-        // Remove temp HTML file if app is NOT in 'debug' mode
-        if (! config('app.debug')) {
-            unlink($localHTML);
+        // Use 'memory' content loader
+        if ($this->options->isContentLoaderMemory()) {
+            $this->pdf->loadHtml($this->content);
         }
+
+        // Use 'disk' content loader
+        elseif ($this->options->isContentLoaderDisk()) {
+
+            // Create local HTML file path
+            $localHTML = StringHelpers::joinPaths($this->options->getRootDir(), uniqid().'.html');
+
+            // Store View (or HTML) as HTML file within Dompdf root
+            touch($localHTML);
+            file_put_contents($localHTML, $this->content);
+
+            // Load HTML
+            $this->pdf->loadHtmlFile($localHTML);
+
+            // Remove temp HTML file if app is NOT in 'debug' mode
+            if (! config('app.debug')) {
+                unlink($localHTML);
+            }
+        }
+
     }
 
     /**
