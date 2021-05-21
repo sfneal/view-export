@@ -21,9 +21,9 @@ class DefaultOptions extends Options
     /**
      * Set the default Dompdf Options.
      *
-     * @return $this
+     * @return void
      */
-    private function setDefaults(): self
+    private function setDefaults(): void
     {
         // Set file permissions
         $this->setChroot(config('view-export.pdf.chroot'));
@@ -42,7 +42,6 @@ class DefaultOptions extends Options
         // Set logging directory
         $this->setLogOutputFile(config('view-export.pdf.log_output'));
 
-        return $this;
     }
 
     /**
