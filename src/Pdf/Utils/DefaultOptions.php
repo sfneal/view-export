@@ -7,7 +7,7 @@ use Dompdf\Options;
 class DefaultOptions extends Options
 {
     /**
-     * Set the content loader convention
+     * Set the content loader convention.
      *
      *  - If this setting is set to 'disk' PDF content will be exported to a static HTML.
      *  - If this setting is set to 'memory' PDF content will be loaded directly to the PDF.
@@ -54,7 +54,6 @@ class DefaultOptions extends Options
 
         // Set content loader
         $this->setContentLoader(config('view-export.pdf.content_loader'));
-
     }
 
     /**

@@ -90,7 +90,6 @@ class PdfRenderer extends Renderer
                 $this->pdf->add_info($key, $value);
             }
         }
-
     }
 
     /**
@@ -123,7 +122,6 @@ class PdfRenderer extends Renderer
                 unlink($localHTML);
             }
         }
-
     }
 
     /**
