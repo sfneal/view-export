@@ -181,4 +181,36 @@ abstract class PdfTestCase extends TestCase
         // Assert a job was pushed...
         Bus::assertDispatched(PdfRenderer::class);
     }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function export_using_disk_content_loader()
+    {
+        // Set 'disk' content loader
+        $this->renderer->options->setContentLoaderDisk();
+
+        // Render the PDF
+        $exporter = $this->renderer->handle();
+
+        // Execute assertions
+        $this->executeAssertions($exporter);
+    }
+
+    /**
+     * @test
+     * @throws Exception
+     */
+    public function export_using_memory_content_loader()
+    {
+        // Set 'disk' content loader
+        $this->renderer->options->setContentLoaderMemory();
+
+        // Render the PDF
+        $exporter = $this->renderer->handle();
+
+        // Execute assertions
+        $this->executeAssertions($exporter);
+    }
 }
