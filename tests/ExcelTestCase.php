@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Feature\Excel;
+namespace Sfneal\ViewExport\Tests;
 
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
@@ -9,7 +9,6 @@ use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
 use Sfneal\ViewExport\Tests\Assets\Exports\TestCollectionExcelExport;
 use Sfneal\ViewExport\Tests\Assets\Exports\TestViewExcelExport;
-use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class ExcelTestCase extends TestCase
 {
