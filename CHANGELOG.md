@@ -225,3 +225,8 @@ All notable changes to `view-export` will be documented in this file
 - add ability to load content via a static HTML file or directly into the PDF
 - add contentLoader methods to `DefaultOptions` for getting & setting pdf content loader types
 - add 'content_loader' config key for setting a default loader
+
+
+## 2.8.0 - 2021-05-27
+- fix 'view-config.pdf.metadata' config key to use empty values by default instead of commenting them out
+- add private `getConfigMetadata()` method for retrieving the config metadata with empty values removed
