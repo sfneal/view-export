@@ -42,8 +42,6 @@ class Metadata
         if (! empty($metadata)) {
             $this->set($metadata ?? $this->getConfigMetadata());
         }
-
-        print_r($this->get());
     }
 
     /**
