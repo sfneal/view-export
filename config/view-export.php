@@ -135,15 +135,15 @@ return [
         |
         */
         'metadata' => [
-            //        'Title' => '',
-            //        'Author' => '',
-            //        'Subject' => '',
-            //        'Keywords' => '',
-            //        'Creator' => '',
-            //        'Producer' => '',
-            //        'CreationDate' => '',
-            //        'ModDate' => '',
-            //        'Trapped' => '',
+            'Title' => '',
+            'Author' => '',
+            'Subject' => '',
+            'Keywords' => '',
+            'Creator' => '',
+            'Producer' => '',
+            'CreationDate' => '',
+            'ModDate' => '',
+            'Trapped' => '',
         ],
 
         /*

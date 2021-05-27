@@ -4,6 +4,8 @@ namespace Sfneal\ViewExport\Pdf\Utils;
 
 class Metadata
 {
+    // todo: add tests
+
     /**
      * Array of valid metadata keys.
      *
@@ -38,7 +40,7 @@ class Metadata
     public function __construct(array $metadata = null)
     {
         if (! empty($metadata)) {
-            $this->set($metadata ?? config('view-export.pdf.metadata'));
+            $this->set($metadata ?? $this->getConfigMetadata());
         }
     }
 
@@ -92,5 +94,17 @@ class Metadata
     private function validateMetadata(string $key): bool
     {
         return in_array($key, $this->validMetadataKeys);
+    }
+
+    /**
+     * Retrieve an array of metadata set in the config with null & empty values removed.
+     *
+     * @return array
+     */
+    private function getConfigMetadata(): array
+    {
+        return array_filter(config('view-export.pdf.metadata'), function ($value) {
+            return ! is_null($value) && ! empty($value);
+        });
     }
 }

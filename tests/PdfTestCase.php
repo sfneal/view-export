@@ -1,15 +1,13 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Pdf;
+namespace Sfneal\ViewExport\Tests;
 
-use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Sfneal\Helpers\Laravel\LaravelHelpers;
 use Sfneal\ViewExport\Pdf\Utils\PdfExporter;
 use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
-use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class PdfTestCase extends TestCase
 {
@@ -52,10 +50,7 @@ abstract class PdfTestCase extends TestCase
         $this->assertInstanceOf(PdfRenderer::class, $this->renderer);
     }
 
-    /**
-     * @test
-     * @throws \Exception
-     */
+    /** @test */
     public function pdf_can_be_stored()
     {
         $stored = $this->renderer
@@ -68,10 +63,7 @@ abstract class PdfTestCase extends TestCase
         $this->assertTrue(Storage::exists($localPath));
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_standard_output()
     {
         // Render the PDF
@@ -81,10 +73,7 @@ abstract class PdfTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_output_with_metadata()
     {
         // Add metadata
@@ -97,10 +86,7 @@ abstract class PdfTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_landscape_output()
     {
         // todo: add checks to confirm orientation
@@ -114,10 +100,7 @@ abstract class PdfTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_portrait_output()
     {
         // todo: add checks to confirm orientation
@@ -182,10 +165,7 @@ abstract class PdfTestCase extends TestCase
         Bus::assertDispatched(PdfRenderer::class);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function export_using_disk_content_loader()
     {
         // Set 'disk' content loader
@@ -198,10 +178,7 @@ abstract class PdfTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function export_using_memory_content_loader()
     {
         // Set 'disk' content loader

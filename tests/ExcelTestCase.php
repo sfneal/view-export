@@ -1,8 +1,7 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Excel;
+namespace Sfneal\ViewExport\Tests;
 
-use Dompdf\Exception;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +9,6 @@ use Sfneal\ViewExport\Excel\Utils\ExcelExporter;
 use Sfneal\ViewExport\Excel\Utils\ExcelRenderer;
 use Sfneal\ViewExport\Tests\Assets\Exports\TestCollectionExcelExport;
 use Sfneal\ViewExport\Tests\Assets\Exports\TestViewExcelExport;
-use Sfneal\ViewExport\Tests\TestCase;
 
 abstract class ExcelTestCase extends TestCase
 {
@@ -36,10 +34,7 @@ abstract class ExcelTestCase extends TestCase
         $this->assertInstanceOf(ExcelRenderer::class, $this->renderer);
     }
 
-    /**
-     * @test
-     * @throws \Exception
-     */
+    /** @test */
     public function excel_can_be_stored()
     {
         $stored = $this->renderer
@@ -52,10 +47,7 @@ abstract class ExcelTestCase extends TestCase
         $this->assertTrue(Storage::exists($localPath));
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_standard_output()
     {
         // Render the PDF
@@ -65,10 +57,7 @@ abstract class ExcelTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_output_with_custom_view_export()
     {
         // Add use of custom ExcelViewExport
@@ -81,10 +70,7 @@ abstract class ExcelTestCase extends TestCase
         $this->executeAssertions($exporter);
     }
 
-    /**
-     * @test
-     * @throws Exception
-     */
+    /** @test */
     public function validate_output_with_custom_collection_export()
     {
         // Add use of custom ExcelViewExport

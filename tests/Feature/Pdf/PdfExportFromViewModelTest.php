@@ -1,9 +1,10 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Pdf;
+namespace Sfneal\ViewExport\Tests\Feature\Pdf;
 
 use Sfneal\ViewExport\Pdf\PdfExportService;
 use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
+use Sfneal\ViewExport\Tests\PdfTestCase;
 
 class PdfExportFromViewModelTest extends PdfTestCase
 {
@@ -12,7 +13,7 @@ class PdfExportFromViewModelTest extends PdfTestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 

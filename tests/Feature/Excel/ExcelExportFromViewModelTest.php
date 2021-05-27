@@ -1,9 +1,10 @@
 <?php
 
-namespace Sfneal\ViewExport\Tests\Excel;
+namespace Sfneal\ViewExport\Tests\Feature\Excel;
 
 use Sfneal\ViewExport\Excel\ExcelExportService;
 use Sfneal\ViewExport\Tests\Assets\ViewModels\TestViewModel;
+use Sfneal\ViewExport\Tests\ExcelTestCase;
 
 class ExcelExportFromViewModelTest extends ExcelTestCase
 {
@@ -12,7 +13,7 @@ class ExcelExportFromViewModelTest extends ExcelTestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
