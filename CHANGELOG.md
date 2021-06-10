@@ -230,3 +230,7 @@ All notable changes to `view-export` will be documented in this file
 ## 2.8.0 - 2021-05-27
 - fix 'view-config.pdf.metadata' config key to use empty values by default instead of commenting them out
 - add private `getConfigMetadata()` method for retrieving the config metadata with empty values removed
+
+
+## 2.9.0 - 2021-06-10
+- add `PdfStatus` interface for implementing `pdfExists()` & `pdfProcessing()` methods on Models with PDF files
