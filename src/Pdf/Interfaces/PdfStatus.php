@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Sfneal\ViewExport\Pdf\Interfaces;
-
 
 interface PdfStatus
 {
