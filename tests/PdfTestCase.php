@@ -11,6 +11,8 @@ use Sfneal\ViewExport\Pdf\Utils\PdfRenderer;
 
 abstract class PdfTestCase extends TestCase
 {
+    // todo: add aws uploading to test suite
+
     /**
      * @var PdfRenderer
      */

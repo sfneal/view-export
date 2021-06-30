@@ -36,9 +36,10 @@ abstract class Exporter implements Uploadable, Storable
      */
     public function upload(string $path): self
     {
-        Storage::disk('s3')->put($path, $this->output());
         $this->uploadPath = $path;
-        $this->url = Storage::disk('s3')->url($path);
+        $storage = Storage::disk(config('view-export.disk', config('filesystems.cloud', 's3')));
+        $storage->put($this->uploadPath, $this->output());
+        $this->url = $storage->url($this->uploadPath);
 
         return $this;
     }
