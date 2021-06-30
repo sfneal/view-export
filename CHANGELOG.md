@@ -236,5 +236,5 @@ All notable changes to `view-export` will be documented in this file
 - add `PdfStatus` interface for implementing `pdfExists()` & `pdfProcessing()` methods on Models with PDF files
 
 
-## 2.10.0 - 2021-06-10
+## 2.10.0 - 2021-06-30
 - add 'disk' config key for specifying the cloud Storage disk
