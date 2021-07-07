@@ -238,3 +238,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 2.10.0 - 2021-06-30
 - add 'disk' config key for specifying the cloud Storage disk
+
+
+## 2.10.1 - 2021-07-07
+- add sfneal/aws-s3-helpers dependency for improving cloud file uploads
