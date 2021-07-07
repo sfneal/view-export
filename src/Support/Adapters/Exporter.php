@@ -3,6 +3,7 @@
 namespace Sfneal\ViewExport\Support\Adapters;
 
 use Illuminate\Support\Facades\Storage;
+use Sfneal\Helpers\Aws\S3\StorageS3;
 use Sfneal\ViewExport\Support\Interfaces\Storable;
 use Sfneal\ViewExport\Support\Interfaces\Uploadable;
 
@@ -37,9 +38,14 @@ abstract class Exporter implements Uploadable, Storable
     public function upload(string $path): self
     {
         $this->uploadPath = $path;
-        $storage = Storage::disk(config('view-export.disk', config('filesystems.cloud', 's3')));
-        $storage->put($this->uploadPath, $this->output());
-        $this->url = $storage->url($this->uploadPath);
+
+        $storage = StorageS3::disk(
+            config('view-export.disk', config('filesystems.cloud', 's3')),
+            $this->uploadPath
+        );
+        $storage->uploadRaw($this->output());
+
+        $this->url = $storage->url();
 
         return $this;
     }
