@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "sfneal/aws-s3-helpers": ">=0.12.1",
+        "sfneal/aws-s3-helpers": "^1.0",
         "dompdf/dompdf": ">=1.0",
         "laravel/framework": ">=7",
         "maatwebsite/excel": ">=3.1",

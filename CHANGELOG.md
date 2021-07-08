@@ -242,3 +242,7 @@ All notable changes to `view-export` will be documented in this file
 
 ## 2.10.1 - 2021-07-07
 - add sfneal/aws-s3-helpers dependency for improving cloud file uploads
+
+
+## 2.10.2 - 2021-07-08
+- bump sfneal/aws-s3-helpers min version to v1.0
